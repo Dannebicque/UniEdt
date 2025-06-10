@@ -1,11 +1,18 @@
 # Outil de construction des EDT
 
+## Présentation
+
+ ...todo...
+
+## Execution
+
+...todo...
+
 ## Schéma des données stockées en fichier JSON
 
 ### Fichiers "semaine"
 
 Fichier nommé : `semaine_xx.json`, où xx est le numéro de la semaine (1 à 52).
-
 
 ```json
 {
@@ -58,7 +65,7 @@ Fichier nommé : `contraintes.json` (fichier unique)
 
 ```json
 {
-    'DAN': [
+    "DAN": [
         {
             "day": "Lundi",
             "creneaux": [1, 2, 3],
@@ -72,7 +79,7 @@ Fichier nommé : `contraintes.json` (fichier unique)
             "type": "indisponibilité"
         }
     ],
-    'JBA': [
+    "JBA": [
         {
             "day": "Vendredi",
             "creneaux": [4, 5],
