@@ -17,42 +17,30 @@ Fichier nommé : `semaine_xx.json`, où xx est le numéro de la semaine (1 à 52
 ```json
 {
     "week": 1,
-    "jours": {
-        "Lundi": "02\/09\/2024",
-        "Mardi": "03\/09\/2024",
-        "Mercredi": "04\/09\/2024",
-        "Jeudi": "05\/09\/2024",
-        "Vendredi": "06\/09\/2024"
-    },
     "days": [
         {
             "day": "Lundi",
             "date": "2024-09-02",
-            "dateFr": "02\/09\/2024",
             "isHoliday": false
         },
         {
             "day": "Mardi",
             "date": "2024-09-03",
-            "dateFr": "03\/09\/2024",
             "isHoliday": false
         },
         {
             "day": "Mercredi",
             "date": "2024-09-04",
-            "dateFr": "04\/09\/2024",
             "isHoliday": false
         },
         {
             "day": "Jeudi",
             "date": "2024-09-05",
-            "dateFr": "05\/09\/2024",
             "isHoliday": false
         },
         {
             "day": "Vendredi",
             "date": "2024-09-06",
-            "dateFr": "06\/09\/2024",
             "isHoliday": false
         }
     ]
@@ -61,32 +49,47 @@ Fichier nommé : `semaine_xx.json`, où xx est le numéro de la semaine (1 à 52
 
 ### Fichiers "Contraintes"
 
-Fichier nommé : `contraintes.json` (fichier unique)
+Fichier nommé : `contraintes.json` (fichier unique).
+
+**Le fichier de contrainte sert aussi de fichier liste des professeurs.**
+
 
 ```json
 {
-    "DAN": [
-        {
-            "day": "Lundi",
-            "creneaux": [1, 2, 3],
-            "recurrence": "weekly"
-            "type": "indisponibilité"
-        },
-        {
-            "day": "Mardi",
-            "creneaux": [1, 2],
-            "recurrence": "12/03/2025"
-            "type": "indisponibilité"
-        }
-    ],
-    "JBA": [
-        {
+    "DAN": {
+        "name": "David A",
+        "email": "david.a@mail.com",
+        "service": 192,
+        "type": "permanent",
+        "availability": [
+            {
+                "day": "Lundi",
+                "creneaux": [1, 2, 3],
+                "recurrence": "weekly",
+                "status": "indisponible"
+            },
+            {
+                "day": "Mardi",
+                "creneaux": [1, 2],
+                "recurrence": "12/03/2025",
+                "status": "indisponible"
+            }
+        ],
+    },
+    "JBA": {
+        "name": "Julie B",
+        "email": "julie.b@mail.com",
+        "service": 192, # max si vacataire
+        "type": "vacataire",
+        "availability": [
+            {
             "day": "Vendredi",
             "creneaux": [4, 5],
             "recurrence": "weekly",
-            "type": "disponibilité"
+            "status": "disponible"
         }
-    ]
+        ],
+    }
 }
 ```
 
@@ -95,7 +98,19 @@ Fichier nommé : `contraintes.json` (fichier unique)
 Fichier nommé : `evenements.json` (fichier unique)
 
 ```json
-
+[
+    {
+        "id": 1, #trouver un moyen de générer des id uniques
+        "name": "Réunion de rentrée",
+        "date": "2024-09-02",
+        "time": "10:00",
+        "creneaux": [1], # numéro du créneau dans la journée
+        "location": "A101",
+        "description": "Réunion pour présenter les objectifs de l'année.",
+        "semaine": 1,
+        "semester": "s1"
+    }
+]
 ```
 
 ### Fichiers "cours à placer"
@@ -103,5 +118,46 @@ Fichier nommé : `evenements.json` (fichier unique)
 Fichier nommé : `cours_xx.json`, xx est le numéro de semaine
 
 ```json
-
+[
+  {
+    "id": 1, #trouver un moyen de générer des id uniques
+    "name": "WR118",
+    "professor": "DAN",
+    "semester": "s1",
+    "groupIndex": 1,
+    "type": "CM",
+    "groupCount": 1, # si besoin
+    "date": null, # date, vide si pas placé
+    "creaneau": null, # numéro du créneau dans la journée
+    "salle": null
+  },
+  {
+    "id": 2, #trouver un moyen de générer des id uniques
+    "name": "WR118",
+    "professor": "DAN",
+    "semester": "s1",
+    "groupIndex": 1,
+    "type": "TD",
+    "groupCount": 1, # si besoin, pour les CM particuliers
+    "date": null, # date, vide si pas placé
+    "creaneau": null, # numéro du créneau dans la journée
+    "salle": null
+  }
+]
 ```
+
+### Fichiers "salles"
+
+Fichier nommé : `salles.json` (fichier unique)
+
+```json
+[
+  "WR118": [
+    "PGO": {"td": "H205", "tp": "H008"},
+    "RHU": {"td": "H201", "tp": "H007"},
+  ],
+  "CM": ["H018", "Amphi 1"],
+  "TD": ["H101", "H103"],
+  "TP": ["H007", "H008"]
+]
+
