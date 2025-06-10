@@ -53,7 +53,6 @@ Fichier nommé : `contraintes.json` (fichier unique).
 
 **Le fichier de contrainte sert aussi de fichier liste des professeurs.**
 
-
 ```json
 {
     "DAN": {
