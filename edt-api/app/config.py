@@ -17,8 +17,9 @@ load_dotenv(env_file, override=False)          # remplit os.environ
 # 4.2  Pydantic v2 pour exposer les variables typées
 class Settings(BaseSettings):
     env: str = "local"
-    url_front: str = "http://localhost:5173"  # port par défaut de Vite
+    url_front: str = "http://localhost:3000"  # port par défaut de Vite
     debug: bool = False
+    data_dir: Path = Path("../data")
 
     model_config = SettingsConfigDict(
         env_file=str(env_file),
