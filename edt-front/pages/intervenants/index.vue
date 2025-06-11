@@ -12,6 +12,7 @@ import { ref, onMounted } from 'vue';
 import { fetchIntervenants } from '@/services/intervenants';
 
 const intervenants = ref([]);
+
 onMounted(async () => {
     try {
         intervenants.value = await fetchIntervenants();

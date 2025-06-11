@@ -6,7 +6,11 @@
 
 ## Execution
 
-...todo...
+Lancer la partie API de l'application avec la commande suivante :
+
+```bash
+./start.sh
+```
 
 ## Schéma des données stockées en fichier JSON
 
@@ -43,7 +47,8 @@ Fichier nommé : `semaine_xx.json`, où xx est le numéro de la semaine (1 à 52
             "date": "2024-09-06",
             "isHoliday": false
         }
-    ]
+    ],
+  "semesters": ["S1", "S3", "S5"]
 }
 ```
 
@@ -145,18 +150,67 @@ Fichier nommé : `cours_xx.json`, xx est le numéro de semaine
 ]
 ```
 
-### Fichiers "salles"
+### Fichier "salles"
 
 Fichier nommé : `salles.json` (fichier unique)
 
 ```json
-[
+{
   "WR118": [
-    "PGO": {"td": "H205", "tp": "H008"},
-    "RHU": {"td": "H201", "tp": "H007"},
+    "PGO"
+    :
+    {
+      "td": "H205",
+      "tp": "H008"
+    },
+    "RHU"
+    :
+    {
+      "td": "H201",
+      "tp": "H007"
+    }
   ],
-  "CM": ["H018", "Amphi 1"],
-  "TD": ["H101", "H103"],
-  "TP": ["H007", "H008"]
-]
+  "CM": [
+    "H018",
+    "Amphi 1"
+  ],
+  "TD": [
+    "H101",
+    "H103"
+  ],
+  "TP": [
+    "H007",
+    "H008"
+  ]
+}
+```
+
+### Fichier "data globale"
+
+Fichier nommé : `data_globale.json` (fichier unique)
+
+```json
+{
+  "S1": {
+    "nb_tp": 8,
+    "nb_td": 4,
+    "matieres": [
+      "WR101",
+      "WR102",
+      "WR103",
+      "WR104"
+    ]
+  },
+  "S3-Dev-FI": {
+    "nb_tp": 4,
+    "nb_td": 2,
+    "matieres": [
+      "WR301",
+      "WR302",
+      "WR303",
+      "WR304"
+    ]
+  }
+}
+```
 

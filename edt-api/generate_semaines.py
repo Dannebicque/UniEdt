@@ -38,6 +38,8 @@ def get_jours_feries_france(year):
 DATA_DIR = "../data/semaines"
 START_DATE = datetime(2024, 9, 2)
 DAYS = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi"]
+LISTE_S_IMPAIRES = ["S1", "S3", "S5"]
+LISTE_S_PAIRES = ["S2", "S4", "S6"]
 
 os.makedirs(DATA_DIR, exist_ok=True)
 
@@ -52,9 +54,19 @@ for week in range(1, 53):
             "date": date.strftime("%Y-%m-%d"),
             "isHoliday": is_holiday
         })
+
+    # Détermination du semestre selon la date du lundi
+    monday_date = START_DATE + timedelta(weeks=week - 1)
+    premiere_fevrier = datetime(monday_date.year, 2, 1)
+    if monday_date < premiere_fevrier:
+        semesters = LISTE_S_IMPAIRES
+    else:
+        semesters = LISTE_S_PAIRES
+
     semaine = {
         "week": week,
-        "days": days
+        "days": days,
+        "semesters": semesters
     }
     filename = os.path.join(DATA_DIR, f"semaine_{week}.json")
     with open(filename, "w", encoding="utf-8") as f:

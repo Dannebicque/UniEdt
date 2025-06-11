@@ -10,6 +10,7 @@ class Day(BaseModel):
 class WeekFile(BaseModel):
     week: int
     days: List[Day]
+    semesters: List[str]  # Liste des semestres associés à cette semaine
 
 # --- Contraintes / Professeurs ---
 class Availability(BaseModel):
