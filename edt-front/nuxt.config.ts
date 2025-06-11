@@ -8,7 +8,7 @@ export default defineNuxtConfig({
         '~/assets/css/tailwind.css'
     ],
     devtools: {enabled: true},
-    modules: ['@nuxt/eslint', '@nuxtjs/tailwindcss', '@primevue/nuxt-module'],
+    modules: ['@nuxt/eslint', '@nuxtjs/tailwindcss', '@primevue/nuxt-module', '@pinia/nuxt'],
     primevue: {
         usePrimeVue: true,
         options: {

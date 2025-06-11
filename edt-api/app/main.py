@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .config import settings
-from .routers import weeks, professors, courses
+from .routers import weeks, professors, courses, semesters, config
 
 app = FastAPI(title="My API", version="0.1.0", debug=settings.debug)
 
@@ -17,6 +17,8 @@ app.add_middleware(
 app.include_router(weeks.router)
 app.include_router(professors.router)
 app.include_router(courses.router)
+app.include_router(semesters.router)
+app.include_router(config.router)
 
 @app.get("/ping")
 async def ping():

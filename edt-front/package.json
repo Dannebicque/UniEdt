@@ -12,10 +12,12 @@
   "dependencies": {
     "@nuxt/eslint": "^1.4.1",
     "@nuxtjs/tailwindcss": "^6.11.4",
+    "@pinia/nuxt": "^0.11.1",
     "@primeuix/themes": "^1.1.1",
     "@primevue/forms": "^4.3.5",
     "eslint": "^9.28.0",
     "nuxt": "^3.17.5",
+    "pinia": "^3.0.3",
     "primeicons": "^7.0.0",
     "primevue": "^4.3.5",
     "typescript": "^5.8.3",
