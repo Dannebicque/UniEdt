@@ -1,1 +1,24 @@
 
+.course-available {
+  display: block;
+  padding: 8px;
+}
+
+.grid-container-available {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr); /* Ajustez le nombre de colonnes selon vos besoins */
+  gap: 3px;
+}
+
+.grid-item-available {
+  padding: 2px;
+  font-size: 9px;
+  border: 1px solid #000;
+  background-color: #fff;
+  text-align: center;
+}
+
+.vacataire {
+  border-top: 2px solid red;
+  border-left: 2px solid red;
+}

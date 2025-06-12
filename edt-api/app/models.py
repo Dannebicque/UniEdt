@@ -44,14 +44,15 @@ class Event(BaseModel):
 # --- Cours à placer ---
 class CourseToPlace(BaseModel):
     id: int
-    name: str
+    matiere: str
     professor: str
     semester: str
     groupIndex: int
     type: str
+    isVacataire: bool = False
     groupCount: Optional[int]
     date: Optional[str]
-    creaneau: Optional[int]
+    creneau: Optional[int]
     salle: Optional[str]
 
 # --- Salles ---

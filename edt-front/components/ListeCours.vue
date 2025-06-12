@@ -7,8 +7,14 @@ const props = defineProps({
   items: {
     type: Array,
     required: true
-  }
+  },
+  semesters: {
+    type: Object,
+    required: true
+  },
 })
+
+const emit = defineEmits(['drag-start'])
 
 const semesters = ref([])
 const professors = ref([])
@@ -19,7 +25,6 @@ const config = ref(null)
 onMounted(async () => {
   config.value = await fetchAllConfig()
   semesters.value = await config.value.semesters
-  console.log("semesters" + semesters.value)
   professors.value = await fetchIntervenants()
   courses.value = config.courses
   groups.value = config.groups
@@ -47,9 +52,9 @@ const getKeys = (obj) => {
 
 const displayCourseListe = (course) => {
   let groupe = ''
-  if (course.groupCount === 1) {
+  if (course.type === 'TP') {
     groupe = 'TP ' + String.fromCharCode(64 + course.groupIndex)
-  } else if (course.groupCount === 2) {
+  } else if (course.type === 'TD') {
     groupe =
         'TD ' +
         String.fromCharCode(64 + course.groupIndex) +
@@ -58,7 +63,7 @@ const displayCourseListe = (course) => {
     groupe = 'CM'
   }
 
-  return `${course.matiere} <br> ${course.professor} <br> ${course.group} <br> ${groupe}`
+  return `${course.matiere} <br> ${course.professor} <br> ${course.semester} <br> ${groupe}`
 }
 
 const resetFilters = () => {
@@ -68,43 +73,96 @@ const resetFilters = () => {
   selectedGroup.value = ''
 }
 
+const getColorBySemestreAndType = (semester, type) => {
+  let color = props.semesters[semester].color
+  //selon le type calculer un lighten de la couleur de départ. Exemple CM : 100%, TD 80%, TP 60%
+  if (type === 'CM') {
+    return color
+  } else if (type === 'TD') {
+    return lightenColor(color, 0.8)
+  } else if (type === 'TP') {
+    return lightenColor(color, 0.6)
+  }
+}
+
+function lightenColor(color, factor) {
+  const rgb = hexToRgb(color)
+  const r = Math.min(255, Math.floor(rgb.r * factor))
+  const g = Math.min(255, Math.floor(rgb.g * factor))
+  const b = Math.min(255, Math.floor(rgb.b * factor))
+  return rgbToHex(r, g, b)
+}
+
+function hexToRgb(hex) {
+  const bigint = parseInt(hex.slice(1), 16)
+  const r = (bigint >> 16) & 255
+  const g = (bigint >> 8) & 255
+  const b = bigint & 255
+  return { r, g, b }
+}
+
+function rgbToHex(r, g, b) {
+  return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`
+}
+
+const onDragStart = (event, course, source, originSlot = '') => {
+  event.dataTransfer.setData('courseId', course.id)
+  event.dataTransfer.setData('source', source) // Set the source of the drag
+  event.dataTransfer.setData('originSlot', originSlot) // Set the origin slot
+
+  emit('drag-start', course, source, originSlot)
+  // event.target.addEventListener('dragend', clearHighlight, { once: true })
+}
 
 </script>
 
 <template>
   <div>
-    <div>
-      <label for="semester">Semestre :</label>
-      <Select
-          id="semester"
-          optionLabel="label"
-          @change=""
-          v-model="selectedSemester" :options="getKeys(semesters)"
-      />
+    <div style="display: flex; width: 100%;">
+      <div style="flex: 8;" class="me-2">
+        <div>
+          <label for="semester">Semestre :</label>
+          <Select
+              id="semester"
+              optionLabel="label"
+              class="w-full"
+              @change=""
+              v-model="selectedSemester" :options="getKeys(semesters)"
+          />
+        </div>
+        <div>
+          <label for="semester">Prof :</label>
+          <Select v-model="selectedProfessor"
+                  optionLabel="name"
+                  optionValue="key"
+                  class="w-full"
+                  :options="professors"/>
+        </div>
+        <div>
+          <label for="semester">Cours :</label>
+          <Select v-model="selectedCourse" :options="courses" class="w-full"/>
+        </div>
+        <div>
+          <label for="semester">Groupe :</label>
+          <Select v-model="selectedGroup" :options="groups" class="w-full" />
+        </div>
+      </div>
+      <div style="flex: 2; display: flex; align-items: stretch; justify-content: center;">
+        <button style="width: 100%; height: 100%;" @click="resetFilters"
+                class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Reset filtre
+        </button>
+      </div>
     </div>
-    <div>
-      <label for="semester">Prof :</label>
-      <Select v-model="selectedProfessor"
-              optionLabel="name"
-              optionValue="key"
-              :options="professors"/>
-    </div>
-    <div>
-      <label for="semester">Cours :</label>
-      <Select v-model="selectedCourse" :options="courses"/>
-    </div>
-    <div>
-      <label for="semester">Groupe :</label>
-      <Select v-model="selectedGroup" :options="groups" />
-    </div>
-    <div class="list-group grid-container-available">
+    <div class="list-group grid-container-available mt-2">
       <div
           v-for="course in filteredCourses"
           :key="course.id"
-          class="list-group-item grid-item-available"
+          :class="`list-group-item grid-item-available ${course.type} ${course.isVacataire === true ? 'vacataire' : ''}`"
           :style="{
           gridColumn: `span ${course.groupCount}`,
-          backgroundColor: course.color,
+          backgroundColor: getColorBySemestreAndType(course.semester, course.type),
           cursor: 'move'
         }"
           draggable="true"
