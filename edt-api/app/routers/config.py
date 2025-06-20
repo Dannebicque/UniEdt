@@ -5,13 +5,13 @@ from ..lib.data_loader import load_json
 from ..models import WeekFile
 import os
 import json
+from ..lib.paths import get_data_dir
 
 
 router = APIRouter(prefix="/config-globale", tags=["Config"])
 
-ROOT = Path(__file__).resolve().parents[2]          # → dossier racine projet
-DATA_DIR = Path(os.getenv("DATA_DIR", ROOT / "../data"))
 
+DATA_DIR = get_data_dir()
 
 @router.get("/")
 async def get_all_config():

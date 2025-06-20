@@ -2,6 +2,7 @@
 import { ref, onMounted } from 'vue'
 import { fetchAllConfig } from '@/services/configGlobale.js'
 import { fetchIntervenants } from '~/services/intervenants.js'
+import { getColorBySemestreAndType } from '@/composables/useColorUtils.js'
 
 const props = defineProps({
   items: {
@@ -73,38 +74,6 @@ const resetFilters = () => {
   selectedGroup.value = ''
 }
 
-const getColorBySemestreAndType = (semester, type) => {
-  let color = props.semesters[semester].color
-  //selon le type calculer un lighten de la couleur de départ. Exemple CM : 100%, TD 80%, TP 60%
-  if (type === 'CM') {
-    return color
-  } else if (type === 'TD') {
-    return lightenColor(color, 0.8)
-  } else if (type === 'TP') {
-    return lightenColor(color, 0.6)
-  }
-}
-
-function lightenColor(color, factor) {
-  const rgb = hexToRgb(color)
-  const r = Math.min(255, Math.floor(rgb.r * factor))
-  const g = Math.min(255, Math.floor(rgb.g * factor))
-  const b = Math.min(255, Math.floor(rgb.b * factor))
-  return rgbToHex(r, g, b)
-}
-
-function hexToRgb(hex) {
-  const bigint = parseInt(hex.slice(1), 16)
-  const r = (bigint >> 16) & 255
-  const g = (bigint >> 8) & 255
-  const b = bigint & 255
-  return { r, g, b }
-}
-
-function rgbToHex(r, g, b) {
-  return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`
-}
-
 const onDragStart = (event, course, source, originSlot = '') => {
   event.dataTransfer.setData('courseId', course.id)
   event.dataTransfer.setData('source', source) // Set the source of the drag
@@ -155,14 +124,14 @@ const onDragStart = (event, course, source, originSlot = '') => {
         </button>
       </div>
     </div>
-    <div class="list-group grid-container-available mt-2">
+    <div class="list-group grid-container-available mt-2" v-if="filteredCourses">
       <div
           v-for="course in filteredCourses"
           :key="course.id"
           :class="`list-group-item grid-item-available ${course.type} ${course.isVacataire === true ? 'vacataire' : ''}`"
           :style="{
           gridColumn: `span ${course.groupCount}`,
-          backgroundColor: getColorBySemestreAndType(course.semester, course.type),
+          backgroundColor: getColorBySemestreAndType(course.color, course.type),
           cursor: 'move'
         }"
           draggable="true"

@@ -2,9 +2,9 @@
 from pathlib import Path
 import json, os
 from functools import lru_cache
+from app.lib.paths import get_data_dir
 
-ROOT = Path(__file__).resolve().parents[2]          # → dossier racine projet
-DATA_DIR = Path(os.getenv("DATA_DIR", ROOT / "../data"))
+DATA_DIR = get_data_dir()
 
 def load_json(name: str):
     file_path = DATA_DIR / f"{name}.json"

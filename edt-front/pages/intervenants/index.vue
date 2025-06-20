@@ -1,24 +1,36 @@
 <template>
-    <h1>Intervenants</h1>
-    <p>Cette page est en cours de développement.</p>
-    <p>Pour l'instant, vous pouvez consulter la liste des intervenants.</p>
-    <p>Plus d'informations à venir !</p>
+  <h1>Intervenants</h1>
+  <div v-if="intervenants">
+    <DataTable :value="intervenants"
+               :paginator="true"
+               :rows="30"
+               :rowsPerPageOptions="[5, 10, 20]"
+               :loading="!intervenants.length"
+               class="mt-4">
+      <Column field="name" header="Prénom Nom"/>
+      <Column field="type" header="Statut"/>
+      <Column field="key" header="Abbr."/>
+      <Column field="email" header="Email"/>
+    </DataTable>
+  </div>
 </template>
 
 <script setup>
 
 // Récupérer la liste des intervenants depuis l'API
-import { ref, onMounted } from 'vue';
-import { fetchIntervenants } from '@/services/intervenants';
+import { onMounted, ref } from 'vue'
+import { fetchIntervenantsComplets } from '@/services/intervenants'
 
-const intervenants = ref([]);
+const intervenants = ref([])
 
 onMounted(async () => {
-    try {
-        intervenants.value = await fetchIntervenants();
-    } catch (error) {
-        console.error('Erreur lors de la récupération des intervenants:', error);
-    }
-});
+  try {
+    const data = await fetchIntervenantsComplets()
+    intervenants.value = Array.isArray(data) ? data : Object.values(data)
+
+  } catch (error) {
+    console.error('Erreur lors de la récupération des intervenants:', error)
+  }
+})
 
 </script>

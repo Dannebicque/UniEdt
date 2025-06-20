@@ -31,3 +31,11 @@ async def list_contraintes_professors(week_number: int):
     # Résultat en JSON
     return result
 
+@router.get("/complet")
+async def list_complet_professors():
+    # Exemple de lecture du fichier
+    data = load_json("contraintes")
+
+    # Résultat en JSON
+    return data
+

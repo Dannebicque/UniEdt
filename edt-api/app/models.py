@@ -53,7 +53,9 @@ class CourseToPlace(BaseModel):
     groupCount: Optional[int]
     date: Optional[str]
     creneau: Optional[int]
-    salle: Optional[str]
+    room: Optional[str]
+    color: Optional[str]
+    blocked: bool = False
 
 # --- Salles ---
 class SalleAffectation(BaseModel):

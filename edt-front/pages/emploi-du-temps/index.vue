@@ -84,7 +84,7 @@
                 backgroundColor: placedCourses[
                   `${day.day}_${time}_${semestre}_${group}`
                 ]
-                  ? placedCourses[`${day.day}_${time}_${semestre}_${group}`].color
+                  ? getColorBySemestreAndType(placedCourses[`${day.day}_${time}_${semestre}_${group}`].color, placedCourses[`${day.day}_${time}_${semestre}_${group}`].type)
                   : ''
               }"
                   @drop="onDrop($event, day.day, time, semestre, group)"
@@ -110,7 +110,7 @@
                       placedCourses[`${day.day}_${time}_${semestre}_${group}`]
                     )
                   "
-                ></span>
+                ></span><br>
                 <span
                     v-if="
                     placedCourses[`${day.day}_${time}_${semestre}_${group}`]
@@ -125,7 +125,7 @@
                   -{{
                     placedCourses[`${day.day}_${time}_${semestre}_${group}`].room
                   }}-
-                </span>
+                </span><br>
                 <button
                     v-if="
                     placedCourses[`${day.day}_${time}_${semestre}_${group}`]
@@ -187,24 +187,25 @@ import Button from 'primevue/button'
 import Select from 'primevue/select'
 
 import { ref } from 'vue'
-import { fetchWeeks, fetchWeek } from '~/services/weeks.js'
+import { fetchWeek, fetchWeeks } from '~/services/weeks.js'
 import { fetchAllConfig } from '~/services/configGlobale.js'
-import { fetchCoursesByWeek } from '~/services/courses.js'
+import { deleteCourse, fetchCoursesByWeek, updateCourse } from '~/services/courses.js'
 import { fetchConstraintsByWeek } from '~/services/constraints.js'
 import { fetchEventsByWeek } from '~/services/events.js'
+import { getColorBySemestreAndType } from '@/composables/useColorUtils.js'
 
 const configEnv = useRuntimeConfig()
 const baseUrl = configEnv.public.apiBaseUrl
 
 const selectedWeek = ref(null)
-const selectedNumWeek = ref(null)
+const selectedNumWeek = ref(1)
 const weeks = ref([])
 const semesters = ref(null)
 const config = ref(null)
 const days = ref([])
 const coursesOfReport = ref([])
 const coursesOfWeeks = ref([])
-const displayType = ref('prof')
+const displayType = ref('professor')
 const constraints = ref({})
 const restrictedSlots = ref({})
 
@@ -219,14 +220,11 @@ onMounted(async () => {
       try {
         weeks.value = await fetchWeeks()
         config.value = await fetchAllConfig()
-        console.log('Weeks:', weeks.value)
-        console.log('Config:', config.value)
         semesters.value = await config.value.semesters
-        console.log('Semesters:', semesters.value)
         Object.values(semesters.value).forEach((semestre) => {
           size.value += semestre.nbTp
         })
-
+        await _loadWeek()
       } catch (error) {
         console.error('Erreur lors de la récupération des semaines:', error)
       }
@@ -239,10 +237,10 @@ const verifyAndResetGrid = () => {
     const course = placedCourses.value[key]
     if (course.blocked === false) {
       removeCourse(
-          course.day,
-          course.time,
-          course.group,
-          course.groupIndex,
+          course.date,
+          convertToHeureText(course.creneau),
+          course.semester,
+          groupToText(course.groupIndex),
           course.groupCount,
           true
       )
@@ -270,32 +268,33 @@ const _getWeek = async () => {
   days.value = selectedWeek.value.days
   restrictedSlots.value = await fetchEventsByWeek(selectedNumWeek.value)
   constraints.value = await fetchConstraintsByWeek(selectedNumWeek.value)
-
-  // placedCourses.value = await fetch(baseUrl + '/get-placed-courses/' + selectedNumWeek.value).then((res) =>
-  //     res.json()
-  // )
-  //
-  // Object.keys(placedCourses.value).forEach(async (key) => {
-  //   const course = await placedCourses.value[key]
-  //   if (course.blocked === false) {
-  //     mergeCells(course.day, course.time, course.group, course.groupIndex, course.groupCount)
-  //   }
-  // })
-  //
   applyRestrictions()
 }
 
 const _getCourses = async () => {
   coursesOfWeeks.value = await fetchCoursesByWeek(selectedNumWeek.value)
+
+  // parcourir coursesOfWeeks et retirer tous les cours qui sont déjà placés dans placedCourses. Un cours placé est un cours qui a une date et un créneau. Les cours retirés sont à mettre dans placedCourses
+  coursesOfWeeks.value = coursesOfWeeks.value.filter((course) => {
+    if (course.date && course.creneau) {
+      const key = `${course.date}_${convertToHeureText(course.creneau)}_${course.semester}_${groupToText(course.groupIndex)}`
+      placedCourses.value[key] = course
+      return false
+    }
+    return true
+  })
+
+  Object.keys(placedCourses.value).forEach(async (key) => {
+    const course = await placedCourses.value[key]
+    if (course.blocked === false) {
+      mergeCells(course.date, convertToHeureText(course.creneau), course.semester, groupToText(course.groupIndex), course.groupCount, course.type)
+    }
+  })
+
   coursesOfReport.value = await fetchCoursesByWeek(0) //0 = semaine de report
 }
 
 const onDragStart = (course, source, originSlot) => {
-  console.log('onDragStart', course, source, originSlot)
-  // event.dataTransfer.setData('courseId', course.id)
-  // event.dataTransfer.setData('source', source) // Set the source of the drag
-  // event.dataTransfer.setData('originSlot', originSlot) // Set the origin slot
-
   highlightValidCells(course)
   //event.target.addEventListener('dragend', clearHighlight, { once: true })
 }
@@ -304,6 +303,10 @@ const onDrop = (event, day, time, semestre, groupNumber) => {
   const courseId = event.dataTransfer.getData('courseId')
   const source = event.dataTransfer.getData('source') // Get the source of the drag
 
+  if (!courseId) {
+    console.warn('No courseId found in the drop event')
+    return
+  }
   if (source === 'availableCourses') {
     handleDropFromAvailableCourses(courseId, day, time, semestre, groupNumber)
   } else if (source === 'grid') {
@@ -313,39 +316,50 @@ const onDrop = (event, day, time, semestre, groupNumber) => {
   clearHighlight()
 }
 
-const handleDropFromAvailableCourses = (courseId, day, time, semestre, groupNumber) => {
-  const courseIndex = coursesOfWeeks.value.findIndex((c) => c.id === courseId)
-  const course = coursesOfWeeks.value[courseIndex]
+const groupToInt = (group) => {
+  // convert group letter to number
+  return group.charCodeAt(0) - 64
+}
 
-  if (course && course.group === semestre && course.groupIndex === groupNumber) {
+const groupToText = (group) => {
+  // convert group number to letter
+  return String.fromCharCode(64 + group)
+}
+
+const handleDropFromAvailableCourses = async (courseId, day, time, semestre, groupNumber) => {
+  const course = coursesOfWeeks.value.find((c) => c.id == courseId)
+
+  if (course && course.semester === semestre && course.groupIndex === groupToInt(groupNumber)) {
     const groupSpan = course.groupCount
 
-    if (groupNumber <= groupData.value[semestre].length - groupSpan + 1) {
-      mergeCells(day, time, semestre, groupNumber, groupSpan)
-      course.time = time
-      course.day = day
+    if (groupToInt(groupNumber) <= config.value.semesters[semestre].nbTp - groupSpan + 1) {
+      mergeCells(day, time, semestre, groupNumber, groupSpan, course.type)
+      course.creneau = convertToHeureInt(time)
+      course.date = day
       course.blocked = false
       course.room = 'A définir'
 
-      const response = $fetch(baseUrl + '/place-course', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          time: time,
-          day: day,
-          id: course.id,
-          week: selectedNumWeek.value
-        })
-      }).then((res) => res.json())
+      await updateCourse(course, selectedNumWeek.value)
 
-      response.then((data) => {
-        course.id = data.id
-      })
+      // const response = $fetch(baseUrl + '/place-course', {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json'
+      //   },
+      //   body: JSON.stringify({
+      //     time: time,
+      //     day: day,
+      //     id: course.id,
+      //     week: selectedNumWeek.value
+      //   })
+      // }).then((res) => res.json())
+      //
+      // response.then((data) => {
+      //   course.id = data.id
+      // })
 
       placedCourses.value[`${day}_${time}_${semestre}_${groupNumber}`] = course
-      coursesOfWeeks.value.splice(courseIndex, 1)
+      coursesOfWeeks.value = coursesOfWeeks.value.filter(c => c.id != courseId)
     }
   }
 }
@@ -365,7 +379,7 @@ const handleDropFromGrid = (courseId, day, time, semestre, groupNumber, originSl
           course.groupCount,
           true
       )
-      mergeCells(day, time, semestre, groupNumber, groupSpan)
+      mergeCells(day, time, semestre, groupNumber, groupSpan, course.type)
       course.time = time
       course.day = day
       course.blocked = false
@@ -394,15 +408,18 @@ const handleDropFromGrid = (courseId, day, time, semestre, groupNumber, originSl
   }
 }
 
-const mergeCells = (day, time, semestre, groupNumber, groupSpan) => {
+const mergeCells = (day, time, semestre, groupNumber, groupSpan, type) => {
   const cellSelector = `[data-key="${day}_${time}_${semestre}_${groupNumber}"]`
+  console.log(cellSelector)
   const cell = document.querySelector(cellSelector)
   if (cell) {
     cell.style.gridColumn = `span ${groupSpan}`
-    cell.style.width = `${50 * groupSpan}px`
+    const color = getColorBySemestreAndType(config.value.semesters[semestre].color, type)
+    cell.style.backgroundColor = `${color} !important`
+    cell.style.minWidth = `${50 * groupSpan}px`
     // Remove the extra cells that are merged
     for (let i = 1; i < groupSpan; i++) {
-      const extraCellSelector = `[data-key="${day}_${time}_${semestre}_${groupNumber + i}"]`
+      const extraCellSelector = `[data-key="${day}_${time}_${semestre}_${groupToText(groupToInt(groupNumber) + i)}"]`
       const extraCell = document.querySelector(extraCellSelector)
       if (extraCell) {
         extraCell.remove()
@@ -423,6 +440,15 @@ const onDropToReplace = (event) => {
   }
 }
 
+function incrementGroupNumber (groupNumber, i) {
+  //groupeNumber peut être un nombre ou une lettre, donc on gère les deux cas, on retourne le groupe suivant au format lettre
+  if (typeof groupNumber === 'number') {
+    return groupNumber + i
+  } else if (typeof groupNumber === 'string') {
+    return String.fromCharCode(groupNumber.charCodeAt(0) + i)
+  }
+}
+
 const removeCourse = (day, time, semestre, groupNumber, groupSpan, changeSemaine = false) => {
   const courseKey = `${day}_${time}_${semestre}_${groupNumber}`
   const course = placedCourses.value[courseKey]
@@ -436,11 +462,11 @@ const removeCourse = (day, time, semestre, groupNumber, groupSpan, changeSemaine
 
     // Remove the course from all associated cells and add empty cells back
     for (let i = 0; i < groupSpan; i++) {
-      delete placedCourses.value[`${day}_${time}_${semestre}_${groupNumber + i}`]
+      delete placedCourses.value[`${day}_${time}_${semestre}_${incrementGroupNumber(groupNumber, i)}`]
     }
     // Recreate the missing cells
     for (let i = 1; i < groupSpan; i++) {
-      const cellKey = `${day}_${time}_${semestre}_${groupNumber + i}`
+      const cellKey = `${day}_${time}_${semestre}_${incrementGroupNumber(groupNumber, i)}`
       const cell = currentCell.cloneNode(false)
       cell.setAttribute('data-key', cellKey)
       const parent = currentCell.parentNode
@@ -448,41 +474,35 @@ const removeCourse = (day, time, semestre, groupNumber, groupSpan, changeSemaine
     }
 
     if (!changeSemaine) {
-      //mise à jour de la base de données
-      $fetch(baseUrl + '/remove-course/' + course.id, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          week: selectedNumWeek.value
-        })
-      })
-      course.id = null
+      deleteCourse(
+          course.id,
+          selectedNumWeek.value
+      ).then(() => {
+            delete placedCourses.value[courseKey]
+          }
+      )
+
+      course.date = null
+      course.creneau = null
       coursesOfWeeks.value.push(course)
     }
   }
 }
 
 const applyRestrictions = () => {
-  console.log('Applying restrictions...')
   // blcoage du créneau de 12h30, tous les jours, pour tous les groupes
   days.value.forEach((day) => {
     // blocage du créneau de 12h30
     Object.keys(semesters.value).forEach((semester) => {
-      let semestre = semesters.value[semester]
-      console.log(config.value)
       config.value.semesters[semester].groupesTp.forEach((groupe) => {
         blockSlot(day.day, '12h30', semester, groupe, 'Pause')
       })
     })
   })
 
-  console.log(restrictedSlots.value)
   Object.keys(restrictedSlots.value).forEach((key) => {
     restrictedSlots.value[key].forEach((slot) => {
       const { type, slot: timeSlot, semester, days, groups, period, motif } = slot
-      console.log(days)
       days.forEach((day) => {
         if (type === 'generic') {
           // dans ce cas tous les semestres, tous les groupes
@@ -517,8 +537,6 @@ const applyRestrictions = () => {
               })
             })
           } else {
-            console.log(key)
-            console.log(groupData.value)
             times.forEach((time) => {
               groupData.value[key].forEach((groupNumber) => {
                 blockSlot(day, time, key, groupNumber, motif)
@@ -564,7 +582,6 @@ const hasProfessorHasContrainte = (professor, day, time) => {
   // vérifier si le professeur a des contraintes pour ce jour et cette heure
   if (professorConstraints) {
     if (professorConstraints[day] && professorConstraints[day][time]) {
-      console.log('Constraint found:', professorConstraints[day][time])
       return professorConstraints[day][time] ?? 'blocked'
     }
   }
@@ -573,14 +590,11 @@ const hasProfessorHasContrainte = (professor, day, time) => {
 }
 
 const highlightValidCells = (course) => {
-  console.log('highlightValidCells', course)
   const { semester, groupIndex, groupCount, professor } = course
-
 
   // pour chaque ligne de professorConstraints, identifier le jour, puis parcours les créneaux horaires, marquer les cellules indisponibles
 
   // affichage des constraintes profs
-
 
   days.value.forEach((day) => {
     timeSlots.value.forEach((time) => {
@@ -588,8 +602,8 @@ const highlightValidCells = (course) => {
       const isAvailable = isProfessorAvailable(professor, day.day, convertToHeureText(time))
 
       config.value.semesters[semester].groupesTp.forEach((groupe, i) => {
+        if (i < groupIndex - 1 || i >= groupIndex - 1 + groupCount) return // skip groups that are not in the range
         const cellKey = `${day.day}_${time}_${semester}_${groupe}`
-        console.log('cellKey', cellKey)
         const cell = document.querySelector(`[data-key="${cellKey}"]`)
 
         if (cell && !placedCourses.value[cellKey]) {
@@ -604,21 +618,21 @@ const highlightValidCells = (course) => {
   })
 }
 
-function convertToHeureText(time) {
+function convertToHeureText (time) {
   const tab = [
-      '',
-      '8h00',
-      '9h30',
-      '11h00',
-      '14h00',
-      '15h30',
-      '17h00'
+    '',
+    '8h00',
+    '9h30',
+    '11h00',
+    '14h00',
+    '15h30',
+    '17h00'
   ]
 
   return tab[time] || ''
 }
 
-function convertToHeureInt(time) {
+function convertToHeureInt (time) {
   const tab = {
     '8h00': 1,
     '9h30': 2,
@@ -708,7 +722,6 @@ const formatDate = (dateStr) => {
 }
 
 const displayCourse = (course) => {
-  console.log('displayCourse', course)
   let groupe = ''
   if (course.groupCount === 1) {
     groupe = 'TP ' + String.fromCharCode(64 + course.groupIndex)
@@ -722,10 +735,9 @@ const displayCourse = (course) => {
   }
 
   if (course.blocked && course.blocked === true) {
-    console.log('Course is blocked:', course)
     return course.motif
   }
-  return `${course.matiere} <br> ${course.professor} <br> ${course.group} <br> ${groupe}`
+  return `${course.matiere} <br> ${course.professor} <br> ${course.semester} <br> ${groupe}`
 }
 
 </script>
