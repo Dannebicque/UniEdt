@@ -265,8 +265,8 @@ import {
   deleteCourse,
   fetchCoursesByWeek,
   updateCourse,
-  updateCourseToReport,
-  updateCourseFromReport
+  updateCourseFromReport,
+  updateCourseToReport
 } from '~/services/courses.js'
 import { fetchConstraintsByWeek } from '~/services/constraints.js'
 import { fetchEventsByWeek } from '~/services/events.js'
@@ -632,51 +632,55 @@ const applyRestrictions = () => {
     })
   })
 
-  Object.keys(restrictedSlots.value).forEach((key) => {
-    restrictedSlots.value[key].forEach((slot) => {
-      const { type, slot: timeSlot, semester, days, groups, period, motif } = slot
-      days.forEach((day) => {
-        if (type === 'generic') {
-          // dans ce cas tous les semestres, tous les groupes
-          Object.keys(groupData.value).forEach((semester) => {
-            groupData.value[semester].forEach((groupNumber) => {
-              blockSlot(day, timeSlot, semester, groupNumber, motif)
-            })
-          })
-        } else if (type === 'semester') {
-          // dans ce cas tous les groupes d'un semestre
-          groupData.value[semester].forEach((groupNumber) => {
-            blockSlot(day, timeSlot, semester, groupNumber, motif)
-          })
-        } else if (type === 'group') {
-          groups.forEach((groupNumber) => {
-            blockSlot(day, timeSlot, semester, groupNumber, motif)
-          })
-        } else if (type === 'half-day' || type === 'full-day') {
-          const times =
-              type === 'half-day'
-                  ? period === 'morning'
-                      ? ['8h00', '9h30', '11h00']
-                      : ['14h00', '15h30', '17h00']
-                  : ['8h00', '9h30', '11h00', '14h00', '15h30', '17h00']
+  console.log('restrictedSlots:', restrictedSlots.value)
 
-          if (key === 'all') {
-            times.forEach((time) => {
-              Object.keys(groupData.value).forEach((semester) => {
-                groupData.value[semester].forEach((groupNumber) => {
-                  blockSlot(day, time, semester, groupNumber, motif)
-                })
-              })
-            })
-          } else {
-            times.forEach((time) => {
-              groupData.value[key].forEach((groupNumber) => {
-                blockSlot(day, time, key, groupNumber, motif)
-              })
-            })
-          }
-        }
+  restrictedSlots.value.forEach((slot) => {
+    console.log(slot)
+    const { code, creneaux, date, description, jour, nom, room, semaine, semestre, type } = slot
+    creneaux.forEach((creneau) => {
+      config.value.semesters[semestre].groupesTp.forEach((groupe) => {
+        blockSlot(jour, convertToHeureText(creneau), semestre, groupe, nom, type)
       })
+      // if (type === 'generic') {
+      //   // dans ce cas tous les semestres, tous les groupes
+      //   Object.keys(groupData.value).forEach((semester) => {
+      //     groupData.value[semester].forEach((groupNumber) => {
+      //       blockSlot(day, timeSlot, semester, groupNumber, motif)
+      //     })
+      //   })
+      // } else if (type === 'semester') {
+      //   // dans ce cas tous les groupes d'un semestre
+      //   groupData.value[semester].forEach((groupNumber) => {
+      //     blockSlot(day, timeSlot, semester, groupNumber, motif)
+      //   })
+      // } else if (type === 'group') {
+      //   groups.forEach((groupNumber) => {
+      //     blockSlot(day, timeSlot, semester, groupNumber, motif)
+      //   })
+      // } else if (type === 'half-day' || type === 'full-day') {
+      //   const times =
+      //       type === 'half-day'
+      //           ? period === 'morning'
+      //               ? ['8h00', '9h30', '11h00']
+      //               : ['14h00', '15h30', '17h00']
+      //           : ['8h00', '9h30', '11h00', '14h00', '15h30', '17h00']
+      //
+      //   if (key === 'all') {
+      //     times.forEach((time) => {
+      //       Object.keys(groupData.value).forEach((semester) => {
+      //         groupData.value[semester].forEach((groupNumber) => {
+      //           blockSlot(day, time, semester, groupNumber, motif)
+      //         })
+      //       })
+      //     })
+      //   } else {
+      //     times.forEach((time) => {
+      //       groupData.value[key].forEach((groupNumber) => {
+      //         blockSlot(day, time, key, groupNumber, motif)
+      //       })
+      //     })
+      //   }
+      //}
     })
   })
 }
@@ -698,9 +702,15 @@ const clearHighlight = () => {
   })
 }
 
-const blockSlot = (day, time, semester, groupNumber, motif = null) => {
+const blockSlot = (day, time, semester, groupNumber, motif = null, type = 'FIXE') => {
+  let bgColor = '#e06464' // default color for blocked slots
+  if (type === 'FIXE') {
+    bgColor = '#e69797'
+  } else if (type === 'INFO') {
+    bgColor = '#9ee6ef'
+  }
   const cellKey = `${day}_${time}_${semester}_${groupNumber}`
-  placedCourses.value[cellKey] = { motif: motif ?? 'blocked', color: '#e06464', blocked: true }
+  placedCourses.value[cellKey] = { motif: motif ?? 'blocked', color: bgColor, blocked: true }
 }
 
 const isProfessorAvailable = (professor, day, time) => {

@@ -48,7 +48,7 @@ class CourseToPlace(BaseModel):
     professor: str
     semester: str
     groupIndex: int
-    type: str
+    type: str = "CM"
     isVacataire: bool = False
     groupCount: Optional[int]
     date: Optional[str]
@@ -56,6 +56,18 @@ class CourseToPlace(BaseModel):
     room: Optional[str]
     color: Optional[str]
     blocked: bool = False
+
+# --- Cours à placer ---
+class EventToPlace(BaseModel):
+    code: int
+    nom: str
+    date: str  # Format ISO: YYYY-MM-DD
+    jour: str  # "HH:MM"
+    creneaux: List[int]
+    room: Optional[str] = None
+    description: Optional[str]
+    semaine: int
+    semestre: str
 
 # --- Salles ---
 class SalleAffectation(BaseModel):
