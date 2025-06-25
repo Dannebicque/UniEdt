@@ -530,7 +530,6 @@ const onDropToReplace = async (event) => {
     )
     console.log('courseIndex:', courseIndex)
     if (courseIndex) {
-      console.log('onDropToReplace called from availableCourses with courseIndex:', courseIndex)
       let course = coursesOfWeeks.value[courseIndex]
       course.creneau = null
       course.date = null
@@ -543,7 +542,6 @@ const onDropToReplace = async (event) => {
     }
   } else if (source === 'grid') {
     const originSlot = event.dataTransfer.getData('originSlot')
-    console.log('onDropToReplace called from grid with originSlot:', originSlot)
     const course = placedCourses.value[originSlot]
     if (course) {
       // Supprimer le cours de la grille
@@ -561,17 +559,6 @@ const onDropToReplace = async (event) => {
       delete placedCourses.value[originSlot]
     }
   }
-
-  // console.log('onDropToReplace source:', source)
-  // const courseIndex = coursesOfWeeks.value.findIndex((c) => c.id === courseId)
-  // console.log('onDropToReplace called with courseId:', courseId, 'courseIndex:', courseIndex)
-  // const course = coursesOfWeeks.value[courseIndex]
-  //
-  // if (course) {
-  //   //supprimer le cours de la grille s'il est placé sinon le supprimer de la liste des cours de la semaine
-  //   coursesOfReport.value.push(course)
-  //   coursesOfWeeks.value.splice(courseIndex, 1)
-  // }
 }
 
 function incrementGroupNumber (groupNumber, i) {
@@ -632,55 +619,12 @@ const applyRestrictions = () => {
     })
   })
 
-  console.log('restrictedSlots:', restrictedSlots.value)
-
   restrictedSlots.value.forEach((slot) => {
-    console.log(slot)
     const { code, creneaux, date, description, jour, nom, room, semaine, semestre, type } = slot
     creneaux.forEach((creneau) => {
       config.value.semesters[semestre].groupesTp.forEach((groupe) => {
         blockSlot(jour, convertToHeureText(creneau), semestre, groupe, nom, type)
       })
-      // if (type === 'generic') {
-      //   // dans ce cas tous les semestres, tous les groupes
-      //   Object.keys(groupData.value).forEach((semester) => {
-      //     groupData.value[semester].forEach((groupNumber) => {
-      //       blockSlot(day, timeSlot, semester, groupNumber, motif)
-      //     })
-      //   })
-      // } else if (type === 'semester') {
-      //   // dans ce cas tous les groupes d'un semestre
-      //   groupData.value[semester].forEach((groupNumber) => {
-      //     blockSlot(day, timeSlot, semester, groupNumber, motif)
-      //   })
-      // } else if (type === 'group') {
-      //   groups.forEach((groupNumber) => {
-      //     blockSlot(day, timeSlot, semester, groupNumber, motif)
-      //   })
-      // } else if (type === 'half-day' || type === 'full-day') {
-      //   const times =
-      //       type === 'half-day'
-      //           ? period === 'morning'
-      //               ? ['8h00', '9h30', '11h00']
-      //               : ['14h00', '15h30', '17h00']
-      //           : ['8h00', '9h30', '11h00', '14h00', '15h30', '17h00']
-      //
-      //   if (key === 'all') {
-      //     times.forEach((time) => {
-      //       Object.keys(groupData.value).forEach((semester) => {
-      //         groupData.value[semester].forEach((groupNumber) => {
-      //           blockSlot(day, time, semester, groupNumber, motif)
-      //         })
-      //       })
-      //     })
-      //   } else {
-      //     times.forEach((time) => {
-      //       groupData.value[key].forEach((groupNumber) => {
-      //         blockSlot(day, time, key, groupNumber, motif)
-      //       })
-      //     })
-      //   }
-      //}
     })
   })
 }
