@@ -125,27 +125,31 @@ Fichier nommé : `cours_xx.json`, xx est le numéro de semaine
 [
   {
     "id": 1, #trouver un moyen de générer des id uniques
-    "name": "WR118",
+    "matiere": "WR118",
     "professor": "DAN",
-    "semester": "s1",
+    "semester": "S1",
     "groupIndex": 1,
     "type": "CM",
     "groupCount": 1, # si besoin
     "date": null, # date, vide si pas placé
-    "creaneau": null, # numéro du créneau dans la journée
-    "salle": null
+    "creneau": null, # numéro du créneau dans la journée
+    "room": null,
+    "color": "#FF5733",
+    "isVacataire": false,
   },
   {
     "id": 2, #trouver un moyen de générer des id uniques
-    "name": "WR118",
+    "matiere": "WR118",
     "professor": "DAN",
-    "semester": "s1",
+    "semester": "S1",
     "groupIndex": 1,
     "type": "TD",
     "groupCount": 1, # si besoin, pour les CM particuliers
     "date": null, # date, vide si pas placé
-    "creaneau": null, # numéro du créneau dans la journée
-    "salle": null
+    "creneau": null, # numéro du créneau dans la journée
+    "room": null,
+    "color": "#FF5733",
+    "isVacataire": false,
   }
 ]
 ```
@@ -156,20 +160,16 @@ Fichier nommé : `salles.json` (fichier unique)
 
 ```json
 {
-  "WR118": [
-    "PGO"
-    :
-    {
+  "WR118": {
+    "PGO": {
       "td": "H205",
       "tp": "H008"
     },
-    "RHU"
-    :
-    {
+    "RHU": {
       "td": "H201",
       "tp": "H007"
     }
-  ],
+  },
   "CM": [
     "H018",
     "Amphi 1"
@@ -191,26 +191,75 @@ Fichier nommé : `data_globale.json` (fichier unique)
 
 ```json
 {
-  "S1": {
-    "nb_tp": 8,
-    "nb_td": 4,
-    "matieres": [
-      "WR101",
-      "WR102",
-      "WR103",
-      "WR104"
-    ]
-  },
-  "S3-Dev-FI": {
-    "nb_tp": 4,
-    "nb_td": 2,
-    "matieres": [
-      "WR301",
-      "WR302",
-      "WR303",
-      "WR304"
-    ]
+  "semesters": {
+    "S1": {
+      "color": "#FF5733",
+      "nbTp": 8,
+      "groupesTp": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H"
+      ],
+      "groupesTd": [
+        "AB",
+        "CD",
+        "EF",
+        "GH"
+      ],
+      "nbTd": 4,
+      "matieres": [
+        "WR101",
+        "WR102",
+        "WR103",
+        "WR104"
+      ]
+    },
+    "S3-Dev-FI": {
+      "color": "#148027",
+      "nbTp": 4,
+      "nbTd": 2,
+      "groupesTp": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "groupesTd": [
+        "AB",
+        "CD"
+      ],
+      "matieres": [
+        "WR301",
+        "WR302",
+        "WR303",
+        "WR304"
+      ]
+    },
+    "S5-DEV-FI": {
+      "color": "#223cb8",
+      "nbTp": 2,
+      "nbTd": 1,
+      "groupesTp": [
+        "A",
+        "B"
+      ],
+      "groupesTd": [
+        "AB"
+      ],
+      "matieres": [
+        "WR301",
+        "WR302",
+        "WR303",
+        "WR304"
+      ]
+    }
   }
 }
+
 ```
 

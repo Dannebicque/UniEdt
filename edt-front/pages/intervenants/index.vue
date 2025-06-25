@@ -16,6 +16,9 @@
 </template>
 
 <script setup>
+definePageMeta({
+  middleware: ['authenticated'],
+})
 
 // Récupérer la liste des intervenants depuis l'API
 import { onMounted, ref } from 'vue'

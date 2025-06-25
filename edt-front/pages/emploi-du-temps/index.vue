@@ -1,50 +1,81 @@
 <template>
   <h1>emploi-du-temps</h1>
   <div class="flex flex-row flex-wrap">
-    <div class="basis-1/4">
-      <Button
-          :disabled="!selectedNumWeek"
-          @click="_previousWeek"
-      >Semaine précédente
-      </Button>
-    </div>
-    <div class="basis-1/4">
-      <Select v-model="selectedNumWeek" :options="weeks"
-              optionLabel="label"
-              @change="_loadWeek"
-              filter
-              optionValue="value"
-              placeholder="Sélectionner une semaine"
-              class="w-full md:w-56"/>
-    </div>
-    <div class="basis-1/4">
-      <Button
-          :disabled="!selectedNumWeek"
-          @click="_nextWeek"
-      >Semaine suivante
-      </Button>
-    </div>
-    <div class="basis-1/4">
-      <div class="flex flex-wrap gap-4">
-        <div class="flex items-center gap-2">
-          <RadioButton v-model="displayType" inputId="displayType1" name="displayType" value="professor"/>
-          <label for="displayType1">Par prof.</label>
+    <div class="basis-2/3">
+      <div class="flex flex-row flex-wrap">
+        <div class="basis-1/3">
+          <Button
+              :disabled="!selectedNumWeek"
+              @click="_previousWeek"
+          >Semaine précédente
+          </Button>
         </div>
-        <div class="flex items-center gap-2">
-          <RadioButton v-model="displayType" inputId="displayType2" name="displayType" value="course"/>
-          <label for="displayType2">Par matière</label>
+        <div class="basis-1/3">
+          <Select v-model="selectedNumWeek" :options="weeks"
+                  optionLabel="label"
+                  @change="_loadWeek"
+                  filter
+                  optionValue="value"
+                  placeholder="Sélectionner une semaine"
+                  class="w-full md:w-56"/>
+        </div>
+        <div class="basis-1/3">
+          <Button
+              :disabled="!selectedNumWeek"
+              @click="_nextWeek"
+          >Semaine suivante
+          </Button>
+        </div>
+      </div>
+    </div>
+    <div class="basis-1/3">
+      <div class="flex flex-row flex-wrap">
+        <div class="basis-2/3">
+          <div class="flex flex-wrap gap-4">
+            <div class="flex items-center gap-2">
+              <RadioButton v-model="displayType" inputId="displayType1" name="displayType" value="professor"/>
+              <label for="displayType1">Par prof.</label>
+            </div>
+            <div class="flex items-center gap-2">
+              <RadioButton v-model="displayType" inputId="displayType2" name="displayType" value="course"/>
+              <label for="displayType2">Par matière</label>
+            </div>
+
+          </div>
+
+        </div>
+        <div class="basis-1/3">
+          <Button
+              v-if="!showSidebar"
+              @click="showSidebar = true"
+          >
+            <Icon name="prime:fast-backward"/>
+          </Button>
+          <Button v-if="showSidebar" class="mb-2" @click="showSidebar = false">
+            <Icon name="prime:fast-forward"/>
+          </Button>
+
         </div>
       </div>
     </div>
   </div>
 
   <div v-if="selectedWeek">
-    <h2 class="mt-4">Emploi du temps pour la semaine N°
-      <Badge :value="selectedWeek.week"/>
-      (du {{ formatDate(selectedWeek.days[0].date) }} au {{ formatDate(selectedWeek.days[4].date) }})
-    </h2>
+    <div class="flex flex-row flex-wrap mt-3">
+      <div class="basis-1/2">
+        <h2 class="mt-4">
+
+          Emploi du temps pour la semaine N°
+          <Badge :value="selectedWeek.week"/>
+          (du {{ formatDate(selectedWeek.days[0].date) }} au {{ formatDate(selectedWeek.days[4].date) }})
+        </h2>
+      </div>
+      <div class="basis-1/2">
+        <Button @click="affectRooms">Affecter les salles</Button>
+      </div>
+    </div>
     <div class="flex flex-row flex-wrap">
-      <div class="basis-3/4" id="edt">
+      <div :class="['transition-all', showSidebar ? 'basis-3/4' : 'basis-full']" id="edt">
         <div class="grid-container mt-2" v-for="day in days" :key="day.day">
           <div class="grid-day">{{ day.day }} {{ day.dateFr }}</div>
           <!-- Header Row: Semesters -->
@@ -81,12 +112,7 @@
                   :key="time + semestre + group"
                   class="grid-cell"
                   :style="{
-                backgroundColor: placedCourses[
-                  `${day.day}_${time}_${semestre}_${group}`
-                ]
-                  ? getColorBySemestreAndType(placedCourses[`${day.day}_${time}_${semestre}_${group}`].color, placedCourses[`${day.day}_${time}_${semestre}_${group}`].type)
-                  : ''
-              }"
+                backgroundColor: placedCourses[`${day.day}_${time}_${semestre}_${group}`] ? getColorBySemestreAndType(placedCourses[`${day.day}_${time}_${semestre}_${group}`].color, placedCourses[`${day.day}_${time}_${semestre}_${group}`].type) : '' }"
                   @drop="onDrop($event, day.day, time, semestre, group)"
                   @mouseover="highlightSameCourses(day.day, time, semestre, group)"
                   @mouseout="clearSameCoursesHighlight(day.day, time, semestre, group)"
@@ -117,7 +143,7 @@
                       .blocked === false
                   "
                     @click="
-                    openModal(
+                    editRoom(
                       placedCourses[`${day.day}_${time}_${semestre}_${group}`]
                     )
                   "
@@ -126,12 +152,14 @@
                     placedCourses[`${day.day}_${time}_${semestre}_${group}`].room
                   }}-
                 </span><br>
-                <button
+                <Button
                     v-if="
                     placedCourses[`${day.day}_${time}_${semestre}_${group}`]
                       .blocked === false
                   "
-                    class="remove-btn"
+                    rounded
+                    class="mt-1"
+                    severity="danger"
                     @click="
                     removeCourse(
                       day.day,
@@ -143,15 +171,38 @@
                     )
                   "
                 >
-                  x
-                </button>
+                  <Icon name="prime:trash"/>
+                </Button>
+                <Button
+                    v-if="
+                    placedCourses[`${day.day}_${time}_${semestre}_${group}`]
+                      .blocked === false
+                  "
+                    rounded
+                    class="ms-2 mt-1"
+                    severity="warn"
+                    @click="
+                   openModal(placedCourses[`${day.day}_${time}_${semestre}_${group}`])
+                  "
+                >
+                  <Icon name="prime:pen-to-square"/>
+                </Button>
               </span>
               </div>
             </template>
           </template>
         </div>
       </div>
-      <div class="basis-1/4" id="courses">
+      <div class="basis-1/4" id="courses" v-if="showSidebar">
+        <div id="dropToReport" class="ms-2"
+             :class="{ dragover: isDragOver }"
+             @dragenter.prevent="onDragEnter"
+             @dragleave.prevent="onDragLeave"
+             @dragover.prevent
+             @drop.prevent="onDropToReplace($event)"
+        >
+          Déposez ici pour reporter un cours
+        </div>
         <Tabs value="0" class="w-full ms-2">
           <TabList>
             <Tab value="0">Semaine
@@ -166,22 +217,42 @@
               <ListeCours
                   :items="coursesOfWeeks"
                   :semesters="semesters"
-                  @drag-start="onDragStart"
+                  source="availableCourses"
+                  @drag-start="onDragStartEvent"
               />
             </TabPanel>
             <TabPanel value="1">
-              <ListeCours :items="coursesOfReport" :semesters="semesters"/>
+              <ListeCours :items="coursesOfReport"
+                          :semesters="semesters"
+                          source="reportCourses"
+                          @drag-start="onDragStartEvent"
+              />
             </TabPanel>
           </TabPanels>
         </Tabs>
       </div>
+
     </div>
 
-
+    <!-- Modal for editing room -->
+    <Dialog :visible="isModalOpen" :closable="true" modal
+            @update:visible="isModalOpen = $event"
+            header="Modifier l'événement">
+      <p><strong>Cours:</strong> {{ modalCourse.matiere }}</p>
+      <p><strong>Professeur:</strong> {{ modalCourse.professor }}</p>
+      <p><strong>Créneau:</strong> {{ modalCourse.date }} {{ modalCourse.creneau }}</p>
+      <label for="room">Salle:</label>
+      <input type="text" v-model="modalCourse.room" id="room"/>
+      <button @click="saveRoom">Enregistrer</button>
+    </Dialog>
   </div>
 </template>
 
 <script setup>
+definePageMeta({
+  middleware: ['authenticated'],
+})
+
 import RadioButton from 'primevue/radiobutton'
 import Button from 'primevue/button'
 import Select from 'primevue/select'
@@ -189,13 +260,22 @@ import Select from 'primevue/select'
 import { ref } from 'vue'
 import { fetchWeek, fetchWeeks } from '~/services/weeks.js'
 import { fetchAllConfig } from '~/services/configGlobale.js'
-import { deleteCourse, fetchCoursesByWeek, updateCourse } from '~/services/courses.js'
+import {
+  assignRoomsByWeek,
+  deleteCourse,
+  fetchCoursesByWeek,
+  updateCourse,
+  updateCourseToReport,
+  updateCourseFromReport
+} from '~/services/courses.js'
 import { fetchConstraintsByWeek } from '~/services/constraints.js'
 import { fetchEventsByWeek } from '~/services/events.js'
 import { getColorBySemestreAndType } from '@/composables/useColorUtils.js'
 
 const configEnv = useRuntimeConfig()
 const baseUrl = configEnv.public.apiBaseUrl
+
+const showSidebar = ref(true)
 
 const selectedWeek = ref(null)
 const selectedNumWeek = ref(1)
@@ -230,6 +310,16 @@ onMounted(async () => {
       }
     }
 )
+
+const isDragOver = ref(false)
+
+function onDragEnter () {
+  isDragOver.value = true
+}
+
+function onDragLeave () {
+  isDragOver.value = false
+}
 
 const verifyAndResetGrid = () => {
   // pour chaque cours placés on supprime pour remettre la grille en état avant le changement de semestre
@@ -294,9 +384,17 @@ const _getCourses = async () => {
   coursesOfReport.value = await fetchCoursesByWeek(0) //0 = semaine de report
 }
 
-const onDragStart = (course, source, originSlot) => {
+const onDragStartEvent = (course, source, originSlot) => {
+  console.log('onDragStartEvent called with course:', course, 'source:', source, 'originSlot:', originSlot)
   highlightValidCells(course)
-  //event.target.addEventListener('dragend', clearHighlight, { once: true })
+}
+
+const onDragStart = (event, course, source, originSlot) => {
+  event.dataTransfer.setData('courseId', course.id)
+  event.dataTransfer.setData('source', source) // Set the source of the drag
+  event.dataTransfer.setData('originSlot', originSlot) // Set the origin slot
+
+  highlightValidCells(course)
 }
 
 const onDrop = (event, day, time, semestre, groupNumber) => {
@@ -309,6 +407,8 @@ const onDrop = (event, day, time, semestre, groupNumber) => {
   }
   if (source === 'availableCourses') {
     handleDropFromAvailableCourses(courseId, day, time, semestre, groupNumber)
+  } else if (source === 'reportCourses') {
+    handleDropFromCoursesToReport(courseId, day, time, semestre, groupNumber)
   } else if (source === 'grid') {
     const originSlot = event.dataTransfer.getData('originSlot') // Get the origin slot
     handleDropFromGrid(courseId, day, time, semestre, groupNumber, originSlot)
@@ -334,6 +434,56 @@ const handleDropFromAvailableCourses = async (courseId, day, time, semestre, gro
 
     if (groupToInt(groupNumber) <= config.value.semesters[semestre].nbTp - groupSpan + 1) {
       mergeCells(day, time, semestre, groupNumber, groupSpan, course.type)
+    }
+
+    course.creneau = convertToHeureInt(time)
+    course.date = day
+    course.blocked = false
+    course.room = 'A définir'
+
+    await updateCourse(course, selectedNumWeek.value)
+
+    placedCourses.value[`${day}_${time}_${semestre}_${groupNumber}`] = course
+    coursesOfWeeks.value = coursesOfWeeks.value.filter(c => c.id != courseId)
+  }
+}
+
+const handleDropFromCoursesToReport = async (courseId, day, time, semestre, groupNumber) => {
+  const course = coursesOfReport.value.find((c) => c.id == courseId)
+
+  if (course && course.semester === semestre && course.groupIndex === groupToInt(groupNumber)) {
+    const groupSpan = course.groupCount
+
+    if (groupToInt(groupNumber) <= config.value.semesters[semestre].nbTp - groupSpan + 1) {
+      mergeCells(day, time, semestre, groupNumber, groupSpan, course.type)
+    }
+
+    course.creneau = convertToHeureInt(time)
+    course.date = day
+    course.blocked = false
+    course.room = 'A définir'
+
+    await updateCourseFromReport(course, selectedNumWeek.value)
+
+    placedCourses.value[`${day}_${time}_${semestre}_${groupNumber}`] = course
+    coursesOfReport.value = coursesOfReport.value.filter(c => c.id != courseId)
+  }
+}
+
+const handleDropFromGrid = async (courseId, day, time, semestre, groupNumber, originSlot) => {
+  const course = placedCourses.value[originSlot]
+  if (course && course.semester === semestre && groupToText(course.groupIndex) === groupNumber) {
+    const groupSpan = course.groupCount
+    if (groupToInt(groupNumber) <= config.value.semesters[semestre].nbTp - groupSpan + 1) {
+      removeCourse(
+          course.date,
+          convertToHeureText(course.creneau),
+          course.semester,
+          groupToText(course.groupIndex),
+          course.groupCount,
+          true
+      )
+      mergeCells(day, time, semestre, groupNumber, groupSpan, course.type)
       course.creneau = convertToHeureInt(time)
       course.date = day
       course.blocked = false
@@ -341,68 +491,8 @@ const handleDropFromAvailableCourses = async (courseId, day, time, semestre, gro
 
       await updateCourse(course, selectedNumWeek.value)
 
-      // const response = $fetch(baseUrl + '/place-course', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json'
-      //   },
-      //   body: JSON.stringify({
-      //     time: time,
-      //     day: day,
-      //     id: course.id,
-      //     week: selectedNumWeek.value
-      //   })
-      // }).then((res) => res.json())
-      //
-      // response.then((data) => {
-      //   course.id = data.id
-      // })
-
-      placedCourses.value[`${day}_${time}_${semestre}_${groupNumber}`] = course
-      coursesOfWeeks.value = coursesOfWeeks.value.filter(c => c.id != courseId)
-    }
-  }
-}
-
-const handleDropFromGrid = (courseId, day, time, semestre, groupNumber, originSlot) => {
-  const course = placedCourses.value[originSlot]
-
-  if (course && course.group === semestre && course.groupIndex === groupNumber) {
-    const groupSpan = course.groupCount
-
-    if (groupNumber <= groupData.value[semestre].length - groupSpan + 1) {
-      removeCourse(
-          course.day,
-          course.time,
-          course.group,
-          course.groupIndex,
-          course.groupCount,
-          true
-      )
-      mergeCells(day, time, semestre, groupNumber, groupSpan, course.type)
-      course.time = time
-      course.day = day
-      course.blocked = false
-      course.room = 'A définir'
-
-      const response = $fetch(baseUrl + '/place-course', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          time: time,
-          day: day,
-          id: course.id,
-          week: selectedNumWeek.value
-        })
-      }).then((res) => res.json())
-
-      response.then((data) => {
-        course.id = data.id
-      })
-
       delete placedCourses.value[originSlot]
+      clearSameCoursesHighlight()
       placedCourses.value[`${day}_${time}_${semestre}_${groupNumber}`] = course
     }
   }
@@ -410,7 +500,6 @@ const handleDropFromGrid = (courseId, day, time, semestre, groupNumber, originSl
 
 const mergeCells = (day, time, semestre, groupNumber, groupSpan, type) => {
   const cellSelector = `[data-key="${day}_${time}_${semestre}_${groupNumber}"]`
-  console.log(cellSelector)
   const cell = document.querySelector(cellSelector)
   if (cell) {
     cell.style.gridColumn = `span ${groupSpan}`
@@ -428,16 +517,61 @@ const mergeCells = (day, time, semestre, groupNumber, groupSpan, type) => {
   }
 }
 
-const onDropToReplace = (event) => {
+const onDropToReplace = async (event) => {
+  console.log('onDropToReplace called')
+  isDragOver.value = false
   const courseId = event.dataTransfer.getData('courseId')
-  const courseIndex = coursesOfWeeks.value.findIndex((c) => c.id === courseId)
-  const course = coursesOfWeeks.value[courseIndex]
+  const source = event.dataTransfer.getData('source')
 
-  if (course) {
-    course.originalWeek = currentWeek.value
-    coursesOfReport.value.push(course)
-    coursesOfWeeks.value.splice(courseIndex, 1)
+  if (source === 'availableCourses') {
+    console.log('onDropToReplace called from availableCourses with courseId:', courseId)
+    const courseIndex = Object.keys(coursesOfWeeks.value).find(
+        k => coursesOfWeeks.value[k].id == courseId
+    )
+    console.log('courseIndex:', courseIndex)
+    if (courseIndex) {
+      console.log('onDropToReplace called from availableCourses with courseIndex:', courseIndex)
+      let course = coursesOfWeeks.value[courseIndex]
+      course.creneau = null
+      course.date = null
+      course.room = 'A définir'
+
+      delete coursesOfWeeks.value[courseIndex]
+      updateCourseToReport(course, selectedNumWeek.value)
+      //supprimer le cours de la grille et le placer dans le report
+      coursesOfReport.value.push(course)
+    }
+  } else if (source === 'grid') {
+    const originSlot = event.dataTransfer.getData('originSlot')
+    console.log('onDropToReplace called from grid with originSlot:', originSlot)
+    const course = placedCourses.value[originSlot]
+    if (course) {
+      // Supprimer le cours de la grille
+      removeCourse(
+          course.date,
+          convertToHeureText(course.creneau),
+          course.semester,
+          groupToText(course.groupIndex),
+          course.groupCount,
+          true
+      )
+      updateCourseToReport(course, selectedNumWeek.value)
+      // Ajouter le cours dans la liste des cours de report
+      coursesOfReport.value.push(course)
+      delete placedCourses.value[originSlot]
+    }
   }
+
+  // console.log('onDropToReplace source:', source)
+  // const courseIndex = coursesOfWeeks.value.findIndex((c) => c.id === courseId)
+  // console.log('onDropToReplace called with courseId:', courseId, 'courseIndex:', courseIndex)
+  // const course = coursesOfWeeks.value[courseIndex]
+  //
+  // if (course) {
+  //   //supprimer le cours de la grille s'il est placé sinon le supprimer de la liste des cours de la semaine
+  //   coursesOfReport.value.push(course)
+  //   coursesOfWeeks.value.splice(courseIndex, 1)
+  // }
 }
 
 function incrementGroupNumber (groupNumber, i) {
@@ -455,8 +589,8 @@ const removeCourse = (day, time, semestre, groupNumber, groupSpan, changeSemaine
   const currentCell = document.querySelector(`[data-key="${courseKey}"]`)
 
   if (course) {
-    course.time = null
-    course.day = null
+    course.creneau = null
+    course.date = null
     currentCell.style = ''
     currentCell.classList.remove('highlight-same-course')
 
@@ -482,8 +616,6 @@ const removeCourse = (day, time, semestre, groupNumber, groupSpan, changeSemaine
           }
       )
 
-      course.date = null
-      course.creneau = null
       coursesOfWeeks.value.push(course)
     }
   }
@@ -573,7 +705,7 @@ const blockSlot = (day, time, semester, groupNumber, motif = null) => {
 
 const isProfessorAvailable = (professor, day, time) => {
   return !Object.values(placedCourses.value).some(
-      (course) => course.professor === professor && course.time === time && course.day === day
+      (course) => course.professor === professor && course.creneau === time && course.date === day
   )
 }
 
@@ -591,7 +723,7 @@ const hasProfessorHasContrainte = (professor, day, time) => {
 
 const highlightValidCells = (course) => {
   const { semester, groupIndex, groupCount, professor } = course
-
+  console.log('highlightValidCells called with course:', course)
   // pour chaque ligne de professorConstraints, identifier le jour, puis parcours les créneaux horaires, marquer les cellules indisponibles
 
   // affichage des constraintes profs
@@ -690,26 +822,11 @@ const highlightSameCourses = (day, time, semestre, groupNumber) => {
 }
 
 const clearSameCoursesHighlight = (day, time, semestre, groupNumber) => {
-  const courseKey = `${day}_${time}_${semestre}_${groupNumber}`
-  const course = placedCourses.value[courseKey]
-
-  if (course) {
-    const highlightValue =
-        displayType.value === 'course' ? course.matiere : course.professor
-    Object.keys(placedCourses.value).forEach((key) => {
-      if (
-          (displayType.value === 'course' &&
-              placedCourses.value[key].matiere === highlightValue) ||
-          (displayType.value === 'professor' &&
-              placedCourses.value[key].professor === highlightValue)
-      ) {
-        const cell = document.querySelector(`[data-key="${key}"]`)
-        if (cell) {
-          cell.classList.remove('highlight-same-course')
-        }
-      }
-    })
-  }
+//supprimer la classe highlight-same-course de toutes les cellules
+  const highlightedCells = document.querySelectorAll('.highlight-same-course')
+  highlightedCells.forEach((cell) => {
+    cell.classList.remove('highlight-same-course')
+  })
 }
 
 const formatDate = (dateStr) => {
@@ -738,6 +855,29 @@ const displayCourse = (course) => {
     return course.motif
   }
   return `${course.matiere} <br> ${course.professor} <br> ${course.semester} <br> ${groupe}`
+}
+
+const modalCourse = ref(null)
+const isModalOpen = ref(false)
+
+const openModal = (course) => {
+  modalCourse.value = { ...course }
+  isModalOpen.value = true
+}
+
+const closeModal = () => {
+  isModalOpen.value = false
+}
+
+const affectRooms = async () => {
+  try {
+    // appel API pour affecter les salles et récupérer la mise à jour
+    const reponse = await assignRoomsByWeek(selectedNumWeek.value)
+    console.log(reponse)
+    await _getCourses()
+  } catch (error) {
+    console.error('Erreur lors de l\'affectation des salles:', error)
+  }
 }
 
 </script>
@@ -878,5 +1018,25 @@ const displayCourse = (course) => {
 #edt, #courses {
   max-height: 170vh; /* ou une hauteur fixe, ex: 600px */
   overflow-y: auto;
+}
+
+#dropToReport {
+  min-height: 60px;
+  border: 2px dashed #33B3B2;
+  background-color: #f5fafd;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #33B3B2;
+  font-size: 1rem;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+#dropToReport.dragover {
+  background-color: #e0f7fa;
+  border-color: #ff212e;
+  color: #ff212e;
 }
 </style>

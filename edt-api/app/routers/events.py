@@ -10,4 +10,5 @@ async def get_courses_for_week(week_number: int):
     if events is None:
         raise HTTPException(status_code=404, detail="No courses for this week")
     # todo: Parocur le fichier pour calculer les évents de la seamaine demandée
+    # todo: FIXE = bloquant, INFO = informatif, on peut y mettre des cours
     return []

@@ -13,6 +13,10 @@ const props = defineProps({
     type: Object,
     required: true
   },
+  source: {
+    type: String,
+    default: 'availableCourses'
+  }
 })
 
 const emit = defineEmits(['drag-start'])
@@ -80,7 +84,6 @@ const onDragStart = (event, course, source, originSlot = '') => {
   event.dataTransfer.setData('originSlot', originSlot) // Set the origin slot
 
   emit('drag-start', course, source, originSlot)
-  // event.target.addEventListener('dragend', clearHighlight, { once: true })
 }
 
 </script>
@@ -124,7 +127,7 @@ const onDragStart = (event, course, source, originSlot = '') => {
         </button>
       </div>
     </div>
-    <div class="list-group grid-container-available mt-2" v-if="filteredCourses">
+    <div class="list-group grid-container-available mt-2" v-if="filteredCourses && filteredCourses.length > 0">
       <div
           v-for="course in filteredCourses"
           :key="course.id"
@@ -135,10 +138,20 @@ const onDragStart = (event, course, source, originSlot = '') => {
           cursor: 'move'
         }"
           draggable="true"
-          @dragstart="onDragStart($event, course, 'availableCourses', '')"
+          @dragstart="onDragStart($event, course, source, '')"
       >
         <span v-html="displayCourseListe(course)" class="course-available"></span>
       </div>
+    </div>
+    <div class="mt-2" v-else-if="filteredCourses && filteredCourses.length === 0 && selectedGroup === '' && selectedCourse === '' && selectedSemester === '' && selectedProfessor === ''">
+      <Message severity="success">
+      <strong>Youpi !</strong> Tous les cours sont placés pour cette semaine.
+      </Message>
+    </div>
+    <div class="mt-2" v-else>
+      <Message severity="warn">
+        <strong>Ohoho</strong> Aucun cours trouvé.
+      </Message>
     </div>
   </div>
 </template>

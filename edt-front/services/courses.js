@@ -32,6 +32,42 @@ export async function updateCourse(course, week) {
   }
 }
 
+export async function updateCourseToReport(course, week) {
+  const config = useRuntimeConfig()
+  console.log('Updating course:', course)
+
+  try {
+    return await $fetch(`${config.public.apiBaseUrl}/courses/update/${course.id}/deplace-to-report/${week}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: {updates: course}
+    })
+  } catch (error) {
+    console.error('Error updating course:', error)
+    throw error
+  }
+}
+
+export async function updateCourseFromReport(course, week) {
+  const config = useRuntimeConfig()
+  console.log('Updating course:', course)
+
+  try {
+    return await $fetch(`${config.public.apiBaseUrl}/courses/update/${course.id}/deplace-from-report/${week}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: {updates: course}
+    })
+  } catch (error) {
+    console.error('Error updating course:', error)
+    throw error
+  }
+}
+
 // méthode pour supprimer un cours
 export async function deleteCourse(courseId, week) {
   const config = useRuntimeConfig()
@@ -43,6 +79,22 @@ export async function deleteCourse(courseId, week) {
     })
   } catch (error) {
     console.error('Error deleting course:', error)
+    throw error
+  }
+}
+
+export async function assignRoomsByWeek(num) {
+  console.log('assignRooms week...')
+  const config = useRuntimeConfig()
+  console.log(config)
+
+  try {
+    return await $fetch(`${config.public.apiBaseUrl}/courses/assign-rooms/${num}`, {
+      method: 'POST'
+    })
+  } catch (error)
+  {
+    console.error('Error assigning rooms:', error)
     throw error
   }
 }

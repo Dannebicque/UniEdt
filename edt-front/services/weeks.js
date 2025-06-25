@@ -17,8 +17,7 @@ export async function fetchWeek(num) {
 
   try {
     return await $fetch(`${config.public.apiBaseUrl}/weeks/${num}`)
-  } catch (error)
-  {
+  } catch (error) {
     console.error('Error fetching week:', error)
     throw error
   }
