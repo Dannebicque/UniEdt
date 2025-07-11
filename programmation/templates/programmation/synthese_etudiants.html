@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    .synthese-table th, .synthese-table td {
+        text-align: center;
+        vertical-align: middle;
+    }
+    .synthese-table td.parcours-col, .synthese-table th.parcours-col {
+        text-align: left;
+    }
+    .cell-red {
+        background-color: #f8d7da !important;  /* Rouge Bootstrap pale */
+        color: #842029;
+        font-weight: bold;
+    }
+    .cell-orange {
+        background-color: #fff3cd !important;  /* Orange Bootstrap pale */
+        color: #664d03;
+        font-weight: bold;
+    }
+</style>
+
+
+
+<h2>Tableau de Synthèse Étudiants (Partie 1)</h2>
+<div class="table-responsive">
+<table class="table table-bordered table-striped synthese-table">
+  <thead>
+    <tr>
+      <th>Semestre</th>
+      <th class="parcours-col">Parcours</th>
+      <th>Groupe</th>
+      {% for week in header_weeks %}
+        <th>{{ week }}</th>
+      {% endfor %}
+      <th>Total</th>
+    </tr>
+  </thead>
+<tbody>
+  {% for ligne in lignes %}
+    <tr>
+      <td>{{ ligne.semestre }}</td>
+      <td class="parcours-col">{{ ligne.parcours }}</td>
+      <td>{{ ligne.groupe }}</td>
+      {% for val in ligne.semaine %}
+        {% if val and val > 25 %}
+          <td class="cell-red">{{ val }}</td>
+        {% elif val and val > 16 %}
+          <td class="cell-orange">{{ val }}</td>
+        {% else %}
+          <td>{% if val %}{{ val }}{% endif %}</td>
+        {% endif %}
+      {% endfor %}
+      <td><strong>{{ ligne.total }}</strong></td>
+    </tr>
+  {% endfor %}
+</tbody>
+
+</table>
+
+</div>
+{% endblock %}

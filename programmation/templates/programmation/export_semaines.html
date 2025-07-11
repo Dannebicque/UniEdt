@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Export des semaines programmées</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {% if overwrite_required %}
+        <p>Attention, les fichiers des semaines suivantes existent déjà : {{ overwrite_required|join:", " }}</p>
+        <p>Cochez "Écraser les fichiers existants" pour confirmer.</p>
+    {% endif %}
+    <button type="submit" class="btn btn-primary">Exporter</button>
+</form>
+
+{% if result %}
+    <h3>Résultat :</h3>
+    <ul>
+        {% for sem, info in result.items %}
+            <li>
+                Semaine {{ sem }} :
+                {% if info == "exists" %}
+                    Fichier déjà existant (non écrasé).
+                {% else %}
+                    {{ info }} cours exportés.
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,83 @@
+
+{% extends "base.html" %}
+{% block content %}
+
+{% load list_extras %}
+
+<style>
+.synthese-table th, .synthese-table td {
+    text-align: center;
+    vertical-align: middle;
+}
+.synthese-table th.prof-col, .synthese-table td.prof-col {
+    text-align: left;
+}
+.cell-black {
+    background: #222 !important;
+    color: #fff !important;
+}
+.cell-red {
+    background-color: #f8d7da !important;
+    color: #842029;
+    font-weight: bold;
+}
+.cell-yellow {
+    background-color: #ffe066 !important;
+    color: #856404;
+    font-weight: bold;
+}
+.cell-green {
+    background-color: #d1e7dd !important; /* Vert pale */
+    color: #0f5132;
+    font-weight: bold;
+}
+</style>
+<h2>Synthèse Professeurs (Partie 1)</h2>
+<div class="table-responsive">
+<table class="table table-bordered table-striped synthese-table">
+  <thead>
+    <tr>
+      <th class="prof-col">PROF</th>
+      {% for week in header_weeks %}
+        <th>{{ week }}</th>
+      {% endfor %}
+      <th>Total</th>
+      <th>PREVI</th>
+      <th>ECART</th>
+    </tr>
+  </thead>
+<tbody>
+  {% for ligne in lignes %}
+    <tr>
+      <td class="prof-col">{{ ligne.prof }}</td>
+{% for val in ligne.semaine %}
+    {% with dispo=ligne.dispos_semaine|index:forloop.counter0 %}
+        {% if dispo == 0 %}
+            <td class="cell-black">{% if val %}{{ val }}{% endif %}</td>
+        {% elif dispo < val %}
+            <td class="cell-red">{% if val %}{{ val }}{% endif %}</td>
+        {% elif val >= 15 and dispo >= 15 %}
+            <td class="cell-yellow">{{ val }}</td>
+        {% else %}
+            <td>{% if val %}{{ val }}{% endif %}</td>
+        {% endif %}
+    {% endwith %}
+{% endfor %}
+
+
+      <td><strong>{{ ligne.total }}</strong></td>
+      <td>{{ ligne.previ }}</td>
+      {% if ligne.ecart == 0 %}
+          <td class="cell-green">{{ ligne.ecart }}</td>
+      {% elif ligne.ecart < 0 %}
+          <td class="cell-red">{{ ligne.ecart }}</td>
+      {% else %}
+          <td>{{ ligne.ecart }}</td>
+      {% endif %}
+    </tr>
+  {% endfor %}
+</tbody>
+
+</table>
+</div>
+{% endblock %}

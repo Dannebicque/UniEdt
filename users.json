@@ -1,0 +1,9 @@
+{
+    "users": [
+        {
+            "username": "adminEDT",
+            "password": "7bda1acb240ffd11914813eeab6c46dfd03492cc9b8754e8717190838181e2e0",
+            "role": "Administrateur"
+        }
+    ]
+}

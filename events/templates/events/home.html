@@ -1,0 +1,189 @@
+{% extends "base.html" %}
+{% load events_extras %}
+
+{% block content %}
+<h2 class="mb-4">Ajouter un évènement</h2>
+<form method="post" novalidate>
+  {% csrf_token %}
+
+  <!-- Nom + cases à cocher -->
+  <div class="row g-3 mb-3">
+    <div class="col-md">
+      <div class="form-floating">
+        {{ form.nom }}<label>Nom</label>
+      </div>{{ form.nom.errors }}
+    </div>
+    <div class="col-md-auto d-flex flex-column justify-content-center">
+      <div class="form-check">{{ form.semaine_complete }} {{ form.semaine_complete.label_tag }}</div>
+      <div class="form-check">{{ form.date_precise }} {{ form.date_precise.label_tag }}</div>
+    </div>
+  </div>
+
+  <!-- Date OU Semaine / Jour -->
+  <div id="bloc-date" class="row mb-3 d-none">
+    <div class="col-md-4"><div class="form-floating">{{ form.date }}<label>Date</label></div></div>
+  </div>
+
+  <div id="bloc-sj" class="row g-3 mb-3">
+    <div class="col-auto">
+      <label class="col-form-label">Semaine</label>{{ form.semaine }}
+    </div>
+    <div id="col-jour" class="col-auto">
+      <label class="col-form-label">Jour</label>{{ form.jour }}
+    </div>
+  </div>
+
+  <!-- Plage horaire -->
+  <div id="bloc-plage" class="mb-3">
+    <label class="form-label d-block">Plage horaire</label>
+    <div class="d-flex flex-wrap gap-3">
+      {% for radio in form.plage %}
+        <div class="form-check form-check-inline m-0">{{ radio.tag }}
+          <label class="form-check-label" for="{{ radio.id_for_label }}">{{ radio.choice_label }}</label>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- Horaires détaillés -->
+  <div id="bloc-horaires" class="mb-3 d-none">
+    <label class="form-label d-block">Choisir les horaires</label>
+    <div class="d-flex flex-wrap gap-3 ps-2">
+      {% for cb in form.horaires %}
+        <div class="form-check form-check-inline m-0">{{ cb.tag }}
+          <label class="form-check-label" for="{{ cb.id_for_label }}">{{ cb.choice_label }}</label>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- Description -->
+  <div class="form-floating mb-3">{{ form.description }}<label>Description</label></div>
+
+  <!-- Type + Semestre + bouton -->
+  <div class="row g-3 mb-4">
+    <div class="col-md-3"><div class="form-floating">{{ form.type }}<label>Type</label></div></div>
+    <div class="col-md-3"><div class="form-floating">{{ form.semestre }}<label>Semestre</label></div></div>
+    <div class="col d-flex align-items-end justify-content-end">
+      <button class="btn btn-primary">Ajouter</button>
+    </div>
+  </div>
+</form>
+
+<!-- Filtres -->
+<h2 class="mt-5">Liste des évènements</h2>
+<form method="get" class="row gy-2 gx-3 align-items-end mb-4">
+  <div class="col-auto"><label class="mb-0">Du</label>
+    <input type="date" name="date_min" class="form-control" value="{{ filters.date_min }}">
+  </div>
+  <div class="col-auto"><label class="mb-0">Au</label>
+    <input type="date" name="date_max" class="form-control" value="{{ filters.date_max }}">
+  </div>
+  <div class="col-auto"><label class="mb-0">Semestre</label>
+    <select name="semestre" class="form-select">
+      <option value="">– Tous –</option>
+      {% for s in semestres %}
+        <option value="{{ s }}" {% if s == filters.semestre %}selected{% endif %}>{{ s }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="col-auto"><button class="btn btn-primary">Filtrer</button></div>
+  {% if filters.date_min or filters.date_max or filters.semestre %}
+    <div class="col-auto"><a class="btn btn-outline-secondary" href="{% url 'events:home' %}">Réinitialiser</a></div>
+  {% endif %}
+</form>
+
+<!-- Table -->
+<table class="table table-striped">
+  <thead><tr><th>Jour</th><th>Date</th><th>Créneau</th><th>Nom</th>
+          <th>Semestre</th><th>Type</th><th class="text-end">Actions</th></tr></thead>
+  <tbody>
+    {% for e in events %}
+      <tr>
+        <td>{{ e.jour|title }}</td>
+        <td>{{ e.date|format_date_fr }}</td>
+        <td>{{ e.creneaux|creneau_label }}</td>
+        <td>{{ e.nom }}</td>
+        <td>{{ e.semestre }}</td>
+        <td>{% if e.type == "INFO" %}<span class="badge bg-success">INFO</span>
+            {% else %}<span class="badge bg-primary">FIXE</span>{% endif %}</td>
+        <td class="text-end">
+          <a class="btn btn-sm btn-outline-secondary me-1"
+             href="{% url 'events:edit' e.code %}?next={{ current_query|urlencode }}">
+            Modifier</a>
+          <button class="btn btn-sm btn-outline-danger"
+                  data-bs-toggle="modal" data-bs-target="#confirmDelete"
+                  data-code="{{ e.code }}" data-nom="{{ e.nom }}">
+            Supprimer</button>
+        </td>
+      </tr>
+    {% empty %}
+      <tr><td colspan="7" class="text-center">Aucun évènement</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<!-- Modal -->
+<div id="confirmDelete" class="modal fade" tabindex="-1">
+  <div class="modal-dialog"><div class="modal-content">
+    <div class="modal-header"><h5 class="modal-title">Confirmer la suppression</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+    <div class="modal-body"><p id="delete-msg"></p></div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+      <form id="delete-form" method="post">{% csrf_token %}
+        <input type="hidden" name="next" value="{{ current_query }}">
+        <button class="btn btn-danger">Supprimer</button>
+      </form>
+    </div>
+  </div></div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ block.super }}
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const cbDate  = document.querySelector('input[name="date_precise"]');
+  const cbFull  = document.querySelector('input[name="semaine_complete"]');
+  const blocDate = document.getElementById("bloc-date");
+  const blocSJ   = document.getElementById("bloc-sj");
+  const colJour  = document.getElementById("col-jour");
+  const blocPlage = document.getElementById("bloc-plage");
+  const blocHor   = document.getElementById("bloc-horaires");
+
+  function toggleDate() {
+    const precise = cbDate.checked;
+    blocDate.classList.toggle("d-none", !precise || cbFull.checked);
+    blocSJ.classList.toggle("d-none", precise);
+  }
+  function toggleFull() {
+    const full = cbFull.checked;
+    colJour.classList.toggle("d-none", full);
+    blocPlage.classList.toggle("d-none", full);
+    blocHor.classList.add("d-none");
+    toggleDate();
+  }
+  function toggleHoraires() {
+    const mode = document.querySelector('input[name="plage"]:checked').value;
+    blocHor.classList.toggle("d-none", mode !== "horaires" || cbFull.checked);
+  }
+
+  cbDate.addEventListener("change", () => { toggleDate(); toggleHoraires(); });
+  cbFull.addEventListener("change", () => { toggleFull(); });
+  document.querySelectorAll('input[name="plage"]').forEach(r =>
+    r.addEventListener("change", toggleHoraires)
+  );
+
+  toggleFull(); toggleDate(); toggleHoraires();
+
+  document.getElementById("confirmDelete").addEventListener("show.bs.modal", e => {
+    const btn = e.relatedTarget;
+    e.target.querySelector("#delete-msg").textContent =
+      `Supprimer l’évènement « ${btn.dataset.nom} » ?`;
+    e.target.querySelector("#delete-form").action =
+      `{% url 'events:delete' 'CODE' %}`.replace("CODE", btn.dataset.code);
+  });
+});
+</script>
+{% endblock %}

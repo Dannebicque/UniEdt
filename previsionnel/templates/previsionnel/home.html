@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid p-2">
+  <h1 class="h3">Tableau Prévisionnel</h1>
+
+  <!-- Filtres avec inputs et boutons -->
+  <div class="row mb-3">
+    <div class="col">
+      <label for="filtre-code" class="form-label">CODE</label>
+      <input type="text" id="filtre-code" class="form-control" placeholder="Code matière ou WS/WR">
+    </div>
+    <div class="col">
+      <label for="filtre-semestre" class="form-label">SEMESTRE</label>
+      <input type="text" id="filtre-semestre" class="form-control" placeholder="S1..S6 ou PART1/PART2">
+    </div>
+    <div class="col">
+      <label for="filtre-parcours" class="form-label">PARCOURS</label>
+      <input type="text" id="filtre-parcours" class="form-control" placeholder="BUT1, DEV-FI...">
+    </div>
+    <div class="col">
+      <label for="filtre-prof" class="form-label">PROF</label>
+      <input type="text" id="filtre-prof" class="form-control" placeholder="Code prof">
+    </div>
+    <div class="col d-flex align-items-end">
+      <button id="btn-filtrer" class="btn btn-primary w-50 me-1">Filtrer</button>
+      <button id="btn-reset" class="btn btn-secondary w-50">Réinitialiser</button>
+    </div>
+  </div>
+
+  <table class="table table-bordered table-sm align-middle w-100" id="previsionnel-table">
+    <thead class="table-light">
+      <tr class="text-center">
+        <th>Code</th>
+        <th>Matière</th>
+        <th>Semestre</th>
+        <th>Parcours</th>
+        <th>Bloc</th>
+        <th>Prof</th>
+        <th>Nombre<br>CM</th>
+        <th>Nombre<br>TD</th>
+        <th>Groupes<br>TD</th>
+        <th>Nombre<br>TP</th>
+        <th>Groupes<br>TP</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% regroup tableau by code_matiere as matieres %}
+      {% for matiere in matieres %}
+        {% for row in matiere.list %}
+        <tr class="text-center {% if forloop.parentloop.counter0|divisibleby:2 %}table-secondary{% endif %}">
+          <td>{{ row.code_matiere }}</td>
+          <td class="text-nowrap text-start">{{ row.nom_matiere }}</td>
+          <td>{{ row.semestre }}</td>
+          <td class="text-start">{{ row.parcours }}</td>
+          <td>{{ row.bloc }}</td>
+          <td class="text-nowrap text-start {% if row.is_lead %}text-success fw-bold{% endif %}">{{ row.code_prof }}</td>
+          <td>{{ row.cm }}</td>
+          <td>{{ row.td }}</td>
+          <td>{{ row.nbGpTd }}</td>
+          <td>{{ row.tp }}</td>
+          <td>{{ row.nbGpTp }}</td>
+        </tr>
+        {% endfor %}
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+  $('#btn-filtrer').on('click', function() {
+    var code = $('#filtre-code').val().toLowerCase();
+    var semestre = $('#filtre-semestre').val().toUpperCase(); // pour PART1/PART2
+    var parcours = $('#filtre-parcours').val().toLowerCase();
+    var prof = $('#filtre-prof').val().toLowerCase();
+
+    $('#previsionnel-table tbody tr').each(function() {
+      var rowCode = $(this).find('td:nth-child(1)').text().toLowerCase();
+      var rowSem = $(this).find('td:nth-child(3)').text().toUpperCase();
+      var rowPar = $(this).find('td:nth-child(4)').text().toLowerCase();
+      var rowProf = $(this).find('td:nth-child(6)').text().toLowerCase();
+
+      // Gestion PART1 / PART2
+      var semestreMatch = false;
+      if (semestre === '' || semestre === rowSem) {
+        semestreMatch = true;
+      } else if (semestre === 'PART1' && ['S1','S3','S5'].includes(rowSem)) {
+        semestreMatch = true;
+      } else if (semestre === 'PART2' && ['S2','S4','S6'].includes(rowSem)) {
+        semestreMatch = true;
+      }
+
+      // Gestion WS* et WR* pour code
+      var codeMatch = false;
+      if (code === '' || rowCode.includes(code)) {
+        codeMatch = true;
+      } else if (code === 'ws' && rowCode.startsWith('ws')) {
+        codeMatch = true;
+      } else if (code === 'wr' && rowCode.startsWith('wr')) {
+        codeMatch = true;
+      }
+
+      if (codeMatch && semestreMatch &&
+          (parcours === '' || rowPar.includes(parcours)) &&
+          (prof === '' || rowProf.includes(prof))) {
+        $(this).show();
+      } else {
+        $(this).hide();
+      }
+    });
+  });
+
+  $('#btn-reset').on('click', function() {
+    $('#filtre-code').val('');
+    $('#filtre-semestre').val('');
+    $('#filtre-parcours').val('');
+    $('#filtre-prof').val('');
+    $('#previsionnel-table tbody tr').show();
+  });
+});
+</script>
+
+{% endblock %}

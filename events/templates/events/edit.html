@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="mb-4">Modifier l’évènement</h2>
+<form method="post" novalidate>
+  {% csrf_token %}
+  {{ form.non_field_errors }}
+
+  <!-- Nom -->
+  <div class="form-floating mb-3">
+    {{ form.nom }}
+    <label for="{{ form.nom.id_for_label }}">Nom</label>
+  </div>
+
+  <!-- Date précise uniquement -->
+  <div class="form-floating mb-3">
+    {{ form.date }}
+    <label for="{{ form.date.id_for_label }}">Date</label>
+  </div>
+
+  <!-- Horaires détaillés en ligne -->
+  <div class="mb-3">
+    <label class="form-label d-block">Horaires</label>
+    <div class="d-flex flex-wrap gap-3 ps-2">
+      {% for cb in form.horaires %}
+        <div class="form-check form-check-inline m-0">
+          {{ cb.tag }}
+          <label class="form-check-label" for="{{ cb.id_for_label }}">
+            {{ cb.choice_label }}
+          </label>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- Description -->
+  <div class="form-floating mb-3">
+    {{ form.description }}
+    <label for="{{ form.description.id_for_label }}">Description</label>
+  </div>
+
+  <!-- Type + Semestre + bouton -->
+  <div class="row g-3 mb-4">
+    <div class="col-md-3">
+      <div class="form-floating">
+        {{ form.type }}<label for="{{ form.type.id_for_label }}">Type</label>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-floating">
+        {{ form.semestre }}<label for="{{ form.semestre.id_for_label }}">Semestre</label>
+      </div>
+    </div>
+    <div class="col d-flex align-items-end justify-content-end">
+      <button class="btn btn-primary">Enregistrer</button>
+    </div>
+  </div>
+</form>
+{% endblock %}

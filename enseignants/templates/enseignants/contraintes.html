@@ -1,0 +1,217 @@
+{% extends "base.html" %}
+{% load creneaux %}
+{% block content %}
+
+<div class="container my-4">
+
+    <!-- Partie 1 : En-tête enseignant -->
+    <div class="mb-4">
+        <h4>Contraintes de l'enseignant</h4>
+        <div class="alert alert-info">
+            <strong>Code :</strong> {{ code }} &nbsp;&nbsp;
+            <strong>Nom :</strong> {{ nom }} &nbsp;&nbsp;
+            <strong>Prénom :</strong> {{ prenom }}
+        </div>
+    </div>
+
+    <!-- Partie 2 : Formulaire d'ajout -->
+    <div class="card mb-5">
+        <div class="card-header bg-primary text-white">Ajouter une contrainte</div>
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                <input type="hidden" name="ajouter_contrainte" value="1">
+
+                <!-- Statut -->
+                <div class="mb-3">
+                    <label class="form-label">Statut</label>
+                    <select class="form-select" name="statut" required>
+                        <option value="indisponible">Indisponible</option>
+                        <option value="disponible">Disponible</option>
+                    </select>
+                </div>
+
+                <!-- Semaine et Jour sur une ligne -->
+                <div class="row mb-3 align-items-center">
+                    <div class="col-md-6">
+                        <label class="form-label d-block">Semaine</label>
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="toutes_semaines" name="toutes_semaines">
+                                <label class="form-check-label" for="toutes_semaines">Toutes les semaines</label>
+                            </div>
+                            <input type="number" name="semaine" id="champ_semaine" class="form-control w-auto" min="1" max="52">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label d-block">Jour</label>
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="tous_jours" name="tous_jours">
+                                <label class="form-check-label" for="tous_jours">Tous les jours</label>
+                            </div>
+                            <select class="form-select w-auto" name="jour" id="champ_jour">
+                                <option value="Lundi">Lundi</option>
+                                <option value="Mardi">Mardi</option>
+                                <option value="Mercredi">Mercredi</option>
+                                <option value="Jeudi">Jeudi</option>
+                                <option value="Vendredi">Vendredi</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Créneaux -->
+                <div class="mb-3">
+                    <label class="form-label">Créneaux</label><br>
+
+                    <!-- Case Tous cochée par défaut -->
+                    <div class="form-check form-check-inline mb-2">
+                        <input type="checkbox" class="form-check-input" id="select_all_creneaux" name="select_all_creneaux" checked>
+                        <label class="form-check-label" for="select_all_creneaux"><strong>Tous</strong></label>
+                    </div>
+
+                    <!-- Bloc à masquer -->
+                    <div id="creneaux_specifiques" style="display: none;">
+                        {% for cr in creneaux_labels %}
+                            {% with i=cr.0 label=cr.1 %}
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input creneau-checkbox" type="checkbox" name="creneau_{{ i }}" id="cr_{{ i }}">
+                                <label class="form-check-label" for="cr_{{ i }}">{{ label }}</label>
+                            </div>
+                            {% endwith %}
+                        {% endfor %}
+                    </div>
+                </div>
+
+
+                <!-- Commentaire -->
+                <div class="mb-3">
+                    <label class="form-label">Commentaire (facultatif)</label>
+                    <input type="text" name="commentaire" class="form-control">
+                </div>
+
+                <!-- Boutons -->
+                <div class="d-flex justify-content-start gap-2">
+                    <button type="submit" class="btn btn-success">Ajouter</button>
+                    <a href="{% url 'liste_enseignants' %}" class="btn btn-secondary">Retour</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Partie 3 : Liste des contraintes -->
+    <div class="card">
+        <div class="card-header bg-dark text-white">Contraintes existantes</div>
+        <div class="card-body p-0">
+            {% if enseignant.availability %}
+            <table class="table table-bordered mb-0">
+                <thead>
+                    <tr>
+                        <th style="width: 80%;">Détail</th>
+                        <th style="width: 20%;" class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for contrainte in enseignant.availability %}
+                        {% with forloop.counter0 as i %}
+                        <tr>
+                            <td>
+                                <div>
+                                <strong>{{ contrainte.status|title }}</strong> :
+                                    {% if contrainte.week == 99 %}Toutes les semaines{% else %}Semaine {{ contrainte.week }}{% endif %}
+                                    {% if contrainte.day == "ALL" %}, Tous les jours{% else %}, {{ contrainte.day }}{% endif %}
+                                    </div>
+                               <div><em>Créneaux :</em>
+                                    {% for c in contrainte.creneaux %}
+                                        {{ c|creneau_label }}{% if not forloop.last %}, {% endif %}
+                                    {% endfor %}
+                                </div>
+
+                                {% if contrainte.commentaire %}
+                                    <div><em>{{ contrainte.commentaire }}</em></div>
+                                {% endif %}
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="d-grid gap-2">
+                                    <a href="{% url 'modifier_contrainte' code i %}" class="btn btn-sm btn-primary">Modifier</a>
+                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#confirmModal{{ i }}">Supprimer</button>
+                                </div>
+
+                                <div class="modal fade" id="confirmModal{{ i }}" tabindex="-1" aria-labelledby="confirmLabel{{ i }}" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <form method="post" action="{% url 'supprimer_contrainte' code i %}">
+                                                {% csrf_token %}
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="confirmLabel{{ i }}">Confirmer la suppression</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Voulez-vous vraiment supprimer cette contrainte ?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-danger">Oui, supprimer</button>
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endwith %}
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+                <div class="p-3">Aucune contrainte enregistrée.</div>
+            {% endif %}
+        </div>
+    </div>
+
+</div>
+
+<!-- JS pour gestion dynamique des champs -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const toutesSemaines = document.getElementById("toutes_semaines");
+    const champSemaine = document.getElementById("champ_semaine");
+    const tousJours = document.getElementById("tous_jours");
+    const champJour = document.getElementById("champ_jour");
+
+    const checkAll = document.getElementById("select_all_creneaux");
+    const creneauxContainer = document.getElementById("creneaux_specifiques");
+    const creneaux = document.querySelectorAll(".creneau-checkbox");
+
+    // Init : cacher les cases spécifiques si "Tous" est coché
+    function toggleCreneaux() {
+        if (checkAll.checked) {
+            creneauxContainer.style.display = "none";
+            creneaux.forEach(c => c.checked = false);
+        } else {
+            creneauxContainer.style.display = "block";
+        }
+    }
+
+    checkAll.addEventListener("change", toggleCreneaux);
+    toggleCreneaux(); // initialisation
+
+    // Semaines et jours
+    toutesSemaines.addEventListener("change", function () {
+        champSemaine.disabled = this.checked;
+        champSemaine.value = this.checked ? 99 : "";
+    });
+
+    tousJours.addEventListener("change", function () {
+        champJour.disabled = this.checked;
+        if (this.checked) champJour.selectedIndex = -1;
+    });
+});
+</script>
+
+
+<!-- Bootstrap Bundle avec Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container my-4">
+    <h4>Modifier une contrainte</h4>
+    <div class="alert alert-info">
+        <strong>Code :</strong> {{ code }} &nbsp;&nbsp;
+        <strong>Nom :</strong> {{ nom }} &nbsp;&nbsp;
+        <strong>Prénom :</strong> {{ prenom }}
+    </div>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label class="form-label">Statut</label>
+                <select name="statut" class="form-select" required>
+                    <option value="indisponible" {% if contrainte.status == "indisponible" %}selected{% endif %}>Indisponible</option>
+                    <option value="disponible" {% if contrainte.status == "disponible" %}selected{% endif %}>Disponible</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Semaine</label>
+                <input type="number" name="semaine" class="form-control" min="1" max="99" value="{{ contrainte.week }}" required>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Jour</label>
+                <select name="jour" class="form-select" required>
+                    {% for j in jours %}
+                        <option value="{{ j }}" {% if contrainte.day == j %}selected{% endif %}>{{ j }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Créneaux</label><br>
+                {% for i_label in creneaux_labels %}
+                    {% with i=i_label.0 label=i_label.1 %}
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" class="form-check-input" name="creneau_{{ i }}" id="cr_{{ i }}"
+                                   {% if i in contrainte.creneaux %}checked{% endif %}>
+                            <label class="form-check-label" for="cr_{{ i }}">{{ label }}</label>
+                        </div>
+                    {% endwith %}
+                 {% endfor %}
+
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Commentaire (facultatif)</label>
+            <input type="text" name="commentaire" class="form-control" value="{{ contrainte.commentaire }}">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+        <a href="{% url 'contraintes_enseignant' code %}" class="btn btn-secondary ms-2">Annuler</a>
+    </form>
+</div>
+{% endblock %}
