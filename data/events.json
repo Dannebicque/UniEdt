@@ -1,0 +1,8329 @@
+[
+  {
+    "code": "20250611190506",
+    "nom": "Retraite Patrice",
+    "type": "INFO",
+    "semaine": 44,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-07-01",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250612074406",
+    "nom": "Anniversaire David",
+    "type": "INFO",
+    "semaine": 7,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3
+    ],
+    "date": "2025-10-17",
+    "semestre": "S1",
+    "description": "Test"
+  },
+  {
+    "code": "20250701091413",
+    "nom": "intégration BUT1",
+    "type": "INFO",
+    "semaine": 1,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-03",
+    "semestre": "S1",
+    "description": "Ateliers Intégration - Prise de Photos"
+  },
+  {
+    "code": "20250701091625",
+    "nom": "ACD & Festival MMI",
+    "type": "INFO",
+    "semaine": 41,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-06-11",
+    "semestre": "S1",
+    "description": "Date à préciser en juin"
+  },
+  {
+    "code": "20250701100102",
+    "nom": "Rentrée S1",
+    "type": "FIXE",
+    "semaine": 1,
+    "jour": "mardi",
+    "creneaux": [
+      2
+    ],
+    "date": "2025-09-02",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250701100124",
+    "nom": "Rentrée S3",
+    "type": "FIXE",
+    "semaine": 1,
+    "jour": "mardi",
+    "creneaux": [
+      4
+    ],
+    "date": "2025-09-02",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250701100156",
+    "nom": "Rentrée S5 - 10h00",
+    "type": "FIXE",
+    "semaine": 1,
+    "jour": "mercredi",
+    "creneaux": [
+      2
+    ],
+    "date": "2025-09-03",
+    "semestre": "S5-DEV-FI",
+    "description": "10h00"
+  },
+  {
+    "code": "20250701100226",
+    "nom": "Rentrée S3-DEV",
+    "type": "FIXE",
+    "semaine": 1,
+    "jour": "mardi",
+    "creneaux": [
+      4
+    ],
+    "date": "2025-09-02",
+    "semestre": "S3-DEV-FC",
+    "description": "Florent"
+  },
+  {
+    "code": "20250701100310",
+    "nom": "Rentrée S3-COM",
+    "type": "FIXE",
+    "semaine": 1,
+    "jour": "mardi",
+    "creneaux": [
+      4
+    ],
+    "date": "2025-09-02",
+    "semestre": "S3-COMM",
+    "description": "Anthony"
+  },
+  {
+    "code": "20250701100434",
+    "nom": "Rentrée S5-DEV",
+    "type": "FIXE",
+    "semaine": 4,
+    "jour": "lundi",
+    "creneaux": [
+      2
+    ],
+    "date": "2025-09-22",
+    "semestre": "S5-DEV-FC",
+    "description": "Florent"
+  },
+  {
+    "code": "20250701100453",
+    "nom": "Rentrée S5-COM",
+    "type": "FIXE",
+    "semaine": 4,
+    "jour": "lundi",
+    "creneaux": [
+      2
+    ],
+    "date": "2025-09-22",
+    "semestre": "S5-COMM",
+    "description": "Anthony"
+  },
+  {
+    "code": "20250703144257",
+    "nom": "Journée Profs",
+    "type": "INFO",
+    "semaine": 1,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-01",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250703144333",
+    "nom": "Journée Profs",
+    "type": "INFO",
+    "semaine": 1,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-01",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250703144351",
+    "nom": "Journée Profs",
+    "type": "INFO",
+    "semaine": 1,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-01",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250703144407",
+    "nom": "Journée Profs",
+    "type": "INFO",
+    "semaine": 1,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-01",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250703144713",
+    "nom": "Journée Profs",
+    "type": "FIXE",
+    "semaine": 1,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-01",
+    "semestre": "S5-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250703144845",
+    "nom": "Journée Libre",
+    "type": "FIXE",
+    "semaine": 1,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-02",
+    "semestre": "S5-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704094558",
+    "nom": "SAE501C",
+    "type": "INFO",
+    "semaine": 7,
+    "jour": "lundi",
+    "creneaux": [
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-13",
+    "semestre": "S5-COMM",
+    "description": "SAE501C Marc Nino"
+  },
+  {
+    "code": "20250704094650",
+    "nom": "SAE501C",
+    "type": "INFO",
+    "semaine": 7,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-14",
+    "semestre": "S5-COMM",
+    "description": "SAE501C Marc Nino"
+  },
+  {
+    "code": "20250704094802",
+    "nom": "SAE501C",
+    "type": "INFO",
+    "semaine": 7,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-15",
+    "semestre": "S5-COMM",
+    "description": "SAE501C Marc Nino"
+  },
+  {
+    "code": "20250704094921",
+    "nom": "SAE501C",
+    "type": "INFO",
+    "semaine": 10,
+    "jour": "lundi",
+    "creneaux": [
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-03",
+    "semestre": "S5-COMM",
+    "description": "SAE501C Marc Nino"
+  },
+  {
+    "code": "20250704094940",
+    "nom": "SAE501C",
+    "type": "INFO",
+    "semaine": 10,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-04",
+    "semestre": "S5-COMM",
+    "description": "SAE501C Marc Nino"
+  },
+  {
+    "code": "20250704094959",
+    "nom": "SAE501C",
+    "type": "INFO",
+    "semaine": 10,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-05",
+    "semestre": "S5-COMM",
+    "description": "SAE501C Marc Nino"
+  },
+  {
+    "code": "20250704095024",
+    "nom": "SAE501C",
+    "type": "INFO",
+    "semaine": 13,
+    "jour": "lundi",
+    "creneaux": [
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-24",
+    "semestre": "S5-COMM",
+    "description": "SAE501C Marc Nino"
+  },
+  {
+    "code": "20250704095041",
+    "nom": "SAE501C",
+    "type": "INFO",
+    "semaine": 13,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-25",
+    "semestre": "S5-COMM",
+    "description": "SAE501C Marc Nino"
+  },
+  {
+    "code": "20250704095102",
+    "nom": "SAE501C",
+    "type": "INFO",
+    "semaine": 13,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-26",
+    "semestre": "S5-COMM",
+    "description": "SAE501C Marc Nino"
+  },
+  {
+    "code": "20250704095126",
+    "nom": "SAE501C",
+    "type": "INFO",
+    "semaine": 16,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-15",
+    "semestre": "S5-COMM",
+    "description": "SAE501C Marc Nino"
+  },
+  {
+    "code": "20250704120659S5DEV0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 1,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-01",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704120659S5DEV1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 1,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-02",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704120659S5DEV2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 1,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-03",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704120659S5DEV3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 1,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-04",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704120659S5DEV4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 1,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-05",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704150824S5COM0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 1,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-01",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704150824S5COM1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 1,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-02",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704150824S5COM2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 1,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-03",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704150824S5COM3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 1,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-04",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704150824S5COM4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 1,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-05",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704150859S5DEV0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 2,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-08",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704150859S5DEV1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 2,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-09",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704150859S5DEV2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 2,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-10",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704150859S5DEV3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 2,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-11",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704150859S5DEV4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 2,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-12",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704150859S5COM0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 2,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-08",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704150859S5COM1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 2,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-09",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704150859S5COM2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 2,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-10",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704150859S5COM3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 2,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-11",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704150859S5COM4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 2,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-12",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704150921S5DEV0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 3,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-15",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704150921S5DEV1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 3,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-16",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704150921S5DEV2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 3,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-17",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704150921S5DEV3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 3,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-18",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704150921S5DEV4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 3,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-19",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704150921S5COM0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 3,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-15",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704150921S5COM1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 3,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-16",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704150921S5COM2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 3,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-17",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704150921S5COM3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 3,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-18",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704150921S5COM4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 3,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-19",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151001S5DEV0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 6,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-06",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151001S5DEV1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 6,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-07",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151001S5DEV2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 6,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-08",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151001S5DEV3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 6,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-09",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151001S5DEV4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 6,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-10",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151001S5COM0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 6,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-06",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151001S5COM1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 6,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-07",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151001S5COM2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 6,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-08",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151001S5COM3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 6,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-09",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151001S5COM4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 6,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-10",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151021S5DEV0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 8,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-20",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151021S5DEV1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 8,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-21",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151021S5DEV2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 8,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-22",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151021S5DEV3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 8,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-23",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151021S5DEV4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 8,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-24",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151021S5COM0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 8,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-20",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151021S5COM1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 8,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-21",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151021S5COM2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 8,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-22",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151021S5COM3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 8,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-23",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151021S5COM4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 8,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-24",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151031S5DEV0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 9,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-27",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151031S5DEV1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 9,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-28",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151031S5DEV2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 9,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-29",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151031S5DEV3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 9,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-30",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151031S5DEV4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 9,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-31",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151031S5COM0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 9,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-27",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151031S5COM1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 9,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-28",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151031S5COM2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 9,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-29",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151031S5COM3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 9,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-30",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151031S5COM4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 9,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-31",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151046S5DEV0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 11,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-10",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151046S5DEV1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 11,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-11",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151046S5DEV2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 11,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-12",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151046S5DEV3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 11,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-13",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151046S5DEV4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 11,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-14",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151046S5COM0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 11,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-10",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151046S5COM1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 11,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-11",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151046S5COM2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 11,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-12",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151046S5COM3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 11,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-13",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151046S5COM4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 11,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-14",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151203S5DEV0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 12,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-17",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151203S5DEV1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 12,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-18",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151203S5DEV2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 12,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-19",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151203S5DEV3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 12,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-20",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151203S5DEV4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 12,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-21",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151203S5COM0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 12,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-17",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151203S5COM1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 12,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-18",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151203S5COM2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 12,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-19",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151203S5COM3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 12,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-20",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151203S5COM4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 12,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-21",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151221S5DEV0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 14,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-01",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151221S5DEV1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 14,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-02",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151221S5DEV2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 14,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-03",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151221S5DEV3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 14,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-04",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151221S5DEV4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 14,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-05",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151221S5COM0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 14,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-01",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151221S5COM1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 14,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-02",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151221S5COM2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 14,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-03",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151221S5COM3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 14,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-04",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151221S5COM4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 14,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-05",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151235S5DEV0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 15,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-08",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151235S5DEV1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 15,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-09",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151235S5DEV2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 15,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-10",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151235S5DEV3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 15,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-11",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151235S5DEV4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 15,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-12",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151235S5COM0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 15,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-08",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151235S5COM1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 15,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-09",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151235S5COM2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 15,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-10",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151235S5COM3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 15,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-11",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151235S5COM4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 15,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-12",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151249S5DEV0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 17,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-22",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151249S5DEV1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 17,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-23",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151249S5DEV2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 17,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-24",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151249S5DEV3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 17,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-25",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151249S5DEV4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 17,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-26",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151249S5COM0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 17,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-22",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151249S5COM1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 17,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-23",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151249S5COM2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 17,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-24",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151249S5COM3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 17,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-25",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151249S5COM4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 17,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-26",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151302S5DEV0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 18,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-29",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151302S5DEV1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 18,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-30",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151302S5DEV2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 18,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-31",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151302S5DEV3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 18,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-01",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151302S5DEV4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 18,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-02",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151302S5COM0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 18,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-29",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151302S5COM1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 18,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-30",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151302S5COM2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 18,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-31",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151302S5COM3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 18,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-01",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151302S5COM4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 18,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-02",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151318S5DEV0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 20,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-12",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151318S5DEV1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 20,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-13",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151318S5DEV2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 20,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-14",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151318S5DEV3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 20,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-15",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151318S5DEV4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 20,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-16",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151318S5COM0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 20,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-12",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151318S5COM1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 20,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-13",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151318S5COM2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 20,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-14",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151318S5COM3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 20,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-15",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151318S5COM4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 20,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-16",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151331S5DEV0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 21,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-19",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151331S5DEV1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 21,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-20",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151331S5DEV2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 21,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-21",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151331S5DEV3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 21,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-22",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151331S5DEV4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 21,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-23",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151331S5COM0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 21,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-19",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151331S5COM1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 21,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-20",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151331S5COM2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 21,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-21",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151331S5COM3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 21,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-22",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151331S5COM4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 21,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-23",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151345S5DEV0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 23,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-02-02",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151345S5DEV1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 23,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-02-03",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151345S5DEV2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 23,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-02-04",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151345S5DEV3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 23,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-02-05",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151345S5DEV4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 23,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-02-06",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151345S5COM0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 23,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-02-02",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151345S5COM1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 23,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-02-03",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151345S5COM2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 23,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-02-04",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151345S5COM3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 23,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-02-05",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151345S5COM4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 23,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-02-06",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151401S5DEV0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 24,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-02-09",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151401S5DEV1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 24,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-02-10",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151401S5DEV2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 24,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-02-11",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151401S5DEV3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 24,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-02-12",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151401S5DEV4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 24,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-02-13",
+    "semestre": "S5-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151401S5COM0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 24,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-02-09",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151401S5COM1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 24,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-02-10",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151401S5COM2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 24,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-02-11",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151401S5COM3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 24,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-02-12",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151401S5COM4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 24,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-02-13",
+    "semestre": "S5-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151509S3DEV0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 2,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-08",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151509S3DEV1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 2,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-09",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151509S3DEV2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 2,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-10",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151509S3DEV3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 2,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-11",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151509S3DEV4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 2,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-12",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151509S3COM0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 2,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-08",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151509S3COM1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 2,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-09",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151509S3COM2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 2,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-10",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151509S3COM3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 2,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-11",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151509S3COM4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 2,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-12",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151529S3DEV0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 4,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-22",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151529S3DEV1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 4,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-23",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151529S3DEV2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 4,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-24",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151529S3DEV3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 4,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-25",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151529S3DEV4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 4,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-26",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151529S3COM0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 4,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-22",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151529S3COM1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 4,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-23",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151529S3COM2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 4,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-24",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151529S3COM3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 4,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-25",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151529S3COM4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 4,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-26",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151542S3DEV0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 6,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-06",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151542S3DEV1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 6,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-07",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151542S3DEV2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 6,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-08",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151542S3DEV3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 6,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-09",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151542S3DEV4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 6,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-10",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151542S3COM0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 6,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-06",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151542S3COM1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 6,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-07",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151542S3COM2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 6,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-08",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151542S3COM3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 6,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-09",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151542S3COM4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 6,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-10",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151557S3DEV0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 8,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-20",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151557S3DEV1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 8,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-21",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151557S3DEV2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 8,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-22",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151557S3DEV3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 8,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-23",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151557S3DEV4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 8,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-24",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151557S3COM0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 8,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-20",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151557S3COM1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 8,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-21",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151557S3COM2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 8,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-22",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151557S3COM3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 8,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-23",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151557S3COM4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 8,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-24",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151611S3DEV0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 9,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-27",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151611S3DEV1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 9,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-28",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151611S3DEV2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 9,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-29",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151611S3DEV3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 9,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-30",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151611S3DEV4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 9,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-31",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151611S3COM0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 9,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-27",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151611S3COM1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 9,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-28",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151611S3COM2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 9,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-29",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151611S3COM3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 9,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-30",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151611S3COM4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 9,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-31",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151625S3DEV0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 11,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-10",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151625S3DEV1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 11,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-11",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151625S3DEV2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 11,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-12",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151625S3DEV3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 11,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-13",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151625S3DEV4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 11,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-14",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151625S3COM0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 11,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-10",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151625S3COM1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 11,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-11",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151625S3COM2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 11,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-12",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151625S3COM3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 11,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-13",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151625S3COM4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 11,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-14",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151641S3DEV0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 13,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-24",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151641S3DEV1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 13,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-25",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151641S3DEV2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 13,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-26",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151641S3DEV3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 13,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-27",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151641S3DEV4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 13,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-28",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151641S3COM0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 13,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-24",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151641S3COM1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 13,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-25",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151641S3COM2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 13,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-26",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151641S3COM3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 13,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-27",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151641S3COM4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 13,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-28",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151654S3DEV0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 15,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-08",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151654S3DEV1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 15,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-09",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151654S3DEV2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 15,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-10",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151654S3DEV3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 15,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-11",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151654S3DEV4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 15,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-12",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151654S3COM0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 15,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-08",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151654S3COM1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 15,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-09",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151654S3COM2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 15,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-10",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151654S3COM3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 15,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-11",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151654S3COM4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 15,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-12",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151706S3DEV0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 17,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-22",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151706S3DEV1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 17,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-23",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151706S3DEV2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 17,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-24",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151706S3DEV3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 17,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-25",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151706S3DEV4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 17,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-26",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151706S3COM0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 17,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-22",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151706S3COM1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 17,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-23",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151706S3COM2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 17,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-24",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151706S3COM3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 17,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-25",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151706S3COM4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 17,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-26",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151727S3DEV0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 18,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-29",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151727S3DEV1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 18,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-30",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151727S3DEV2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 18,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-31",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151727S3DEV3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 18,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-01",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151727S3DEV4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 18,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-02",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151727S3COM0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 18,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-29",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151727S3COM1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 18,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-30",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151727S3COM2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 18,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-31",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151727S3COM3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 18,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-01",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151727S3COM4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 18,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-02",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151800S3DEV0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 20,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-12",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151800S3DEV1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 20,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-13",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151800S3DEV2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 20,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-14",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151800S3DEV3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 20,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-15",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151800S3DEV4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 20,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-16",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151800S3COM0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 20,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-12",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151800S3COM1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 20,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-13",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151800S3COM2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 20,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-14",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151800S3COM3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 20,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-15",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151800S3COM4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 20,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-16",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151813S3DEV0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 22,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-26",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151813S3DEV1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 22,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-27",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151813S3DEV2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 22,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-28",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151813S3DEV3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 22,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-29",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151813S3DEV4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 22,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-30",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151813S3COM0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 22,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-26",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151813S3COM1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 22,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-27",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151813S3COM2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 22,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-28",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151813S3COM3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 22,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-29",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151813S3COM4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 22,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-30",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151827S3DEV0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 24,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-02-09",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151827S3DEV1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 24,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-02-10",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151827S3DEV2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 24,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-02-11",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151827S3DEV3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 24,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-02-12",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151827S3DEV4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 24,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-02-13",
+    "semestre": "S3-DEV-FC",
+    "description": null
+  },
+  {
+    "code": "20250704151827S3COM0",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 24,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-02-09",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151827S3COM1",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 24,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-02-10",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151827S3COM2",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 24,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-02-11",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151827S3COM3",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 24,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-02-12",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151827S3COM4",
+    "nom": "Entreprise",
+    "type": "FIXE",
+    "semaine": 24,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-02-13",
+    "semestre": "S3-COMM",
+    "description": null
+  },
+  {
+    "code": "20250704151932S3FI",
+    "nom": "intégration BUT1",
+    "type": "INFO",
+    "semaine": 1,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-03",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152031S1",
+    "nom": "intégration BUT1",
+    "type": "INFO",
+    "semaine": 1,
+    "jour": "mardi",
+    "creneaux": [
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-02",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704152135S3FI0",
+    "nom": "SAE303",
+    "type": "INFO",
+    "semaine": 7,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-13",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152135S3FI1",
+    "nom": "SAE303",
+    "type": "INFO",
+    "semaine": 7,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-14",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152135S3FI2",
+    "nom": "SAE303",
+    "type": "INFO",
+    "semaine": 7,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-15",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152135S3FI3",
+    "nom": "SAE303",
+    "type": "INFO",
+    "semaine": 7,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-16",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152135S3FI4",
+    "nom": "SAE303",
+    "type": "INFO",
+    "semaine": 7,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-17",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152201S10",
+    "nom": "pause pédagoqique",
+    "type": "FIXE",
+    "semaine": 9,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-27",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704152201S11",
+    "nom": "pause pédagoqique",
+    "type": "FIXE",
+    "semaine": 9,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-28",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704152201S12",
+    "nom": "pause pédagoqique",
+    "type": "FIXE",
+    "semaine": 9,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-29",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704152201S13",
+    "nom": "pause pédagoqique",
+    "type": "FIXE",
+    "semaine": 9,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-30",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704152201S14",
+    "nom": "pause pédagoqique",
+    "type": "FIXE",
+    "semaine": 9,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-31",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704152201S3FI0",
+    "nom": "pause pédagoqique",
+    "type": "FIXE",
+    "semaine": 9,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-27",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152201S3FI1",
+    "nom": "pause pédagoqique",
+    "type": "FIXE",
+    "semaine": 9,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-28",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152201S3FI2",
+    "nom": "pause pédagoqique",
+    "type": "FIXE",
+    "semaine": 9,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-29",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152201S3FI3",
+    "nom": "pause pédagoqique",
+    "type": "FIXE",
+    "semaine": 9,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-30",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152201S3FI4",
+    "nom": "pause pédagoqique",
+    "type": "FIXE",
+    "semaine": 9,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-31",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152201S5FI0",
+    "nom": "pause pédagoqique",
+    "type": "FIXE",
+    "semaine": 9,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-27",
+    "semestre": "S5-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152201S5FI1",
+    "nom": "pause pédagoqique",
+    "type": "FIXE",
+    "semaine": 9,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-28",
+    "semestre": "S5-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152201S5FI2",
+    "nom": "pause pédagoqique",
+    "type": "FIXE",
+    "semaine": 9,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-29",
+    "semestre": "S5-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152201S5FI3",
+    "nom": "pause pédagoqique",
+    "type": "FIXE",
+    "semaine": 9,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-30",
+    "semestre": "S5-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152201S5FI4",
+    "nom": "pause pédagoqique",
+    "type": "FIXE",
+    "semaine": 9,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-31",
+    "semestre": "S5-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152247S1",
+    "nom": "Toussant - Jour Férié",
+    "type": "FIXE",
+    "semaine": 11,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-11",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704152247S3FI",
+    "nom": "Toussant - Jour Férié",
+    "type": "FIXE",
+    "semaine": 11,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-11",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152247S5FI",
+    "nom": "Toussant - Jour Férié",
+    "type": "FIXE",
+    "semaine": 11,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-11",
+    "semestre": "S5-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152333S10",
+    "nom": "Vacances Noël",
+    "type": "FIXE",
+    "semaine": 17,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-22",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704152333S11",
+    "nom": "Vacances Noël",
+    "type": "FIXE",
+    "semaine": 17,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-23",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704152333S12",
+    "nom": "Vacances Noël",
+    "type": "FIXE",
+    "semaine": 17,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-24",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704152333S13",
+    "nom": "Vacances Noël",
+    "type": "FIXE",
+    "semaine": 17,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-25",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704152333S14",
+    "nom": "Vacances Noël",
+    "type": "FIXE",
+    "semaine": 17,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-26",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704152333S3FI0",
+    "nom": "Vacances Noël",
+    "type": "FIXE",
+    "semaine": 17,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-22",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152333S3FI1",
+    "nom": "Vacances Noël",
+    "type": "FIXE",
+    "semaine": 17,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-23",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152333S3FI2",
+    "nom": "Vacances Noël",
+    "type": "FIXE",
+    "semaine": 17,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-24",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152333S3FI3",
+    "nom": "Vacances Noël",
+    "type": "FIXE",
+    "semaine": 17,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-25",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152333S3FI4",
+    "nom": "Vacances Noël",
+    "type": "FIXE",
+    "semaine": 17,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-26",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152333S5FI0",
+    "nom": "Vacances Noël",
+    "type": "FIXE",
+    "semaine": 17,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-22",
+    "semestre": "S5-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152333S5FI1",
+    "nom": "Vacances Noël",
+    "type": "FIXE",
+    "semaine": 17,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-23",
+    "semestre": "S5-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152333S5FI2",
+    "nom": "Vacances Noël",
+    "type": "FIXE",
+    "semaine": 17,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-24",
+    "semestre": "S5-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152333S5FI3",
+    "nom": "Vacances Noël",
+    "type": "FIXE",
+    "semaine": 17,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-25",
+    "semestre": "S5-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152333S5FI4",
+    "nom": "Vacances Noël",
+    "type": "FIXE",
+    "semaine": 17,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-26",
+    "semestre": "S5-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152345S10",
+    "nom": "Vacances Noël",
+    "type": "FIXE",
+    "semaine": 18,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-29",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704152345S11",
+    "nom": "Vacances Noël",
+    "type": "FIXE",
+    "semaine": 18,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-30",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704152345S12",
+    "nom": "Vacances Noël",
+    "type": "FIXE",
+    "semaine": 18,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-31",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704152345S13",
+    "nom": "Vacances Noël",
+    "type": "FIXE",
+    "semaine": 18,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-01",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704152345S14",
+    "nom": "Vacances Noël",
+    "type": "FIXE",
+    "semaine": 18,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-02",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704152345S3FI0",
+    "nom": "Vacances Noël",
+    "type": "FIXE",
+    "semaine": 18,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-29",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152345S3FI1",
+    "nom": "Vacances Noël",
+    "type": "FIXE",
+    "semaine": 18,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-30",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152345S3FI2",
+    "nom": "Vacances Noël",
+    "type": "FIXE",
+    "semaine": 18,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-31",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152345S3FI3",
+    "nom": "Vacances Noël",
+    "type": "FIXE",
+    "semaine": 18,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-01",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152345S3FI4",
+    "nom": "Vacances Noël",
+    "type": "FIXE",
+    "semaine": 18,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-02",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152345S5FI0",
+    "nom": "Vacances Noël",
+    "type": "FIXE",
+    "semaine": 18,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-29",
+    "semestre": "S5-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152345S5FI1",
+    "nom": "Vacances Noël",
+    "type": "FIXE",
+    "semaine": 18,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-30",
+    "semestre": "S5-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152345S5FI2",
+    "nom": "Vacances Noël",
+    "type": "FIXE",
+    "semaine": 18,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-31",
+    "semestre": "S5-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152345S5FI3",
+    "nom": "Vacances Noël",
+    "type": "FIXE",
+    "semaine": 18,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-01",
+    "semestre": "S5-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152345S5FI4",
+    "nom": "Vacances Noël",
+    "type": "FIXE",
+    "semaine": 18,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-02",
+    "semestre": "S5-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152450S3FI0",
+    "nom": "SAE301",
+    "type": "INFO",
+    "semaine": 16,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-15",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152450S3FI1",
+    "nom": "SAE301",
+    "type": "INFO",
+    "semaine": 16,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-16",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152450S3FI2",
+    "nom": "SAE301",
+    "type": "INFO",
+    "semaine": 16,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-17",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152450S3FI3",
+    "nom": "SAE301",
+    "type": "INFO",
+    "semaine": 16,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-18",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152450S3FI4",
+    "nom": "SAE301",
+    "type": "INFO",
+    "semaine": 16,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-19",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152514S3FI0",
+    "nom": "SAE301",
+    "type": "INFO",
+    "semaine": 15,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-08",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152514S3FI1",
+    "nom": "SAE301",
+    "type": "INFO",
+    "semaine": 15,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-09",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152514S3FI2",
+    "nom": "SAE301",
+    "type": "INFO",
+    "semaine": 15,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-10",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152514S3FI3",
+    "nom": "SAE301",
+    "type": "INFO",
+    "semaine": 15,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-11",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152514S3FI4",
+    "nom": "SAE301",
+    "type": "INFO",
+    "semaine": 15,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-12",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152533S3FI0",
+    "nom": "SAE301",
+    "type": "INFO",
+    "semaine": 19,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-05",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152533S3FI1",
+    "nom": "SAE301",
+    "type": "INFO",
+    "semaine": 19,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-06",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152533S3FI2",
+    "nom": "SAE302",
+    "type": "INFO",
+    "semaine": 19,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-07",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152533S3FI3",
+    "nom": "SAE302",
+    "type": "INFO",
+    "semaine": 19,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-08",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152533S3FI4",
+    "nom": "SAE302",
+    "type": "INFO",
+    "semaine": 19,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-09",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152549S3FI0",
+    "nom": "SAE302",
+    "type": "INFO",
+    "semaine": 20,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-12",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152549S3FI1",
+    "nom": "SAE302",
+    "type": "INFO",
+    "semaine": 20,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-13",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152549S3FI2",
+    "nom": "SAE302",
+    "type": "INFO",
+    "semaine": 20,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-14",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152549S3FI3",
+    "nom": "SAE302",
+    "type": "INFO",
+    "semaine": 20,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-15",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152549S3FI4",
+    "nom": "SAE302",
+    "type": "INFO",
+    "semaine": 20,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-16",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152625S1",
+    "nom": "Rattrapages",
+    "type": "FIXE",
+    "semaine": 22,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3
+    ],
+    "date": "2026-01-29",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704152625S3FI",
+    "nom": "Rattrapages",
+    "type": "FIXE",
+    "semaine": 22,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3
+    ],
+    "date": "2026-01-29",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152625S5FI",
+    "nom": "Rattrapages",
+    "type": "FIXE",
+    "semaine": 22,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3
+    ],
+    "date": "2026-01-29",
+    "semestre": "S5-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152646S10",
+    "nom": "Début S2",
+    "type": "INFO",
+    "semaine": 23,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "date": "2026-02-02",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704152646S11",
+    "nom": "Début S2",
+    "type": "INFO",
+    "semaine": 23,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-02-03",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704152646S12",
+    "nom": "Début S2",
+    "type": "INFO",
+    "semaine": 23,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-02-04",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704152646S13",
+    "nom": "Début S2",
+    "type": "INFO",
+    "semaine": 23,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-02-05",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704152646S14",
+    "nom": "Début S2",
+    "type": "INFO",
+    "semaine": 23,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-02-06",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704152646S3FI0",
+    "nom": "Début S4",
+    "type": "INFO",
+    "semaine": 23,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "date": "2026-02-02",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152646S3FI1",
+    "nom": "Début S4",
+    "type": "INFO",
+    "semaine": 23,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-02-03",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152646S3FI2",
+    "nom": "Début S4",
+    "type": "INFO",
+    "semaine": 23,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-02-04",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152646S3FI3",
+    "nom": "Début S4",
+    "type": "INFO",
+    "semaine": 23,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-02-05",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152646S3FI4",
+    "nom": "Début S4",
+    "type": "INFO",
+    "semaine": 23,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-02-06",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152646S5FI0",
+    "nom": "Début S4",
+    "type": "FIXE",
+    "semaine": 23,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-02-02",
+    "semestre": "S5-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152646S5FI1",
+    "nom": "Début S4",
+    "type": "FIXE",
+    "semaine": 23,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-02-03",
+    "semestre": "S5-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152646S5FI2",
+    "nom": "Début S4",
+    "type": "FIXE",
+    "semaine": 23,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-02-04",
+    "semestre": "S5-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152646S5FI3",
+    "nom": "Début S4",
+    "type": "FIXE",
+    "semaine": 23,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-02-05",
+    "semestre": "S5-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152646S5FI4",
+    "nom": "Début S4",
+    "type": "FIXE",
+    "semaine": 23,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-02-06",
+    "semestre": "S5-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152700S5FI0",
+    "nom": "Début S4",
+    "type": "FIXE",
+    "semaine": 24,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-02-09",
+    "semestre": "S5-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152700S5FI1",
+    "nom": "Début S4",
+    "type": "FIXE",
+    "semaine": 24,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-02-10",
+    "semestre": "S5-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152700S5FI2",
+    "nom": "Début S4",
+    "type": "FIXE",
+    "semaine": 24,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-02-11",
+    "semestre": "S5-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152700S5FI3",
+    "nom": "Début S4",
+    "type": "FIXE",
+    "semaine": 24,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-02-12",
+    "semestre": "S5-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704152700S5FI4",
+    "nom": "Début S4",
+    "type": "FIXE",
+    "semaine": 24,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-02-13",
+    "semestre": "S5-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704153201S1",
+    "nom": "Nuit des SAE",
+    "type": "INFO",
+    "semaine": 23,
+    "jour": "lundi",
+    "creneaux": [
+      6
+    ],
+    "date": "2026-02-02",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704153201S3FI",
+    "nom": "Nuit des SAE",
+    "type": "INFO",
+    "semaine": 23,
+    "jour": "lundi",
+    "creneaux": [
+      6
+    ],
+    "date": "2026-02-02",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704153201S5FI",
+    "nom": "Nuit des SAE",
+    "type": "FIXE",
+    "semaine": 23,
+    "jour": "lundi",
+    "creneaux": [
+      6
+    ],
+    "date": "2026-02-02",
+    "semestre": "S5-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250704153322S1",
+    "nom": "YEC",
+    "type": "FIXE",
+    "semaine": 2,
+    "jour": "jeudi",
+    "creneaux": [
+      3
+    ],
+    "date": "2025-09-11",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704153349S1",
+    "nom": "VSS",
+    "type": "FIXE",
+    "semaine": 3,
+    "jour": "lundi",
+    "creneaux": [
+      2,
+      3
+    ],
+    "date": "2025-09-15",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704153427S1",
+    "nom": "Clés de Troyes",
+    "type": "INFO",
+    "semaine": 3,
+    "jour": "mercredi",
+    "creneaux": [
+      4,
+      5,
+      6
+    ],
+    "date": "2025-09-17",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704153445S1",
+    "nom": "Clés de Troyes",
+    "type": "INFO",
+    "semaine": 3,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3
+    ],
+    "date": "2025-09-18",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704153551S1",
+    "nom": "Colloque ARA",
+    "type": "INFO",
+    "semaine": 7,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3
+    ],
+    "date": "2025-10-15",
+    "semestre": "S1",
+    "description": "Colloque Anthony Rageul"
+  },
+  {
+    "code": "20250704153617S10",
+    "nom": "SAE101",
+    "type": "INFO",
+    "semaine": 8,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-20",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704153617S11",
+    "nom": "SAE101",
+    "type": "INFO",
+    "semaine": 8,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-21",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704153617S12",
+    "nom": "SAE101",
+    "type": "INFO",
+    "semaine": 8,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-22",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704153617S13",
+    "nom": "SAE101",
+    "type": "INFO",
+    "semaine": 8,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-23",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704153617S14",
+    "nom": "SAE101",
+    "type": "INFO",
+    "semaine": 8,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-10-24",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704153642S1",
+    "nom": "SAE107",
+    "type": "INFO",
+    "semaine": 11,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-10",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704153658S1",
+    "nom": "SAE107",
+    "type": "INFO",
+    "semaine": 11,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-13",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704153714S1",
+    "nom": "SAE107",
+    "type": "INFO",
+    "semaine": 11,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-14",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704153723S1",
+    "nom": "SAE107",
+    "type": "INFO",
+    "semaine": 11,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-11-12",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704154024S10",
+    "nom": "SAE103",
+    "type": "INFO",
+    "semaine": 14,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-01",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704154024S11",
+    "nom": "SAE103",
+    "type": "INFO",
+    "semaine": 14,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-02",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704154024S12",
+    "nom": "SAE103",
+    "type": "INFO",
+    "semaine": 14,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-03",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704154024S13",
+    "nom": "SAE103",
+    "type": "INFO",
+    "semaine": 14,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-04",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704154024S14",
+    "nom": "SAE103",
+    "type": "INFO",
+    "semaine": 14,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-05",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704154044S10",
+    "nom": "SAE104",
+    "type": "INFO",
+    "semaine": 15,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-08",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704154044S11",
+    "nom": "SAE104",
+    "type": "INFO",
+    "semaine": 15,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-09",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704154044S12",
+    "nom": "SAE104",
+    "type": "INFO",
+    "semaine": 15,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-10",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704154044S13",
+    "nom": "SAE104",
+    "type": "INFO",
+    "semaine": 15,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-11",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704154044S14",
+    "nom": "SAE104",
+    "type": "INFO",
+    "semaine": 15,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-12",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704154057S10",
+    "nom": "SAE104",
+    "type": "INFO",
+    "semaine": 16,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-15",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704154057S11",
+    "nom": "SAE104",
+    "type": "INFO",
+    "semaine": 16,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-16",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704154057S12",
+    "nom": "SAE104",
+    "type": "INFO",
+    "semaine": 16,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-17",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704154057S13",
+    "nom": "SAE104",
+    "type": "INFO",
+    "semaine": 16,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-18",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704154057S14",
+    "nom": "SAE104",
+    "type": "INFO",
+    "semaine": 16,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2025-12-19",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704154153S10",
+    "nom": "SAE102",
+    "type": "INFO",
+    "semaine": 19,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-05",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704154153S11",
+    "nom": "SAE102",
+    "type": "INFO",
+    "semaine": 19,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-06",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704154153S12",
+    "nom": "SAE102",
+    "type": "INFO",
+    "semaine": 19,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-07",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704154153S13",
+    "nom": "SAE102",
+    "type": "INFO",
+    "semaine": 19,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-08",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704154153S14",
+    "nom": "SAE102",
+    "type": "INFO",
+    "semaine": 19,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-09",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704154207S10",
+    "nom": "SAE105/106",
+    "type": "INFO",
+    "semaine": 20,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-12",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704154207S11",
+    "nom": "SAE105/106",
+    "type": "INFO",
+    "semaine": 20,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-13",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704154207S12",
+    "nom": "SAE105/106",
+    "type": "INFO",
+    "semaine": 20,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-14",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704154207S13",
+    "nom": "SAE105/106",
+    "type": "INFO",
+    "semaine": 20,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-15",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704154207S14",
+    "nom": "SAE105/106",
+    "type": "INFO",
+    "semaine": 20,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-16",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704154223S10",
+    "nom": "SAE105/106",
+    "type": "INFO",
+    "semaine": 21,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-19",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704154223S11",
+    "nom": "SAE105/106",
+    "type": "INFO",
+    "semaine": 21,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-20",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704154223S12",
+    "nom": "SAE105/106",
+    "type": "INFO",
+    "semaine": 21,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-21",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704154223S13",
+    "nom": "SAE105/106",
+    "type": "INFO",
+    "semaine": 21,
+    "jour": "jeudi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-22",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704154223S14",
+    "nom": "SAE105/106",
+    "type": "INFO",
+    "semaine": 21,
+    "jour": "vendredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-23",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704154236S1",
+    "nom": "SAE105/106",
+    "type": "INFO",
+    "semaine": 22,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-26",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704154252S1",
+    "nom": "SAE105/106",
+    "type": "INFO",
+    "semaine": 22,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-27",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250704154305S1",
+    "nom": "SAE105/106",
+    "type": "INFO",
+    "semaine": 22,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3
+    ],
+    "date": "2026-01-28",
+    "semestre": "S1",
+    "description": null
+  },
+  {
+    "code": "20250709163010S3FI",
+    "nom": "SAE302",
+    "type": "INFO",
+    "semaine": 22,
+    "jour": "lundi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-26",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250709163048S3FI",
+    "nom": "SAE302",
+    "type": "INFO",
+    "semaine": 22,
+    "jour": "mercredi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-28",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  },
+  {
+    "code": "20250709163154S3FI",
+    "nom": "SAE302",
+    "type": "INFO",
+    "semaine": 22,
+    "jour": "mardi",
+    "creneaux": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "date": "2026-01-27",
+    "semestre": "S3-DEV-FI",
+    "description": null
+  }
+]

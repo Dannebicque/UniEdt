@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "name": "Alice",
+    "email": "alice@edt.fr",
+    "password": "$2y$10$Hp4OfgNVueeIRJfRXGODg.vX/atQ60iGdRnWIQbh/Y6sPiUR61seq",
+    "plainpassword": "password123"
+  },
+  {
+    "id": 2,
+    "name": "Bob",
+    "email": "bob@leponge.fr",
+    "password": "$2y$10$zA/f2C5YU/7DwYwO3BFVnumFAPBUezeHfa0YDEb7X5E9GotZQd.bW",
+    "plainpassword": "test"
+  }
+]

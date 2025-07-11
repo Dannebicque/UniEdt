@@ -1,0 +1,19 @@
+[
+  {
+    "id": "20250711114200000",
+    "matiere": "WR304D",
+    "professor": "JTH",
+    "type": "CM",
+    "semester": "S3-DEV-FI",
+    "groupIndex": 1,
+    "groupCount": 4,
+    "date": null,
+    "creneau": null,
+    "room": null,
+    "color": "#026613",
+    "isVacataire": false,
+    "fixed": 0,
+    "indice": 0,
+    "sem_origin": 6
+  }
+]

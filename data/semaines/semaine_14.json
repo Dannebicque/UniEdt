@@ -1,0 +1,39 @@
+{
+    "week": 14,
+    "days": [
+        {
+            "day": "Lundi",
+            "date": "2025-12-01",
+            "isHoliday": false
+        },
+        {
+            "day": "Mardi",
+            "date": "2025-12-02",
+            "isHoliday": false
+        },
+        {
+            "day": "Mercredi",
+            "date": "2025-12-03",
+            "isHoliday": false
+        },
+        {
+            "day": "Jeudi",
+            "date": "2025-12-04",
+            "isHoliday": false
+        },
+        {
+            "day": "Vendredi",
+            "date": "2025-12-05",
+            "isHoliday": false
+        }
+    ],
+    "semesters": [
+        "S1",
+        "S3-DEV-FI",
+        "S3-DEV-FC",
+        "S3-COMM",
+        "S5-DEV-FI",
+        "S5-DEV-FC",
+        "S5-COMM"
+    ]
+}

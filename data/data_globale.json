@@ -1,0 +1,247 @@
+{
+  "semesters": {
+    "S1": {
+      "color": "#FF5733",
+      "nbTp": 8,
+      "nbTd": 4,
+      "groupesTp": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H"
+      ],
+      "groupesTd": [
+        "AB",
+        "CD",
+        "EF",
+        "GH"
+      ],
+      "matieres": [
+        "WR101",
+        "WR102",
+        "WR103",
+        "WR104",
+        "WR105",
+        "WR106",
+        "WR107",
+        "WR108",
+        "WR109",
+        "WR110",
+        "WR112",
+        "WR113",
+        "WR115",
+        "WR116",
+        "WR117",
+        "WR118",
+        "WR119",
+        "WR120",
+        "WS101",
+        "WS102",
+        "WS103",
+        "WS104",
+        "WS105",
+        "WS106",
+        "WS107",
+        "WS110"
+      ]
+    },
+    "S3-DEV-FI": {
+      "color": "#148027",
+      "nbTp": 4,
+      "nbTd": 2,
+      "groupesTp": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "groupesTd": [
+        "AB",
+        "CD"
+      ],
+      "matieres": [
+        "WR301D",
+        "WR302D",
+        "WR303D",
+        "WR304D",
+        "WR305D",
+        "WR306D",
+        "WR307D",
+        "WR308D",
+        "WR309D",
+        "WR310D",
+        "WR311D",
+        "WR312D",
+        "WR313D",
+        "WR314D",
+        "WR315D",
+        "WR316D",
+        "WR317D",
+        "WR318D",
+        "WR319D",
+        "WS301D",
+        "WS302D",
+        "WS303D",
+        "WS310D"
+      ]
+    },
+    "S3-DEV-FC": {
+      "color": "#148028",
+      "nbTp": 2,
+      "nbTd": 1,
+      "groupesTp": [
+        "E",
+        "F"
+      ],
+      "groupesTd": [
+        "EF"
+      ],
+      "matieres": [
+        "WRA301D",
+        "WRA302D",
+        "WRA303D",
+        "WRA304D",
+        "WRA305D",
+        "WRA306D",
+        "WRA307D",
+        "WRA308D",
+        "WRA309D",
+        "WRA310D",
+        "WRA311D",
+        "WRA312D",
+        "WRA313D",
+        "WRA314D",
+        "WRA315D",
+        "WRA316D",
+        "WRA317D",
+        "WRA318D",
+        "WRA319D",
+        "WSA301D",
+        "WSA302D",
+        "WSA303D",
+        "WSA310D"
+      ]
+    },
+    "S3-COMM": {
+      "color": "#148029",
+      "nbTp": 2,
+      "nbTd": 1,
+      "groupesTp": [
+        "G",
+        "H"
+      ],
+      "groupesTd": [
+        "GH"
+      ],
+      "matieres": [
+        "WRA301C",
+        "WRA302C",
+        "WRA303C",
+        "WRA304C",
+        "WRA305C",
+        "WRA306C",
+        "WRA307C",
+        "WRA308C",
+        "WRA309C",
+        "WRA310C",
+        "WRA311C",
+        "WRA312C",
+        "WRA313C",
+        "WRA314C",
+        "WRA315C",
+        "WRA316C",
+        "WRA317C",
+        "WRA318C",
+        "WRA319C",
+        "WSA301C",
+        "WSA302C",
+        "WSA303C",
+        "WSA310C"
+      ]
+    },
+    "S5-DEV-FI": {
+      "color": "#223cb8",
+      "nbTp": 4,
+      "nbTd": 2,
+      "groupesTp": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "groupesTd": [
+        "AB",
+        "CD"
+      ],
+      "matieres": [
+        "WR501D",
+        "WR502D",
+        "WR503D",
+        "WR504D",
+        "WR506D",
+        "WR507D",
+        "WR508D",
+        "WR509D",
+        "WR510D",
+        "WS501D",
+        "WS502D"
+      ]
+    },
+    "S5-DEV-FC": {
+      "color": "#223cb7",
+      "nbTp": 2,
+      "nbTd": 1,
+      "groupesTp": [
+        "E",
+        "F"
+      ],
+      "groupesTd": [
+        "EF"
+      ],
+      "matieres": [
+        "WRA501D",
+        "WRA502D",
+        "WRA503D",
+        "WRA504D",
+        "WRA505D",
+        "WRA506D",
+        "WRA507D",
+        "WRA508D",
+        "WRA509D",
+        "WRA510D",
+        "WSA501D",
+        "WSA502D",
+        "WSA510D"
+      ]
+    },
+    "S5-COMM": {
+      "color": "#223cb9",
+      "nbTp": 2,
+      "nbTd": 1,
+      "groupesTp": [
+        "G",
+        "H"
+      ],
+      "groupesTd": [
+        "GH"
+      ],
+      "matieres": [
+        "WRA501C",
+        "WRA502C",
+        "WRA503C",
+        "WRA504C",
+        "WRA505C",
+        "WRA506C",
+        "WRA507C",
+        "WRA508C",
+        "WSA501C",
+        "WSA502C",
+        "WSA510C"
+      ]
+    }
+  }
+}

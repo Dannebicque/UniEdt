@@ -1,0 +1,1898 @@
+{
+    "PGO": {
+        "name": "Patrice Gommery",
+        "email": "pgommery@gmail.com",
+        "telephone": "06.66.24.64.64",
+        "service": 384,
+        "type": "permanent",
+        "availability": [
+            {
+                "status": "indisponible",
+                "week": 99,
+                "day": "Vendredi",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "status": "indisponible",
+                "week": 99,
+                "day": "Mercredi",
+                "creneaux": [
+                    6
+                ]
+            },
+            {
+                "status": "indisponible",
+                "week": 99,
+                "day": "Lundi",
+                "creneaux": [
+                    1
+                ]
+            }
+        ]
+    },
+    "DAN": {
+        "name": "David Annebicque",
+        "email": "david.annebicque@univ-reims.fr",
+        "telephone": "",
+        "service": 192,
+        "type": "permanent",
+        "availability": [
+            {
+                "week": "99",
+                "day": "Mardi",
+                "creneaux": [
+                    5,
+                    6
+                ],
+                "status": "indisponible",
+                "commentaire": "Comité de Direction"
+            },
+            {
+                "week": "99",
+                "day": "Vendredi",
+                "creneaux": [
+                    4
+                ],
+                "status": "indisponible",
+                "commentaire": "Réunions DN"
+            },
+            {
+                "week": "99",
+                "day": "Lundi",
+                "creneaux": [
+                    2,
+                    3
+                ],
+                "status": "indisponible",
+                "commentaire": ""
+            },
+            {
+                "status": "indisponible",
+                "week": 3,
+                "day": "Jeudi",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ],
+                "commentaire": "ACD Velizy"
+            },
+            {
+                "status": "indisponible",
+                "week": 99,
+                "day": "Lundi",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "status": "indisponible",
+                "week": 16,
+                "day": "Jeudi",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "status": "indisponible",
+                "week": 16,
+                "day": "Vendredi",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "status": "indisponible",
+                "week": 4,
+                "day": "Mardi",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "status": "indisponible",
+                "week": 4,
+                "day": "Jeudi",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "status": "indisponible",
+                "week": 11,
+                "day": "Vendredi",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "status": "indisponible",
+                "week": 12,
+                "day": "Mercredi",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "status": "indisponible",
+                "week": 12,
+                "day": "Jeudi",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "status": "indisponible",
+                "week": 12,
+                "day": "Vendredi",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            }
+        ]
+    },
+    "FME": {
+        "name": "Fabrice Meuzeret",
+        "email": "fabrice.meuzeret@gmail.com",
+        "telephone": "",
+        "service": 384,
+        "type": "permanent",
+        "availability": []
+    },
+    "HKO": {
+        "name": "Hania Kouider",
+        "email": "haniakouider@hotmail.fr",
+        "telephone": "",
+        "service": 0,
+        "type": "vacataire",
+        "availability": [
+            {
+                "status": "disponible",
+                "week": 99,
+                "day": "Jeudi",
+                "creneaux": [
+                    4,
+                    5,
+                    6
+                ]
+            }
+        ]
+    },
+    "FLI": {
+        "name": "Florent Libbrecht",
+        "email": "florent.libbrecht@univ-reims.fr",
+        "telephone": "",
+        "service": 384,
+        "type": "permanent",
+        "availability": [
+            {
+                "status": "indisponible",
+                "week": 99,
+                "day": "Vendredi",
+                "creneaux": [
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "status": "indisponible",
+                "week": 8,
+                "day": "Jeudi",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "status": "indisponible",
+                "week": 8,
+                "day": "Vendredi",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            }
+        ]
+    },
+    "MGO": {
+        "name": "Marion Gouaille",
+        "email": "m.gouaille@gmail.com",
+        "telephone": "06.68.18.58.68",
+        "service": 75,
+        "type": "vacataire",
+        "availability": [
+            {
+                "status": "disponible",
+                "week": 99,
+                "day": "Lundi",
+                "creneaux": [
+                    2,
+                    3,
+                    4,
+                    5
+                ],
+                "commentaire": "A partir du 3 Novembre, Pas pendant les vacances scolaires"
+            },
+            {
+                "status": "disponible",
+                "week": 99,
+                "day": "Mardi",
+                "creneaux": [
+                    2,
+                    3,
+                    4
+                ],
+                "commentaire": "A partir du 3 Novembre, Pas pendant les vacances scolaires"
+            },
+            {
+                "status": "disponible",
+                "week": 99,
+                "day": "Jeudi",
+                "creneaux": [
+                    2,
+                    4,
+                    5
+                ],
+                "commentaire": "A partir du 3 Novembre, Pas pendant les vacances scolaires"
+            },
+            {
+                "status": "indisponible",
+                "week": 99,
+                "day": "Vendredi",
+                "creneaux": [
+                    2,
+                    3,
+                    4
+                ],
+                "commentaire": "A partir du 3 Novembre, Pas pendant les vacances scolaires"
+            }
+        ]
+    },
+    "RDE": {
+        "name": "Romain Delon",
+        "email": "romain.delon@univ-reims.fr",
+        "telephone": "06 32 73 84 48",
+        "service": 384,
+        "type": "permanent",
+        "availability": [
+            {
+                "status": "indisponible",
+                "week": 3,
+                "day": "Jeudi",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ],
+                "commentaire": "ACD Velizy"
+            },
+            {
+                "status": "indisponible",
+                "week": 99,
+                "day": "Mardi",
+                "creneaux": [
+                    5,
+                    6
+                ],
+                "commentaire": "Comité de Direction"
+            },
+            {
+                "status": "indisponible",
+                "week": 99,
+                "day": "Vendredi",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            }
+        ]
+    },
+    "JLE": {
+        "name": "Joan Lefevre",
+        "email": "joan.lefevre@univ-reims.fr",
+        "telephone": "",
+        "service": 384,
+        "type": "permanent",
+        "availability": [
+            {
+                "status": "indisponible",
+                "week": 99,
+                "day": "ALL",
+                "creneaux": [
+                    6
+                ]
+            },
+            {
+                "status": "indisponible",
+                "week": 5,
+                "day": "Lundi",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "status": "indisponible",
+                "week": 5,
+                "day": "Mardi",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "status": "indisponible",
+                "week": 15,
+                "day": "Vendredi",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            }
+        ]
+    },
+    "MNI": {
+        "name": "Marc Nino",
+        "email": "mninomarc@gmail.com",
+        "telephone": "06.80.12.19.87",
+        "service": 51,
+        "type": "vacataire",
+        "availability": [
+            {
+                "status": "disponible",
+                "week": 7,
+                "day": "Lundi",
+                "creneaux": [
+                    4,
+                    5,
+                    6
+                ],
+                "commentaire": "SAE501C"
+            },
+            {
+                "status": "disponible",
+                "week": 7,
+                "day": "Mardi",
+                "creneaux": [
+                    2,
+                    3,
+                    4,
+                    5
+                ],
+                "commentaire": "SAE501C"
+            },
+            {
+                "week": "7",
+                "day": "Mercredi",
+                "creneaux": [
+                    2,
+                    3,
+                    4
+                ],
+                "status": "disponible",
+                "commentaire": "SAE501C"
+            },
+            {
+                "status": "disponible",
+                "week": 10,
+                "day": "Lundi",
+                "creneaux": [
+                    4,
+                    5,
+                    6
+                ],
+                "commentaire": "SAE501C"
+            },
+            {
+                "status": "disponible",
+                "week": 10,
+                "day": "Mardi",
+                "creneaux": [
+                    2,
+                    3,
+                    4,
+                    5
+                ],
+                "commentaire": "SAE501C"
+            },
+            {
+                "week": "10",
+                "day": "Mercredi",
+                "creneaux": [
+                    2,
+                    3,
+                    4
+                ],
+                "status": "disponible",
+                "commentaire": ""
+            },
+            {
+                "status": "disponible",
+                "week": 13,
+                "day": "Lundi",
+                "creneaux": [
+                    4,
+                    5,
+                    6
+                ],
+                "commentaire": "SAE501C"
+            },
+            {
+                "status": "disponible",
+                "week": 13,
+                "day": "Mardi",
+                "creneaux": [
+                    2,
+                    3,
+                    4,
+                    5
+                ],
+                "commentaire": "SAE501C"
+            },
+            {
+                "status": "disponible",
+                "week": 13,
+                "day": "Mercredi",
+                "creneaux": [
+                    2,
+                    3,
+                    4
+                ],
+                "commentaire": "SAE501C"
+            },
+            {
+                "status": "disponible",
+                "week": 16,
+                "day": "Lundi",
+                "creneaux": [
+                    2,
+                    3,
+                    4,
+                    5
+                ],
+                "commentaire": "SAE501C"
+            }
+        ]
+    },
+    "SZI": {
+        "name": "Simon Zilioli",
+        "email": "ziliolisimon@yahoo.fr",
+        "telephone": "",
+        "service": 0,
+        "type": "vacataire",
+        "availability": [
+            {
+                "week": "99",
+                "day": "Lundi",
+                "creneaux": [
+                    1
+                ],
+                "status": "indisponible",
+                "commentaire": "Seule contrainte :  2 jours Consécutifs"
+            }
+        ]
+    },
+    "JBA": {
+        "name": "Julie Bastard",
+        "email": "julie.bastard@free.fr",
+        "telephone": "",
+        "service": 0,
+        "type": "vacataire",
+        "availability": [
+            {
+                "status": "disponible",
+                "week": 99,
+                "day": "Vendredi",
+                "creneaux": [
+                    4,
+                    5
+                ]
+            }
+        ]
+    },
+    "TCA": {
+        "name": "Thomas Castellengo",
+        "email": "thomas.castellengo@gmail.com",
+        "telephone": "",
+        "service": 384,
+        "type": "permanent",
+        "availability": [
+            {
+                "week": "99",
+                "day": "Lundi",
+                "creneaux": [
+                    1,
+                    6
+                ],
+                "status": "indisponible",
+                "commentaire": "Dispo à 17h00 les semaines Impaires"
+            },
+            {
+                "week": "99",
+                "day": "Mardi",
+                "creneaux": [
+                    1,
+                    6
+                ],
+                "status": "indisponible",
+                "commentaire": "Dispo à 8h00 et/ou à 17h00 les semaines Impaires"
+            },
+            {
+                "status": "indisponible",
+                "week": 99,
+                "day": "Mercredi",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "week": "99",
+                "day": "Jeudi",
+                "creneaux": [
+                    1,
+                    6
+                ],
+                "status": "indisponible",
+                "commentaire": "Dispo à 8h00 et/ou à 17h00 les semaines Paires"
+            },
+            {
+                "week": "99",
+                "day": "Vendredi",
+                "creneaux": [
+                    1,
+                    6
+                ],
+                "status": "indisponible",
+                "commentaire": "Dispo à 8h00 les semaines paires"
+            },
+            {
+                "status": "indisponible",
+                "week": 8,
+                "day": "ALL",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ],
+                "commentaire": "Vacances Scolaires"
+            }
+        ]
+    },
+    "AGR": {
+        "name": "Ambroise Gram",
+        "email": "ambroise@noisettestudio.com",
+        "telephone": "07 44 80 74 35",
+        "service": 0,
+        "type": "vacataire",
+        "availability": [
+            {
+                "status": "indisponible",
+                "week": 99,
+                "day": "ALL",
+                "creneaux": [
+                    1,
+                    6
+                ]
+            }
+        ]
+    },
+    "PVI": {
+        "name": "Philippe Villain",
+        "email": "philippe-villain@laposte.net",
+        "telephone": "",
+        "service": 0,
+        "type": "vacataire",
+        "availability": [
+            {
+                "status": "disponible",
+                "week": 99,
+                "day": "Lundi",
+                "creneaux": [
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "status": "disponible",
+                "week": 99,
+                "day": "Vendredi",
+                "creneaux": [
+                    1,
+                    2,
+                    3
+                ]
+            }
+        ]
+    },
+    "MGR": {
+        "name": "Mathis Grenier",
+        "email": "m.grenier@puissancegroup.fr",
+        "telephone": "03 25 09 49 80",
+        "service": 0,
+        "type": "vacataire",
+        "availability": [
+            {
+                "status": "indisponible",
+                "week": 20,
+                "day": "ALL",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "status": "indisponible",
+                "week": 21,
+                "day": "ALL",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "status": "indisponible",
+                "week": 22,
+                "day": "ALL",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "status": "indisponible",
+                "week": 19,
+                "day": "ALL",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "status": "indisponible",
+                "week": 99,
+                "day": "Lundi",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "status": "indisponible",
+                "week": 99,
+                "day": "Mardi",
+                "creneaux": [
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "status": "indisponible",
+                "week": 99,
+                "day": "Mercredi",
+                "creneaux": [
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "status": "indisponible",
+                "week": 99,
+                "day": "Jeudi",
+                "creneaux": [
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "status": "indisponible",
+                "week": 99,
+                "day": "Vendredi",
+                "creneaux": [
+                    4,
+                    5,
+                    6
+                ]
+            }
+        ]
+    },
+    "KNG": {
+        "name": "Kevin Ngo",
+        "email": "kevinngofr@gmail.com",
+        "telephone": "",
+        "service": 0,
+        "type": "vacataire",
+        "availability": [
+            {
+                "status": "disponible",
+                "week": 99,
+                "day": "Lundi",
+                "creneaux": [
+                    2,
+                    3,
+                    4,
+                    5
+                ]
+            },
+            {
+                "status": "disponible",
+                "week": 99,
+                "day": "Mardi",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "status": "disponible",
+                "week": 99,
+                "day": "Mercredi",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            }
+        ]
+    },
+    "DVO": {
+        "name": "Dimitri Volmy",
+        "email": "dimitri.voilmy@utt.fr",
+        "telephone": "",
+        "service": 0,
+        "type": "vacataire",
+        "availability": [
+            {
+                "week": "99",
+                "day": "Mercredi",
+                "creneaux": [
+                    4,
+                    5,
+                    6
+                ],
+                "status": "indisponible",
+                "commentaire": ""
+            },
+            {
+                "status": "indisponible",
+                "week": 99,
+                "day": "ALL",
+                "creneaux": [
+                    6
+                ]
+            }
+        ]
+    },
+    "GDO": {
+        "name": "Gwennael Dolat",
+        "email": "gwennael.dolat@gmail.com",
+        "telephone": "06.10.30.77.82",
+        "service": 0,
+        "type": "permanent",
+        "availability": [
+            {
+                "status": "indisponible",
+                "week": 99,
+                "day": "Lundi",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "week": "99",
+                "day": "Vendredi",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ],
+                "status": "indisponible",
+                "commentaire": "Pas plus d'une demi-journée par semaine"
+            },
+            {
+                "status": "indisponible",
+                "week": 99,
+                "day": "ALL",
+                "creneaux": [
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "status": "indisponible",
+                "week": 2,
+                "day": "Jeudi",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "status": "indisponible",
+                "week": 7,
+                "day": "Mardi",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            }
+        ]
+    },
+    "BTO": {
+        "name": "Barthelemy Tomasina",
+        "email": "barth@emulsyon.fr",
+        "telephone": "06.95.55.64.20",
+        "service": 0,
+        "type": "vacataire",
+        "availability": [
+            {
+                "status": "disponible",
+                "week": 99,
+                "day": "Mardi",
+                "creneaux": [
+                    1,
+                    2,
+                    3
+                ],
+                "commentaire": "Mardi ou Jeudi , pas les deux"
+            },
+            {
+                "status": "disponible",
+                "week": 99,
+                "day": "Jeudi",
+                "creneaux": [
+                    1,
+                    2,
+                    3
+                ],
+                "commentaire": "Mardi ou Jeudi , pas les deux"
+            }
+        ]
+    },
+    "MTH": {
+        "name": "Tang Minh Nhat Thai",
+        "email": "simplypew@gmail.com",
+        "telephone": "",
+        "service": 0,
+        "type": "vacataire",
+        "availability": [
+            {
+                "status": "disponible",
+                "week": 99,
+                "day": "ALL",
+                "creneaux": [
+                    2,
+                    3,
+                    4
+                ]
+            },
+            {
+                "week": "99",
+                "day": "Mercredi",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ],
+                "status": "disponible",
+                "commentaire": ""
+            },
+            {
+                "status": "indisponible",
+                "week": 4,
+                "day": "ALL",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            }
+        ]
+    },
+    "SHN": {
+        "name": "Sarah Hniene",
+        "email": "sarah.hniene@utt.fr",
+        "telephone": "03.51.59.11.28",
+        "service": 0,
+        "type": "vacataire",
+        "availability": [
+            {
+                "status": "disponible",
+                "week": 7,
+                "day": "ALL",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "status": "disponible",
+                "week": 13,
+                "day": "ALL",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "status": "disponible",
+                "week": 8,
+                "day": "ALL",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "week": "10",
+                "day": "Lundi",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ],
+                "status": "disponible",
+                "commentaire": ""
+            },
+            {
+                "status": "disponible",
+                "week": 21,
+                "day": "ALL",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "status": "disponible",
+                "week": 22,
+                "day": "ALL",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            }
+        ]
+    },
+    "ABE": {
+        "name": "Alexia Bernardi",
+        "email": "alexia@ikadia.fr",
+        "telephone": "06 25 02 50 85",
+        "service": 0,
+        "type": "vacataire",
+        "availability": [
+            {
+                "status": "disponible",
+                "week": 10,
+                "day": "Vendredi",
+                "creneaux": [
+                    4,
+                    5
+                ]
+            },
+            {
+                "status": "disponible",
+                "week": 11,
+                "day": "Vendredi",
+                "creneaux": [
+                    4,
+                    5
+                ]
+            },
+            {
+                "status": "disponible",
+                "week": 12,
+                "day": "Vendredi",
+                "creneaux": [
+                    4,
+                    5
+                ]
+            },
+            {
+                "status": "disponible",
+                "week": 13,
+                "day": "Vendredi",
+                "creneaux": [
+                    4,
+                    5
+                ]
+            }
+        ]
+    },
+    "SLO": {
+        "name": "Sébastien Loizon",
+        "email": "seb.loizon@gmail.com",
+        "telephone": "",
+        "service": 0,
+        "type": "vacataire",
+        "availability": [
+            {
+                "status": "disponible",
+                "week": 8,
+                "day": "ALL",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            }
+        ]
+    },
+    "MRI": {
+        "name": "Marine Riguet",
+        "email": "marine.riguet@univ-reims.fr",
+        "telephone": "",
+        "service": 192,
+        "type": "permanent",
+        "availability": [
+            {
+                "status": "indisponible",
+                "week": 99,
+                "day": "Jeudi",
+                "creneaux": [
+                    1,
+                    2,
+                    3
+                ]
+            },
+            {
+                "status": "indisponible",
+                "week": 4,
+                "day": "Lundi",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "status": "indisponible",
+                "week": 4,
+                "day": "Jeudi",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "status": "indisponible",
+                "week": 5,
+                "day": "Vendredi",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "status": "indisponible",
+                "week": 2,
+                "day": "Jeudi",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "status": "indisponible",
+                "week": 2,
+                "day": "Vendredi",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "status": "indisponible",
+                "week": 15,
+                "day": "Mardi",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            }
+        ]
+    },
+    "ARA": {
+        "name": "Anthony Rageul",
+        "email": "anthony.rageul@univ-reims.fr",
+        "telephone": "",
+        "service": 192,
+        "type": "permanent",
+        "availability": [
+            {
+                "status": "indisponible",
+                "week": 5,
+                "day": "Vendredi",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "status": "indisponible",
+                "week": 7,
+                "day": "ALL",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "status": "indisponible",
+                "week": 11,
+                "day": "Lundi",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "status": "indisponible",
+                "week": 12,
+                "day": "Jeudi",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "status": "indisponible",
+                "week": 12,
+                "day": "Vendredi",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "status": "indisponible",
+                "week": 1,
+                "day": "ALL",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ],
+                "commentaire": "Mettre les cours une semaine sur 2 ou 2 semaines consécutives"
+            }
+        ]
+    },
+    "JTH": {
+        "name": "Jérome Thomas",
+        "email": "jerome.thomas@univ-reims.fr",
+        "telephone": "",
+        "service": 192,
+        "type": "permanent",
+        "availability": [
+            {
+                "status": "indisponible",
+                "week": 99,
+                "day": "Jeudi",
+                "creneaux": [
+                    1,
+                    2,
+                    3
+                ]
+            },
+            {
+                "status": "indisponible",
+                "week": 99,
+                "day": "Mercredi",
+                "creneaux": [
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "status": "indisponible",
+                "week": 20,
+                "day": "Lundi",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "status": "indisponible",
+                "week": 20,
+                "day": "Mardi",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "status": "indisponible",
+                "week": 20,
+                "day": "Mercredi",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "status": "indisponible",
+                "week": 2,
+                "day": "Vendredi",
+                "creneaux": [
+                    4,
+                    5,
+                    6
+                ],
+                "commentaire": "Visio Montpellier"
+            }
+        ]
+    },
+    "AFR": {
+        "name": "Anthony Froli",
+        "email": "anthony.froli@univ-reims.fr",
+        "telephone": "",
+        "service": 192,
+        "type": "permanent",
+        "availability": [
+            {
+                "status": "indisponible",
+                "week": 99,
+                "day": "Mercredi",
+                "creneaux": [
+                    4,
+                    5,
+                    6
+                ]
+            }
+        ]
+    },
+    "ALO": {
+        "name": "Ariane Loizon",
+        "email": "ariane.loizon@univ-reims.fr",
+        "telephone": "",
+        "service": 384,
+        "type": "permanent",
+        "availability": [
+            {
+                "week": "99",
+                "day": "Lundi",
+                "creneaux": [
+                    1,
+                    2,
+                    3
+                ],
+                "status": "indisponible",
+                "commentaire": "ou éventuellement Vendredi Après-midi"
+            }
+        ]
+    },
+    "RHU": {
+        "name": "Régis Huez",
+        "email": "regis.huez@univ-reims.fr",
+        "telephone": "",
+        "service": 192,
+        "type": "permanent",
+        "availability": [
+            {
+                "status": "indisponible",
+                "week": 99,
+                "day": "Jeudi",
+                "creneaux": [
+                    1,
+                    2,
+                    3
+                ]
+            },
+            {
+                "status": "indisponible",
+                "week": 99,
+                "day": "Vendredi",
+                "creneaux": [
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "status": "indisponible",
+                "week": 5,
+                "day": "Mardi",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "status": "indisponible",
+                "week": 20,
+                "day": "Vendredi",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            }
+        ]
+    },
+    "AHA": {
+        "name": "Amine Haraoubia",
+        "email": "mohamed-amine.haraoubia@univ-reims.fr",
+        "telephone": "",
+        "service": 192,
+        "type": "permanent",
+        "availability": [
+            {
+                "status": "indisponible",
+                "week": 99,
+                "day": "Mercredi",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "status": "indisponible",
+                "week": 99,
+                "day": "Lundi",
+                "creneaux": [
+                    6
+                ]
+            }
+        ]
+    },
+    "GLE": {
+        "name": "Guillaume Leullier",
+        "email": "guillaume.leullier@univ-reims.fr",
+        "telephone": "",
+        "service": 384,
+        "type": "permanent",
+        "availability": [
+            {
+                "status": "indisponible",
+                "week": 99,
+                "day": "Jeudi",
+                "creneaux": [
+                    1,
+                    2,
+                    3
+                ]
+            }
+        ]
+    },
+    "OBU": {
+        "name": "Oana Bujoreanu",
+        "email": "oana.bujoreanu@gmail.com",
+        "telephone": "",
+        "service": 0,
+        "type": "permanent",
+        "availability": [
+            {
+                "status": "disponible",
+                "week": 4,
+                "day": "Lundi",
+                "creneaux": [
+                    2,
+                    3
+                ]
+            },
+            {
+                "week": "4",
+                "day": "Mardi",
+                "creneaux": [
+                    2,
+                    3
+                ],
+                "status": "disponible",
+                "commentaire": ""
+            },
+            {
+                "status": "disponible",
+                "week": 4,
+                "day": "Jeudi",
+                "creneaux": [
+                    2,
+                    3
+                ]
+            },
+            {
+                "week": "4",
+                "day": "Vendredi",
+                "creneaux": [
+                    2,
+                    3
+                ],
+                "status": "disponible",
+                "commentaire": ""
+            },
+            {
+                "week": "5",
+                "day": "Lundi",
+                "creneaux": [
+                    2,
+                    3
+                ],
+                "status": "disponible",
+                "commentaire": ""
+            },
+            {
+                "week": "5",
+                "day": "Mardi",
+                "creneaux": [
+                    2,
+                    3
+                ],
+                "status": "disponible",
+                "commentaire": ""
+            },
+            {
+                "week": "5",
+                "day": "Jeudi",
+                "creneaux": [
+                    2,
+                    3
+                ],
+                "status": "disponible",
+                "commentaire": ""
+            },
+            {
+                "week": "5",
+                "day": "Vendredi",
+                "creneaux": [
+                    2,
+                    3
+                ],
+                "status": "disponible",
+                "commentaire": ""
+            },
+            {
+                "week": "7",
+                "day": "Lundi",
+                "creneaux": [
+                    2,
+                    3
+                ],
+                "status": "disponible",
+                "commentaire": ""
+            },
+            {
+                "week": "7",
+                "day": "Mardi",
+                "creneaux": [
+                    2,
+                    3
+                ],
+                "status": "disponible",
+                "commentaire": ""
+            },
+            {
+                "week": "7",
+                "day": "Jeudi",
+                "creneaux": [
+                    2,
+                    3
+                ],
+                "status": "disponible",
+                "commentaire": ""
+            },
+            {
+                "week": "7",
+                "day": "Vendredi",
+                "creneaux": [
+                    2,
+                    3,
+                    4
+                ],
+                "status": "disponible",
+                "commentaire": ""
+            }
+        ]
+    },
+    "APE": {
+        "name": "Anne-Laure Perrone",
+        "email": "alp@annelaureperrone.com",
+        "telephone": "06 82 68 50 60",
+        "service": 0,
+        "type": "vacataire",
+        "availability": [
+            {
+                "week": "13",
+                "day": "Lundi",
+                "creneaux": [
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ],
+                "status": "disponible",
+                "commentaire": "Semaine SAE103 - Dispo sur les mêmes créneaux pour les autres cours (sauf le jeudi)"
+            },
+            {
+                "status": "disponible",
+                "week": 99,
+                "day": "Lundi",
+                "creneaux": [
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "status": "disponible",
+                "week": 99,
+                "day": "Mardi",
+                "creneaux": [
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            }
+        ]
+    },
+    "LBA": {
+        "name": "Laurie Barbelin",
+        "email": "laurie.barbelin@yahoo.fr",
+        "telephone": "",
+        "service": 0,
+        "type": "vacataire",
+        "availability": [
+            {
+                "status": "disponible",
+                "week": 99,
+                "day": "Jeudi",
+                "creneaux": [
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "status": "indisponible",
+                "week": 99,
+                "day": "Vendredi",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            }
+        ]
+    },
+    "TPA": {
+        "name": "Thomas Pavie",
+        "email": "pavie.english@hotmail.fr",
+        "telephone": "",
+        "service": 384,
+        "type": "permanent",
+        "availability": [
+            {
+                "status": "indisponible",
+                "week": 99,
+                "day": "Vendredi",
+                "creneaux": [
+                    4,
+                    5,
+                    6
+                ]
+            }
+        ]
+    },
+    "AGT": {
+        "name": "Anne Grenet",
+        "email": "anne.grenet@univ-reims.fr",
+        "telephone": "",
+        "service": 0,
+        "type": "vacataire",
+        "availability": [
+            {
+                "status": "disponible",
+                "week": 19,
+                "day": "ALL",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            }
+        ]
+    },
+    "MMA": {
+        "name": "Martial Martin",
+        "email": "martial.martin@univ-reims.fr",
+        "telephone": "",
+        "service": 0,
+        "type": "permanent",
+        "availability": [
+            {
+                "status": "indisponible",
+                "week": 99,
+                "day": "Lundi",
+                "creneaux": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "status": "indisponible",
+                "week": 99,
+                "day": "Mardi",
+                "creneaux": [
+                    4,
+                    5,
+                    6
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,35 @@
+{
+    "week": 51,
+    "days": [
+        {
+            "day": "Lundi",
+            "date": "2026-08-17",
+            "isHoliday": false
+        },
+        {
+            "day": "Mardi",
+            "date": "2026-08-18",
+            "isHoliday": false
+        },
+        {
+            "day": "Mercredi",
+            "date": "2026-08-19",
+            "isHoliday": false
+        },
+        {
+            "day": "Jeudi",
+            "date": "2026-08-20",
+            "isHoliday": false
+        },
+        {
+            "day": "Vendredi",
+            "date": "2026-08-21",
+            "isHoliday": false
+        }
+    ],
+    "semesters": [
+        "S2",
+        "S4",
+        "S6"
+    ]
+}
