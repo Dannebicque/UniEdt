@@ -5,8 +5,9 @@ from django.conf import settings
 from .forms import EnseignantForm
 
 # Chemin absolu vers le fichier JSON
-DOSSIER_JSON = "/home/pgommery/UniEDT2025/datas"
-JSON_PATH = "/home/pgommery/UniEDT2025/datas/contraintes.json"
+DOSSIER_JSON = "/home/pgommery/UniEDT2025/data"
+JSON_PATH = os.path.join(settings.DATA_PATH, "contraintes.json")
+
 
 # Lecture du fichier JSON
 def lire_donnees():
