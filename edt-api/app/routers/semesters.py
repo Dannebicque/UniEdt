@@ -10,7 +10,7 @@ import json
 router = APIRouter(prefix="/semesters", tags=["Semesters"])
 
 ROOT = Path(__file__).resolve().parents[2]          # → dossier racine projet
-DATA_DIR = Path(os.getenv("DATA_DIR", ROOT / "../data"))
+DATA_DIR = Path(os.getenv("DATA_DIR", ROOT / "../data-GEA"))
 
 
 @router.get("/liste")

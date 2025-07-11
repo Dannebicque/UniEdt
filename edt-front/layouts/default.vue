@@ -42,5 +42,15 @@ const items = ([
     icon: 'i-lucide-users',
     route: '/intervenants',
   },
+  {
+    label: 'Semaines',
+    icon: 'i-lucide-users',
+    route: '/semaines',
+  },
+  {
+    label: 'Calendrier',
+    icon: 'i-lucide-users',
+    route: '/calendrier',
+  },
 ])
 </script>

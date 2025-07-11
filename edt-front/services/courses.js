@@ -1,7 +1,6 @@
 export async function fetchCoursesByWeek(num) {
   console.log('Fetching courses...')
   const config = useRuntimeConfig()
-  console.log(config)
 
   try {
     return await $fetch(`${config.public.apiBaseUrl}/courses/${num}`)
@@ -16,8 +15,6 @@ export async function fetchCoursesByWeek(num) {
 
 export async function updateCourse(course, week) {
   const config = useRuntimeConfig()
-  console.log('Updating course:', course)
-
   try {
     return await $fetch(`${config.public.apiBaseUrl}/courses/update/${course.id}/${week}`, {
       method: 'PUT',
@@ -34,8 +31,6 @@ export async function updateCourse(course, week) {
 
 export async function updateCourseToReport(course, week) {
   const config = useRuntimeConfig()
-  console.log('Updating course:', course)
-
   try {
     return await $fetch(`${config.public.apiBaseUrl}/courses/update/${course.id}/deplace-to-report/${week}`, {
       method: 'PUT',
@@ -52,7 +47,6 @@ export async function updateCourseToReport(course, week) {
 
 export async function updateCourseFromReport(course, week) {
   const config = useRuntimeConfig()
-  console.log('Updating course:', course)
 
   try {
     return await $fetch(`${config.public.apiBaseUrl}/courses/update/${course.id}/deplace-from-report/${week}`, {

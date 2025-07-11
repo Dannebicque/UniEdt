@@ -79,6 +79,7 @@ const resetFilters = () => {
 }
 
 const onDragStart = (event, course, source, originSlot = '') => {
+  console.log('Drag started for course:', course)
   event.dataTransfer.setData('courseId', course.id)
   event.dataTransfer.setData('source', source) // Set the source of the drag
   event.dataTransfer.setData('originSlot', originSlot) // Set the origin slot
@@ -138,6 +139,7 @@ const onDragStart = (event, course, source, originSlot = '') => {
           cursor: 'move'
         }"
           draggable="true"
+          :data-id="course.id"
           @dragstart="onDragStart($event, course, source, '')"
       >
         <span v-html="displayCourseListe(course)" class="course-available"></span>

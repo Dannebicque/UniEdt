@@ -21,7 +21,7 @@ async def get_chronologie(
 ):
     cours_list = []
     if not DATA_COURS_DIR.exists():
-        raise HTTPException(status_code=404, detail="Dossier data/cours introuvable")
+        raise HTTPException(status_code=404, detail="Dossier data-GEA/cours introuvable")
 
     for file_name in os.listdir(DATA_COURS_DIR):
         if file_name.endswith(".json"):

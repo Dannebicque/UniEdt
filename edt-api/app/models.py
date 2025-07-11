@@ -1,4 +1,4 @@
-from typing import List, Optional, Dict, Union
+from typing import List, Optional, Dict, Union, Literal
 from pydantic import BaseModel, EmailStr
 
 # --- Semaine ---
@@ -20,30 +20,46 @@ class Availability(BaseModel):
     status: str  # "disponible" ou "indisponible"
 
 class Professor(BaseModel):
+    key: str
     name: str
     email: EmailStr
     service: int
     type: str  # "permanent" ou "vacataire"
-    availability: List[Availability]
+    availability: Optional[List[Availability]]
 
 # Pour le fichier contraintes.json (dictionnaire de professeurs)
 ProfessorsFile = Dict[str, Professor]
 
+class UpdateTypeRequest(BaseModel):
+    type: Literal["jour", "creneau"]
+    jour: str
+    semestre: str
+    semaine: int
+    nouveauType: str
+    creneau: Optional[int] = None
+
+    def get_creneaux(self) -> List[int]:
+        if self.type == "jour":
+            return [1, 2, 3, 4, 5, 6]
+        elif self.type == "creneau" and self.creneau:
+            return [self.creneau]
+        return []
+
 # --- Événements ---
 class Event(BaseModel):
-    id: int
-    name: str
-    date: str  # Format ISO
-    time: str  # "HH:MM"
+    code: str
+    nom: str
+    date: Optional[str]  # Format ISO
     creneaux: List[int]
-    location: str
     description: Optional[str]
     semaine: int
-    semester: str
+    semestre: str
+    type: str  # "FIXE", "INFO", "BLOQUANT"
+    jour: str
 
 # --- Cours à placer ---
 class CourseToPlace(BaseModel):
-    id: int
+    id: str
     matiere: str
     professor: str
     semester: str
@@ -59,15 +75,16 @@ class CourseToPlace(BaseModel):
 
 # --- Cours à placer ---
 class EventToPlace(BaseModel):
-    code: int
+    code: str
     nom: str
-    date: str  # Format ISO: YYYY-MM-DD
+    date: Optional[str]  # Format ISO: YYYY-MM-DD
     jour: str  # "HH:MM"
     creneaux: List[int]
     room: Optional[str] = None
     description: Optional[str]
     semaine: int
     semestre: str
+    type: str
 
 # --- Salles ---
 class SalleAffectation(BaseModel):

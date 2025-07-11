@@ -36,10 +36,23 @@ def get_jours_feries_france(year):
     return {d.strftime("%Y-%m-%d") for d in jours}
 
 DATA_DIR = "../data/semaines"
-START_DATE = datetime(2024, 9, 2)
+START_DATE = datetime(2025, 9, 1)
 DAYS = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi"]
-LISTE_S_IMPAIRES = ["S1", "S3", "S5"]
-LISTE_S_PAIRES = ["S2", "S4", "S6"]
+# VERSION GEA
+LISTE_S_IMPAIRES = [    "S1",
+                        "S3-FI",
+                        "S3-ALT",
+                        "S5-ALT",
+                        "S5-FI"]
+LISTE_S_PAIRES = ["S2",
+                      "S4-FI",
+                      "S4-ALT",
+                      "S6-ALT",
+                      "S6-FI"]
+
+# VERSION MMI
+# LISTE_S_IMPAIRES = ["S1", "S3-DEV-FI", "S5"]
+# LISTE_S_PAIRES = ["S2", "S4", "S6"]
 
 os.makedirs(DATA_DIR, exist_ok=True)
 
@@ -57,7 +70,7 @@ for week in range(1, 53):
 
     # Détermination du semestre selon la date du lundi
     monday_date = START_DATE + timedelta(weeks=week - 1)
-    premiere_fevrier = datetime(monday_date.year, 2, 1)
+    premiere_fevrier = datetime(2026, 2, 1)
     if monday_date < premiere_fevrier:
         semesters = LISTE_S_IMPAIRES
     else:
@@ -71,4 +84,4 @@ for week in range(1, 53):
     filename = os.path.join(DATA_DIR, f"semaine_{week}.json")
     with open(filename, "w", encoding="utf-8") as f:
         json.dump(semaine, f, ensure_ascii=False, indent=4)
-print("Fichiers semaines générés dans le dossier data.")
+print("Fichiers semaines générés dans le dossier data-GEA.")

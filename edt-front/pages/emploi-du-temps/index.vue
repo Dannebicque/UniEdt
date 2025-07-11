@@ -77,7 +77,7 @@
     <div class="flex flex-row flex-wrap">
       <div :class="['transition-all', showSidebar ? 'basis-3/4' : 'basis-full']" id="edt">
         <div class="grid-container mt-2" v-for="day in days" :key="day.day">
-          <div class="grid-day">{{ day.day }} {{ day.dateFr }}</div>
+          <div class="grid-day">{{ day.day }} - {{ formatDate(day.date) }}</div>
           <!-- Header Row: Semesters -->
           <div class="grid-header grid-time">Heure</div>
 
@@ -296,7 +296,7 @@ const placedCourses = ref({})
 const size = ref(0)
 
 onMounted(async () => {
-      // Simulate fetching weeks data
+      // Simulate fetching weeks data-GEA
       try {
         weeks.value = await fetchWeeks()
         config.value = await fetchAllConfig()
@@ -322,7 +322,7 @@ function onDragLeave () {
 }
 
 const verifyAndResetGrid = () => {
-  // pour chaque cours placés on supprime pour remettre la grille en état avant le changement de semestre
+  // pour chaque cours placés on supprime pour remettre la grille en état avant le changement de semaine
   Object.keys(placedCourses.value).forEach((key) => {
     const course = placedCourses.value[key]
     if (course.blocked === false) {
@@ -338,12 +338,21 @@ const verifyAndResetGrid = () => {
   })
 }
 
+const clearCell = (key) => {
+  const cell = document.querySelector(`[data-key="${key}"]`);
+  if (cell) {
+    cell.textContent = ''; // Retirer le texte
+    cell.style = ''; // Réinitialiser le style
+  }
+};
+
 const _loadWeek = async () => {
   try {
-    verifyAndResetGrid()
+    await verifyAndResetGrid()
 
     coursesOfWeeks.value = []
     coursesOfReport.value = []
+    placedCourses.value = []
 
     await _getWeek()
     await _getCourses()
@@ -385,7 +394,6 @@ const _getCourses = async () => {
 }
 
 const onDragStartEvent = (course, source, originSlot) => {
-  console.log('onDragStartEvent called with course:', course, 'source:', source, 'originSlot:', originSlot)
   highlightValidCells(course)
 }
 
@@ -406,6 +414,7 @@ const onDrop = (event, day, time, semestre, groupNumber) => {
     return
   }
   if (source === 'availableCourses') {
+    console.log(`Dropping from availableCourses: ${courseId} on ${day} at ${time} for semestre ${semestre} and group ${groupNumber}`)
     handleDropFromAvailableCourses(courseId, day, time, semestre, groupNumber)
   } else if (source === 'reportCourses') {
     handleDropFromCoursesToReport(courseId, day, time, semestre, groupNumber)
@@ -428,7 +437,8 @@ const groupToText = (group) => {
 
 const handleDropFromAvailableCourses = async (courseId, day, time, semestre, groupNumber) => {
   const course = coursesOfWeeks.value.find((c) => c.id == courseId)
-
+console.log(course)
+  console.log(groupToInt(groupNumber))
   if (course && course.semester === semestre && course.groupIndex === groupToInt(groupNumber)) {
     const groupSpan = course.groupCount
 
@@ -518,17 +528,14 @@ const mergeCells = (day, time, semestre, groupNumber, groupSpan, type) => {
 }
 
 const onDropToReplace = async (event) => {
-  console.log('onDropToReplace called')
   isDragOver.value = false
   const courseId = event.dataTransfer.getData('courseId')
   const source = event.dataTransfer.getData('source')
 
   if (source === 'availableCourses') {
-    console.log('onDropToReplace called from availableCourses with courseId:', courseId)
     const courseIndex = Object.keys(coursesOfWeeks.value).find(
         k => coursesOfWeeks.value[k].id == courseId
     )
-    console.log('courseIndex:', courseIndex)
     if (courseIndex) {
       let course = coursesOfWeeks.value[courseIndex]
       course.creneau = null
@@ -589,7 +596,7 @@ const removeCourse = (day, time, semestre, groupNumber, groupSpan, changeSemaine
     for (let i = 1; i < groupSpan; i++) {
       const cellKey = `${day}_${time}_${semestre}_${incrementGroupNumber(groupNumber, i)}`
       const cell = currentCell.cloneNode(false)
-      cell.setAttribute('data-key', cellKey)
+      cell.setAttribute('data-GEA-key', cellKey)
       const parent = currentCell.parentNode
       parent.insertBefore(cell, currentCell.nextSibling)
     }
@@ -613,7 +620,7 @@ const applyRestrictions = () => {
   days.value.forEach((day) => {
     // blocage du créneau de 12h30
     Object.keys(semesters.value).forEach((semester) => {
-      config.value.semesters[semester].groupesTp.forEach((groupe) => {
+      Object.values(config.value.semesters[semester].groupesTp).forEach((groupe) => {
         blockSlot(day.day, '12h30', semester, groupe, 'Pause')
       })
     })
@@ -622,12 +629,16 @@ const applyRestrictions = () => {
   restrictedSlots.value.forEach((slot) => {
     const { code, creneaux, date, description, jour, nom, room, semaine, semestre, type } = slot
     creneaux.forEach((creneau) => {
-      config.value.semesters[semestre].groupesTp.forEach((groupe) => {
+      Object.values(config.value.semesters[semestre].groupesTp).forEach((groupe) => {
         blockSlot(jour, convertToHeureText(creneau), semestre, groupe, nom, type)
       })
     })
   })
 }
+
+const capitalizeFirstLetter = (word) => {
+  return word.charAt(0).toUpperCase() + word.slice(1);
+};
 
 const clearHighlight = () => {
   const highlightedCells = document.querySelectorAll('.highlight')
@@ -653,7 +664,7 @@ const blockSlot = (day, time, semester, groupNumber, motif = null, type = 'FIXE'
   } else if (type === 'INFO') {
     bgColor = '#9ee6ef'
   }
-  const cellKey = `${day}_${time}_${semester}_${groupNumber}`
+  const cellKey = `${capitalizeFirstLetter(day)}_${time}_${semester}_${groupNumber}`
   placedCourses.value[cellKey] = { motif: motif ?? 'blocked', color: bgColor, blocked: true }
 }
 
@@ -675,9 +686,16 @@ const hasProfessorHasContrainte = (professor, day, time) => {
   return false
 }
 
+const isGroupInRange = (group, groupIndex, groupCount, allGroups) => {
+  let groupPosition = Object.keys(allGroups).find(k => allGroups[k] === group);
+  const startPosition = groupIndex - 1;
+  const endPosition = startPosition + groupCount;
+  groupPosition = parseInt(groupPosition, 10)
+  return groupPosition > startPosition && groupPosition <= endPosition;
+};
+
 const highlightValidCells = (course) => {
   const { semester, groupIndex, groupCount, professor } = course
-  console.log('highlightValidCells called with course:', course)
   // pour chaque ligne de professorConstraints, identifier le jour, puis parcours les créneaux horaires, marquer les cellules indisponibles
 
   // affichage des constraintes profs
@@ -687,8 +705,11 @@ const highlightValidCells = (course) => {
       const hasContrainte = hasProfessorHasContrainte(professor, day.day, convertToHeureInt(time))
       const isAvailable = isProfessorAvailable(professor, day.day, convertToHeureText(time))
 
-      config.value.semesters[semester].groupesTp.forEach((groupe, i) => {
-        if (i < groupIndex - 1 || i >= groupIndex - 1 + groupCount) return // skip groups that are not in the range
+      Object.values(config.value.semesters[semester].groupesTp).forEach((groupe, i) => {
+        if (!isGroupInRange(groupe, groupIndex, groupCount, config.value.semesters[semester].groupesTp)) {
+          return; // Le groupe n'est pas dans la plage
+        }
+
         const cellKey = `${day.day}_${time}_${semester}_${groupe}`
         const cell = document.querySelector(`[data-key="${cellKey}"]`)
 
@@ -749,8 +770,8 @@ const listeGroupesTp = (semestre) => {
   if (!selectedWeek.value || !semestre) return []
   if (!semesters.value[semestre]) return []
 
-  return semesters.value[semestre].groupesTp
-}
+  return Object.values(config.value.semesters[semestre].groupesTp)
+  }
 
 const highlightSameCourses = (day, time, semestre, groupNumber) => {
   const courseKey = `${day}_${time}_${semestre}_${groupNumber}`
@@ -827,7 +848,6 @@ const affectRooms = async () => {
   try {
     // appel API pour affecter les salles et récupérer la mise à jour
     const reponse = await assignRoomsByWeek(selectedNumWeek.value)
-    console.log(reponse)
     await _getCourses()
   } catch (error) {
     console.error('Erreur lors de l\'affectation des salles:', error)
