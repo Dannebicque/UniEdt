@@ -712,8 +712,8 @@ const highlightValidCells = (course) => {
 
         const cellKey = `${day.day}_${time}_${semester}_${groupe}`
         const cell = document.querySelector(`[data-key="${cellKey}"]`)
-
-        if (cell && !placedCourses.value[cellKey]) {
+console.log(placedCourses.value[cellKey])
+        if (cell && (!placedCourses.value[cellKey] || (placedCourses.value[cellKey].color && placedCourses.value[cellKey].color === '#9ee6ef'))) {
           if (hasContrainte !== false) {
             cell.classList.add('highlight-mandatory')
           } else if (isAvailable) {
