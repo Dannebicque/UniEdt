@@ -330,7 +330,7 @@ const verifyAndResetGrid = () => {
           course.date,
           convertToHeureText(course.creneau),
           course.semester,
-          groupToText(course.groupIndex),
+          groupToText(course.groupIndex, course.semester),
           course.groupCount,
           true
       )
@@ -376,17 +376,19 @@ const _getCourses = async () => {
   // parcourir coursesOfWeeks et retirer tous les cours qui sont déjà placés dans placedCourses. Un cours placé est un cours qui a une date et un créneau. Les cours retirés sont à mettre dans placedCourses
   coursesOfWeeks.value = coursesOfWeeks.value.filter((course) => {
     if (course.date && course.creneau) {
-      const key = `${course.date}_${convertToHeureText(course.creneau)}_${course.semester}_${groupToText(course.groupIndex)}`
+      const key = `${course.date}_${convertToHeureText(course.creneau)}_${course.semester}_${groupToText(course.groupIndex, course.semester)}`
       placedCourses.value[key] = course
       return false
     }
     return true
   })
 
+  console.log(placedCourses.value)
+
   Object.keys(placedCourses.value).forEach(async (key) => {
     const course = await placedCourses.value[key]
     if (course.blocked === false) {
-      mergeCells(course.date, convertToHeureText(course.creneau), course.semester, groupToText(course.groupIndex), course.groupCount, course.type)
+      mergeCells(course.date, convertToHeureText(course.creneau), course.semester, groupToText(course.groupIndex, course.semester), course.groupCount, course.type)
     }
   })
 
@@ -425,24 +427,27 @@ const onDrop = (event, day, time, semestre, groupNumber) => {
   clearHighlight()
 }
 
-const groupToInt = (group) => {
-  // convert group letter to number
-  return group.charCodeAt(0) - 64
+const groupToInt = (group, semestre) => {
+  //je veux l'inverse de groupToText, donc si group est un nombre, je le retourne, sinon je le converti en nombre en récupérant la clé de sa valeur dans le tableau groupesTp
+  if (typeof group === 'number') {
+    return group
+  } else if (typeof group === 'string') {
+    const index = Object.values(config.value.semesters[semestre].groupesTp).indexOf(group)
+    return index + 1 // +1 because groups start from 1
+  }
 }
 
-const groupToText = (group) => {
-  // convert group number to letter
-  return String.fromCharCode(64 + group)
+const groupToText = (group, semestre) => {
+  return config.value.semesters[semestre].groupesTp[group]
 }
 
 const handleDropFromAvailableCourses = async (courseId, day, time, semestre, groupNumber) => {
   const course = coursesOfWeeks.value.find((c) => c.id == courseId)
 console.log(course)
-  console.log(groupToInt(groupNumber))
-  if (course && course.semester === semestre && course.groupIndex === groupToInt(groupNumber)) {
+  if (course && course.semester === semestre && course.groupIndex === groupToInt(groupNumber, semestre)) {
     const groupSpan = course.groupCount
 
-    if (groupToInt(groupNumber) <= config.value.semesters[semestre].nbTp - groupSpan + 1) {
+    if (groupToInt(groupNumber, semestre) <= config.value.semesters[semestre].nbTp - groupSpan + 1) {
       mergeCells(day, time, semestre, groupNumber, groupSpan, course.type)
     }
 
@@ -464,7 +469,7 @@ const handleDropFromCoursesToReport = async (courseId, day, time, semestre, grou
   if (course && course.semester === semestre && course.groupIndex === groupToInt(groupNumber)) {
     const groupSpan = course.groupCount
 
-    if (groupToInt(groupNumber) <= config.value.semesters[semestre].nbTp - groupSpan + 1) {
+    if (groupToInt(groupNumber, semestre) <= config.value.semesters[semestre].nbTp - groupSpan + 1) {
       mergeCells(day, time, semestre, groupNumber, groupSpan, course.type)
     }
 
@@ -482,14 +487,14 @@ const handleDropFromCoursesToReport = async (courseId, day, time, semestre, grou
 
 const handleDropFromGrid = async (courseId, day, time, semestre, groupNumber, originSlot) => {
   const course = placedCourses.value[originSlot]
-  if (course && course.semester === semestre && groupToText(course.groupIndex) === groupNumber) {
+  if (course && course.semester === semestre && groupToText(course.groupIndex, course.semester) === groupNumber) {
     const groupSpan = course.groupCount
-    if (groupToInt(groupNumber) <= config.value.semesters[semestre].nbTp - groupSpan + 1) {
+    if (groupToInt(groupNumber, semestre) <= config.value.semesters[semestre].nbTp - groupSpan + 1) {
       removeCourse(
           course.date,
           convertToHeureText(course.creneau),
           course.semester,
-          groupToText(course.groupIndex),
+          groupToText(course.groupIndex, course.semester),
           course.groupCount,
           true
       )
@@ -518,7 +523,14 @@ const mergeCells = (day, time, semestre, groupNumber, groupSpan, type) => {
     cell.style.minWidth = `${50 * groupSpan}px`
     // Remove the extra cells that are merged
     for (let i = 1; i < groupSpan; i++) {
-      const extraCellSelector = `[data-key="${day}_${time}_${semestre}_${groupToText(groupToInt(groupNumber) + i)}"]`
+      let extraCellSelector = ''
+      //si groupNumber est un nombre, on incrémente le groupe suivant, sinon on converti
+      if (typeof groupNumber === 'number') {
+        extraCellSelector = `[data-key="${day}_${time}_${semestre}_${groupToText(groupNumber + i, semestre)}"]`
+      } else {
+        extraCellSelector = `[data-key="${day}_${time}_${semestre}_${groupToText(groupToInt(groupNumber, semestre) + i, semestre)}"]`
+      }
+
       const extraCell = document.querySelector(extraCellSelector)
       if (extraCell) {
         extraCell.remove()
@@ -556,7 +568,7 @@ const onDropToReplace = async (event) => {
           course.date,
           convertToHeureText(course.creneau),
           course.semester,
-          groupToText(course.groupIndex),
+          groupToText(course.groupIndex, course.semester),
           course.groupCount,
           true
       )

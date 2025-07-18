@@ -41,10 +41,7 @@ const selectedCourse = ref('')
 const selectedGroup = ref('')
 
 const filteredCourses = computed(() => {
-  console.log('Filtering courses with the following criteria:')
-  console.log('Selected Semester:', selectedSemester.value)
   return props.items.filter((course) => {
-    console.log(course)
     return (
         (selectedSemester.value === '' || course.semester === selectedSemester.value) &&
         (selectedProfessor.value === '' || course.professor === selectedProfessor.value) &&

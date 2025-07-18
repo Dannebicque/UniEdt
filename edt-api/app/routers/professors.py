@@ -16,6 +16,9 @@ async def list_professors():
         for key, value in data.items()
     ]
 
+    # trier les enseignants par nom
+    enseignants.sort(key=lambda x: x["name"].lower())
+
     # Résultat en JSON
     return enseignants
     #profs: list[dict] = load_json("contraintes")

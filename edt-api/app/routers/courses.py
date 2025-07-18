@@ -22,7 +22,7 @@ async def get_courses_for_week(week_number: int):
     return [CourseToPlace(**c) for c in courses]
 
 @router.put("/update/{course_id}/{week_number}")
-async def update_course(course_id: str, week_number: int, req: CourseUpdateRequest):
+async def update_course(course_id: int, week_number: int, req: CourseUpdateRequest):
     data_path = get_data_dir() / f"cours/cours_{week_number}.json"
     updater = JsonUpdater(str(data_path))
     updated = updater.update_by_field("id", course_id, req.updates)
@@ -74,7 +74,7 @@ async def update_course_to_report(course_id: str, week_number: int, req: CourseU
     return {"message": "Cours déplacé dans les cours à reporter", "course": course_to_move}
 
 @router.put("/update/{course_id}/deplace-from-report/{week_number}")
-async def restore_course_from_report(course_id: str, week_number: int, req: CourseUpdateRequest):
+async def restore_course_from_report(course_id: str|int, week_number: int, req: CourseUpdateRequest):
     data_path_report = get_data_dir() / "cours/cours_0.json"
     data_path_week = get_data_dir() / f"cours/cours_{week_number}.json"
 

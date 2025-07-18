@@ -145,7 +145,7 @@ const _loadWeek = async () => {
       //créneau est un tableau, à parcourir pour placer l'événement
       if (Array.isArray(e.creneaux)) {
         e.creneaux.forEach((creneau) => {
-          const cellKey = `${e.jour}_${convertToHeureText(creneau)}_${e.semester}`;
+          const cellKey = `${e.jour}_${convertToHeureText(creneau)}_${e.semestre}`;
           placedCourses.value[cellKey] = e;
         });
       } else {
@@ -202,7 +202,7 @@ const getCouleurParType = computed(() =>(day, time, semester) => {
 
   const type = placedCourses.value[cellKey].nom || '';
   const typeInfo = typesCase.find((t) => t.nom === type);
-  return typeInfo ? typeInfo.couleur : '#ffffff'; // Retourne la couleur associée ou blanc par défaut
+  return typeInfo ? typeInfo.couleur : (type !== '' ? '#aabbcc' : '#ffffff'); // Retourne la couleur associée ou blanc par défaut
 });
 
 const getCouleurParDayType = (day, semester) => {

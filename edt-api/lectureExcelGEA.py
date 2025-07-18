@@ -3,6 +3,7 @@ import json
 import glob
 import math
 import os
+import random
 
 listeGroupes = {
     "CM": 1,
@@ -115,8 +116,7 @@ for excel_path in excel_files:
                                 if val % 1.5 == 0:
                                     for i in range(int(val // 1.5)):
                                         obj = {
-                                            "id": int(f"{hash(sheet_name) % 10000}{semaine_num}{idx + 1}{groupe if groupe.isdigit() else 0}"),
-                                            "matiere": row.get('matière', ''),
+                                            "id": int(f"{hash(sheet_name) % 10000}{semaine_num}{idx + 1}{groupe if groupe.isdigit() else 0}{math.floor(random.randint(1, 999999) * math.fabs(math.sin(idx + int(semaine_num))))}"),                                            "matiere": row.get('matière', ''),
                                             "professor": row.get('Code enseignant', ''),
                                             "semester": sheet_name,
                                             "groupIndex": listeGroupes[groupe], # on fera la conversion après
@@ -131,7 +131,8 @@ for excel_path in excel_files:
                                         objets.append(obj)
                                 else:
                                     obj = {
-                                        "id": int(f"{hash(sheet_name) % 10000}{semaine_num}{idx + 1}{groupe if groupe.isdigit() else 0}"),
+                                        "id": int(f"{hash(sheet_name) % 10000}{semaine_num}{idx + 1}{groupe if groupe.isdigit() else 0}{math.floor(random.randint(1, 999999) * math.fabs(math.sin(idx + int(semaine_num))))}"),
+                                        "matiere": row.get('matière', ''),
                                         "matiere": row.get('matière', ''),
                                         "professor": row.get('Code enseignant', ''),
                                         "semester": sheet_name,
