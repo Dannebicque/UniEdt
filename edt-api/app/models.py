@@ -59,7 +59,7 @@ class Event(BaseModel):
 
 # --- Cours à placer ---
 class CourseToPlace(BaseModel):
-    id: str
+    id: Union[str, int]
     matiere: str
     professor: str
     semester: str

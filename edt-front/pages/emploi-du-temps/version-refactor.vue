@@ -208,7 +208,7 @@ const {
 } = useDragDrop(placedCourses, coursesOfWeeks, coursesOfReport, config, selectedNumWeek)
 
 onMounted(async () => {
-      // Simulate fetching weeks data
+      // Simulate fetching weeks data-GEA
       try {
         weeks.value = await fetchWeeks()
         config.value = await fetchAllConfig()

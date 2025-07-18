@@ -1,17 +1,19 @@
 #!/bin/bash
-
+set -x
 # Lancer l'API Python (adapter le chemin et la commande si besoin)
 cd edt-api
-source venv/bin/activate
+source .venv/bin/activate
 uvicorn app.main:app --reload --port 8000 &
 API_PID=$!
 cd ..
 
 # Lancer le front (adapter la commande si besoin)
 cd edt-front
-# npm install
-npm run dev &
+npm run build
+npm run preview &
 FRONT_PID=$!
+sleep 5 # Attendre que le front démarre
+open "http://localhost:3000"
 cd ..
 
 # Attendre que l'utilisateur arrête le script
