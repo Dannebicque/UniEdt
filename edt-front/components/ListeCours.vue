@@ -41,9 +41,12 @@ const selectedCourse = ref('')
 const selectedGroup = ref('')
 
 const filteredCourses = computed(() => {
+  console.log('Filtering courses with the following criteria:')
+  console.log('Selected Semester:', selectedSemester.value)
   return props.items.filter((course) => {
+    console.log(course)
     return (
-        (selectedSemester.value === '' || course.group === selectedSemester.value) &&
+        (selectedSemester.value === '' || course.semester === selectedSemester.value) &&
         (selectedProfessor.value === '' || course.professor === selectedProfessor.value) &&
         (selectedCourse.value === '' || course.matiere === selectedCourse.value) &&
         (selectedGroup.value === '' || course.groupIndex === parseInt(selectedGroup.value))
@@ -52,7 +55,7 @@ const filteredCourses = computed(() => {
 })
 
 const getKeys = (obj) => {
-  return Object.keys(obj).map((key) => ({ label: key, value: obj[key] }))
+  return Object.keys(obj).map((key) => ({ label: key, value: key }))
 }
 
 const displayCourseListe = (course) => {
@@ -98,8 +101,8 @@ const onDragStart = (event, course, source, originSlot = '') => {
           <Select
               id="semester"
               optionLabel="label"
+              optionValue="value"
               class="w-full"
-              @change=""
               v-model="selectedSemester" :options="getKeys(semesters)"
           />
         </div>
