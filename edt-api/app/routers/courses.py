@@ -22,7 +22,7 @@ async def get_courses_for_week(week_number: int):
     return [CourseToPlace(**c) for c in courses]
 
 @router.put("/update/{course_id}/{week_number}")
-async def update_course(course_id: int, week_number: int, req: CourseUpdateRequest):
+async def update_course(course_id: int|str, week_number: int, req: CourseUpdateRequest):
     data_path = get_data_dir() / f"cours/cours_{week_number}.json"
     updater = JsonUpdater(str(data_path))
     updated = updater.update_by_field("id", course_id, req.updates)
@@ -31,7 +31,7 @@ async def update_course(course_id: int, week_number: int, req: CourseUpdateReque
     raise HTTPException(status_code=404, detail="Cours non trouvé")
 
 @router.put("/update/{course_id}/deplace-to-report/{week_number}")
-async def update_course_to_report(course_id: str, week_number: int, req: CourseUpdateRequest):
+async def update_course_to_report(course_id: str|int, week_number: int, req: CourseUpdateRequest):
     data_path = get_data_dir() / f"cours/cours_{week_number}.json"
     data_path_report = get_data_dir() / f"cours/cours_0.json"
 
@@ -121,7 +121,7 @@ async def restore_course_from_report(course_id: str|int, week_number: int, req: 
     return {"message": "Cours restauré dans la semaine", "course": course_to_restore}
 
 @router.delete("/delete/{course_id}/{week_number}")
-async def delete_course(course_id: str, week_number: int):
+async def delete_course(course_id: str|int, week_number: int):
     data_path = get_data_dir() / f"cours/cours_{week_number}.json"
     updater = JsonUpdater(str(data_path))
     deleted = updater.init_creneau_date(course_id)
