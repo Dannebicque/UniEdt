@@ -136,6 +136,7 @@ const onDragStart = (event, course, source, originSlot = '') => {
           :style="{
           gridColumn: `span ${course.groupCount}`,
           backgroundColor: getColorBySemestreAndType(course.color, course.type),
+          color: 'white',
           cursor: 'move'
         }"
           draggable="true"

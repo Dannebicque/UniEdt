@@ -85,7 +85,7 @@
               v-for="semestre in selectedWeek.semesters"
               :key="semestre"
               class="grid-header"
-              :style="{ gridColumn: `span  ${listeGroupesTp(semestre).length}`, backgroundColor: semesters[semestre].color }"
+              :style="{ gridColumn: `span  ${listeGroupesTp(semestre).length}`, backgroundColor: semesters[semestre].color, color: 'white' }"
           >
             {{ semestre }}
           </div>
@@ -97,7 +97,7 @@
                 v-for="group in listeGroupesTp(semestre)"
                 :key="semestre + group"
                 class="grid-header"
-                :style="{ backgroundColor: semesters[semestre].color }"
+                :style="{ backgroundColor: semesters[semestre].color, color: 'white' }"
             >
               {{ group }}
             </div>
@@ -112,6 +112,7 @@
                   :key="time + semestre + group"
                   class="grid-cell"
                   :style="{
+                    color: 'white',
                 backgroundColor: placedCourses[`${day.day}_${time}_${semestre}_${group}`] ? getColorBySemestreAndType(placedCourses[`${day.day}_${time}_${semestre}_${group}`].color, placedCourses[`${day.day}_${time}_${semestre}_${group}`].type) : '' }"
                   @drop="onDrop($event, day.day, time, semestre, group)"
                   @mouseover="highlightSameCourses(day.day, time, semestre, group)"
@@ -339,12 +340,12 @@ const verifyAndResetGrid = () => {
 }
 
 const clearCell = (key) => {
-  const cell = document.querySelector(`[data-key="${key}"]`);
+  const cell = document.querySelector(`[data-key="${key}"]`)
   if (cell) {
-    cell.textContent = ''; // Retirer le texte
-    cell.style = ''; // Réinitialiser le style
+    cell.textContent = '' // Retirer le texte
+    cell.style = '' // Réinitialiser le style
   }
-};
+}
 
 const _loadWeek = async () => {
   try {
@@ -432,8 +433,9 @@ const groupToInt = (group, semestre) => {
   if (typeof group === 'number') {
     return group
   } else if (typeof group === 'string') {
-    const index = Object.values(config.value.semesters[semestre].groupesTp).indexOf(group)
-    return index + 1 // +1 because groups start from 1
+    console.log('string')
+    const key = Object.keys(config.value.semesters[semestre].groupesTp).find(k => config.value.semesters[semestre].groupesTp[k] === group)
+    return parseInt(key, 10)
   }
 }
 
@@ -443,13 +445,17 @@ const groupToText = (group, semestre) => {
 
 const handleDropFromAvailableCourses = async (courseId, day, time, semestre, groupNumber) => {
   const course = coursesOfWeeks.value.find((c) => c.id == courseId)
-console.log(course)
+  console.log(course)
+  console.log(semestre)
+  console.log(groupNumber)
+  console.log(groupToInt(groupNumber, semestre))
   if (course && course.semester === semestre && course.groupIndex === groupToInt(groupNumber, semestre)) {
+    console.log('ok')
     const groupSpan = course.groupCount
 
-    if (groupToInt(groupNumber, semestre) <= config.value.semesters[semestre].nbTp - groupSpan + 1) {
-      mergeCells(day, time, semestre, groupNumber, groupSpan, course.type)
-    }
+    // if (groupToInt(groupNumber, semestre) <= config.value.semesters[semestre].nbTp - groupSpan + 1) {
+    mergeCells(day, time, semestre, groupNumber, groupSpan, course.type)
+    //}
 
     course.creneau = convertToHeureInt(time)
     course.date = day
@@ -520,6 +526,7 @@ const mergeCells = (day, time, semestre, groupNumber, groupSpan, type) => {
     cell.style.gridColumn = `span ${groupSpan}`
     const color = getColorBySemestreAndType(config.value.semesters[semestre].color, type)
     cell.style.backgroundColor = `${color} !important`
+    cell.style.color='white'
     cell.style.minWidth = `${50 * groupSpan}px`
     // Remove the extra cells that are merged
     for (let i = 1; i < groupSpan; i++) {
@@ -649,8 +656,8 @@ const applyRestrictions = () => {
 }
 
 const capitalizeFirstLetter = (word) => {
-  return word.charAt(0).toUpperCase() + word.slice(1);
-};
+  return word.charAt(0).toUpperCase() + word.slice(1)
+}
 
 const clearHighlight = () => {
   const highlightedCells = document.querySelectorAll('.highlight')
@@ -699,12 +706,12 @@ const hasProfessorHasContrainte = (professor, day, time) => {
 }
 
 const isGroupInRange = (group, groupIndex, groupCount, allGroups) => {
-  let groupPosition = Object.keys(allGroups).find(k => allGroups[k] === group);
-  const startPosition = groupIndex - 1;
-  const endPosition = startPosition + groupCount;
+  let groupPosition = Object.keys(allGroups).find(k => allGroups[k] === group)
+  const startPosition = groupIndex - 1
+  const endPosition = startPosition + groupCount
   groupPosition = parseInt(groupPosition, 10)
-  return groupPosition > startPosition && groupPosition <= endPosition;
-};
+  return groupPosition > startPosition && groupPosition <= endPosition
+}
 
 const highlightValidCells = (course) => {
   const { semester, groupIndex, groupCount, professor } = course
@@ -719,12 +726,12 @@ const highlightValidCells = (course) => {
 
       Object.values(config.value.semesters[semester].groupesTp).forEach((groupe, i) => {
         if (!isGroupInRange(groupe, groupIndex, groupCount, config.value.semesters[semester].groupesTp)) {
-          return; // Le groupe n'est pas dans la plage
+          return // Le groupe n'est pas dans la plage
         }
 
         const cellKey = `${day.day}_${time}_${semester}_${groupe}`
         const cell = document.querySelector(`[data-key="${cellKey}"]`)
-console.log(placedCourses.value[cellKey])
+        console.log(placedCourses.value[cellKey])
         if (cell && (!placedCourses.value[cellKey] || (placedCourses.value[cellKey].color && placedCourses.value[cellKey].color === '#9ee6ef'))) {
           if (hasContrainte !== false) {
             cell.classList.add('highlight-mandatory')
@@ -783,7 +790,7 @@ const listeGroupesTp = (semestre) => {
   if (!semesters.value[semestre]) return []
 
   return Object.values(config.value.semesters[semestre].groupesTp)
-  }
+}
 
 const highlightSameCourses = (day, time, semestre, groupNumber) => {
   const courseKey = `${day}_${time}_${semestre}_${groupNumber}`
@@ -880,12 +887,14 @@ const affectRooms = async () => {
 .grid-day {
   grid-column: span v-bind(size+1);
   background-color: #137C78;
+  color:white;
   text-align: center;
   font-weight: bold;
 }
 
 .grid-header {
   background-color: #33B3B2;
+  color:white;
   text-align: center;
   padding: 8px;
   font-weight: bold;
@@ -897,6 +906,7 @@ const affectRooms = async () => {
   text-align: center;
   padding: 8px;
   background-color: #33B3B2;
+  color:white;
   border: 1px solid #000;
   grid-column: span 1;
 }
