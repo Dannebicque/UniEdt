@@ -326,7 +326,7 @@ const verifyAndResetGrid = () => {
   // pour chaque cours placés on supprime pour remettre la grille en état avant le changement de semaine
   Object.keys(placedCourses.value).forEach((key) => {
     const course = placedCourses.value[key]
-    if (course.blocked === false) {
+    if (course && course.blocked === false) {
       removeCourse(
           course.date,
           convertToHeureText(course.creneau),
