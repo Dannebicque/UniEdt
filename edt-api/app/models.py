@@ -36,6 +36,7 @@ class UpdateTypeRequest(BaseModel):
     semestre: str
     semaine: int
     nouveauType: str
+    fixed: bool = False
     creneau: Optional[int] = None
 
     def get_creneaux(self) -> List[int]:
@@ -72,6 +73,7 @@ class CourseToPlace(BaseModel):
     room: Optional[str]
     color: Optional[str]
     blocked: bool = False
+    fixed: bool = False
 
 # --- Cours à placer ---
 class EventToPlace(BaseModel):
@@ -85,6 +87,7 @@ class EventToPlace(BaseModel):
     semaine: int
     semestre: str
     type: str
+    fixed: bool = False
 
 # --- Salles ---
 class SalleAffectation(BaseModel):

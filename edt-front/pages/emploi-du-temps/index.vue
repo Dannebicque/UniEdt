@@ -110,16 +110,20 @@
               <div
                   v-for="group in listeGroupesTp(semestre)"
                   :key="time + semestre + group"
-                  class="grid-cell"
+                  :class="[
+                    'grid-cell',
+                    placedCourses[`${day.day}_${time}_${semestre}_${group}`]?.isVacataire === true ? 'vacataire' : '',
+                    placedCourses[`${day.day}_${time}_${semestre}_${group}`]?.fixed === true ? 'fixedCourse' : ''
+                  ]"
                   :style="{
                     color: 'white',
                 backgroundColor: placedCourses[`${day.day}_${time}_${semestre}_${group}`] ? getColorBySemestreAndType(placedCourses[`${day.day}_${time}_${semestre}_${group}`].color, placedCourses[`${day.day}_${time}_${semestre}_${group}`].type) : '' }"
-                  @drop="onDrop($event, day.day, time, semestre, group)"
+                  @drop="!placedCourses[`${day.day}_${time}_${semestre}_${group}`]?.fixed && onDrop($event, day.day, time, semestre, group)"
                   @mouseover="highlightSameCourses(day.day, time, semestre, group)"
                   @mouseout="clearSameCoursesHighlight(day.day, time, semestre, group)"
                   @dragover.prevent
                   :data-key="day.day + '_' + time + '_' + semestre + '_' + group"
-                  draggable="true"
+                  :draggable="!placedCourses[`${day.day}_${time}_${semestre}_${group}`]?.fixed"
                   @dragstart="
                 onDragStart(
                   $event,
@@ -253,8 +257,12 @@
         <InputText type="text" v-model="modalCourse.professor" id="prof" name="prof" class="flex-auto" />
       </div>
       <div class="flex items-center gap-4 mb-4">
-      <label class="font-semibold w-24" for="room">Salle:</label>
-      <InputText type="text" v-model="modalCourse.room" id="room" name="room" class="flex-auto" />
+        <label class="font-semibold w-24" for="room">Salle:</label>
+        <InputText type="text" v-model="modalCourse.room" id="room" name="room" class="flex-auto" />
+      </div>
+      <div class="flex items-center gap-4 mb-4">
+        <label class="font-semibold w-24" for="fixed">Cours figé (éviter déplacement):</label>
+        <Checkbox  v-model="modalCourse.fixed" id="fixed" name="fixed" class="flex-auto" binary />
       </div>
       <div class="flex justify-end gap-2">
         <Button type="button" label="Cancel" severity="secondary" @click="isModalOpen = false"></Button>

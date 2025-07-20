@@ -19,6 +19,11 @@
 }
 
 .vacataire {
-  border-top: 2px solid red;
-  border-left: 2px solid red;
+  border-top: 2px solid red !important;
+  border-left: 2px solid red !important;
+}
+
+.fixedCourse {
+  border-bottom: 2px solid yellow !important;
+  border-right: 2px solid yellow !important;
 }
