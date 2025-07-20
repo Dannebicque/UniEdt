@@ -4,13 +4,26 @@
           @click="openAddDialog"/>
   <div v-if="intervenants">
     <DataTable :value="intervenants"
+               v-model:filters="filters"
                sortField="name"
+               :filter-display="row"
+               :globalFilterFields="['name', 'type', 'key', 'email', 'service']"
                :sortOrder="1"
                :paginator="true"
                :rows="30"
                :rowsPerPageOptions="[5, 10, 20]"
                :loading="!intervenants.length"
                class="mt-4">
+      <template #header>
+        <div class="flex justify-end">
+          <IconField>
+            <InputIcon>
+              <i class="pi pi-search" />
+            </InputIcon>
+            <InputText v-model="filters['global'].value" placeholder="Keyword Search" />
+          </IconField>
+        </div>
+      </template>
       <Column field="name" header="Prénom Nom" :sortable="true" />
       <Column field="type" header="Statut" sortable >
         <template #body="slotProps">
@@ -26,7 +39,10 @@
       <Column field="email" header="Email"/>
       <Column header="Actions">
         <template #body="slotProps">
-          <Button rounded severity="info" @click="selectedIntervenant = slotProps.data; showDialog = true">
+          <Button rounded severity="info" @click="getPdf(slotProps.data)">
+            <Icon name="prime:download"/>
+          </Button>
+          <Button rounded severity="info" @click="selectedIntervenant = slotProps.data; showDialog = true" class="ms-2">
             <Icon name="prime:eye"/>
           </Button>
           <Button rounded severity="warn" @click="openEditDialog(slotProps.data)" class="ms-2">
@@ -94,6 +110,7 @@ definePageMeta({
 // Récupérer la liste des intervenants depuis l'API
 import { onMounted, ref } from 'vue'
 import { addIntervenant, fetchIntervenantsComplets, updateIntervenant } from '@/services/intervenants'
+import { FilterMatchMode } from '@primevue/core/api';
 
 const intervenants = ref([])
 const showDialog = ref(false)
@@ -102,6 +119,17 @@ const editDialog = ref(false)
 const editIntervenant = ref(null)
 const isEdit = ref(false)
 const initialKey = ref(null)
+
+const config = useRuntimeConfig()
+
+const filters = ref({
+  global: { value: null, matchMode: FilterMatchMode.CONTAINS },
+  name: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
+  type: { value: null, matchMode: FilterMatchMode.EQUALS },
+  key: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
+  email: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
+  service: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
+})
 
 onMounted(async () => {
   try {
@@ -154,6 +182,33 @@ const saveEdit = async () => {
     intervenants.value.push({ ...editIntervenant.value })
   }
   editDialog.value = false
+}
+
+const getPdf = async (user) => {
+  const key=user.key
+  try {
+    const response = await fetch(`${config.public.apiBaseUrl}/chronologie/pdf?professeur=${user.key}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/pdf',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error('Erreur lors de la génération du PDF');
+    }
+
+    const blob = await response.blob();
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', `${key}.pdf`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  } catch (error) {
+    console.error('Erreur lors de la récupération du PDF:', error);
+  }
 }
 
 </script>

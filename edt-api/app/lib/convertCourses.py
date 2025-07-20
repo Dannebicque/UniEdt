@@ -45,6 +45,7 @@ def cours_to_chronologie(cours, semaine_num):
     groupe_label = get_groupe(type_cours, groupe)
     return {
         "date": date,
+        "jour": jour,
         "heure": heure,
         "professor": cours.get("professor"),
         "matiere": cours.get("matiere"),

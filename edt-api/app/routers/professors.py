@@ -38,6 +38,13 @@ async def list_contraintes_professors(week_number: int):
 async def list_complet_professors():
     # Exemple de lecture du fichier
     data = load_json("contraintes")
+    # ajouter la clé "key" à chaque intervenant
+    for key, value in data.items():
+        value["key"] = key
+
+    # trier selon le  nom
+
+    data = {k: v for k, v in sorted(data.items(), key=lambda item: item[1]["name"].lower())}
 
     # Résultat en JSON
     return data

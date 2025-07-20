@@ -445,10 +445,7 @@ const groupToText = (group, semestre) => {
 
 const handleDropFromAvailableCourses = async (courseId, day, time, semestre, groupNumber) => {
   const course = coursesOfWeeks.value.find((c) => c.id == courseId)
-  console.log(course)
-  console.log(semestre)
-  console.log(groupNumber)
-  console.log(groupToInt(groupNumber, semestre))
+
   if (course && course.semester === semestre && course.groupIndex === groupToInt(groupNumber, semestre)) {
     console.log('ok')
     const groupSpan = course.groupCount
@@ -472,12 +469,12 @@ const handleDropFromAvailableCourses = async (courseId, day, time, semestre, gro
 const handleDropFromCoursesToReport = async (courseId, day, time, semestre, groupNumber) => {
   const course = coursesOfReport.value.find((c) => c.id == courseId)
 
-  if (course && course.semester === semestre && course.groupIndex === groupToInt(groupNumber)) {
+  if (course && course.semester === semestre && course.groupIndex === groupToInt(groupNumber, semestre)) {
     const groupSpan = course.groupCount
 
-    if (groupToInt(groupNumber, semestre) <= config.value.semesters[semestre].nbTp - groupSpan + 1) {
+   // if (groupToInt(groupNumber, semestre) <= config.value.semesters[semestre].nbTp - groupSpan + 1) {
       mergeCells(day, time, semestre, groupNumber, groupSpan, course.type)
-    }
+    //}
 
     course.creneau = convertToHeureInt(time)
     course.date = day
@@ -495,7 +492,7 @@ const handleDropFromGrid = async (courseId, day, time, semestre, groupNumber, or
   const course = placedCourses.value[originSlot]
   if (course && course.semester === semestre && groupToText(course.groupIndex, course.semester) === groupNumber) {
     const groupSpan = course.groupCount
-    if (groupToInt(groupNumber, semestre) <= config.value.semesters[semestre].nbTp - groupSpan + 1) {
+    //if (groupToInt(groupNumber, semestre) <= config.value.semesters[semestre].nbTp - groupSpan + 1) {
       removeCourse(
           course.date,
           convertToHeureText(course.creneau),
@@ -515,7 +512,7 @@ const handleDropFromGrid = async (courseId, day, time, semestre, groupNumber, or
       delete placedCourses.value[originSlot]
       clearSameCoursesHighlight()
       placedCourses.value[`${day}_${time}_${semestre}_${groupNumber}`] = course
-    }
+    //}
   }
 }
 
@@ -587,12 +584,12 @@ const onDropToReplace = async (event) => {
   }
 }
 
-function incrementGroupNumber (groupNumber, i) {
+function incrementGroupNumber (groupNumber, i, semestre = null) {
   //groupeNumber peut être un nombre ou une lettre, donc on gère les deux cas, on retourne le groupe suivant au format lettre
   if (typeof groupNumber === 'number') {
     return groupNumber + i
   } else if (typeof groupNumber === 'string') {
-    return String.fromCharCode(groupNumber.charCodeAt(0) + i)
+    return groupToText(groupToInt(groupNumber, semestre) + i, semestre)
   }
 }
 
@@ -608,14 +605,13 @@ const removeCourse = (day, time, semestre, groupNumber, groupSpan, changeSemaine
     currentCell.classList.remove('highlight-same-course')
 
     // Remove the course from all associated cells and add empty cells back
-    for (let i = 0; i < groupSpan; i++) {
-      delete placedCourses.value[`${day}_${time}_${semestre}_${incrementGroupNumber(groupNumber, i)}`]
-    }
+      delete placedCourses.value[`${day}_${time}_${semestre}_${groupNumber}`]
+
     // Recreate the missing cells
     for (let i = 1; i < groupSpan; i++) {
-      const cellKey = `${day}_${time}_${semestre}_${incrementGroupNumber(groupNumber, i)}`
+      const cellKey = `${day}_${time}_${semestre}_${incrementGroupNumber(groupNumber, i, semestre)}`
       const cell = currentCell.cloneNode(false)
-      cell.setAttribute('data-GEA-key', cellKey)
+      cell.setAttribute('data-key', cellKey)
       const parent = currentCell.parentNode
       parent.insertBefore(cell, currentCell.nextSibling)
     }
@@ -731,7 +727,6 @@ const highlightValidCells = (course) => {
 
         const cellKey = `${day.day}_${time}_${semester}_${groupe}`
         const cell = document.querySelector(`[data-key="${cellKey}"]`)
-        console.log(placedCourses.value[cellKey])
         if (cell && (!placedCourses.value[cellKey] || (placedCourses.value[cellKey].color && placedCourses.value[cellKey].color === '#9ee6ef'))) {
           if (hasContrainte !== false) {
             cell.classList.add('highlight-mandatory')
