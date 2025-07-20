@@ -238,13 +238,28 @@
     <!-- Modal for editing room -->
     <Dialog :visible="isModalOpen" :closable="true" modal
             @update:visible="isModalOpen = $event"
+            :style="{ width: '35rem' }"
             header="Modifier l'événement">
-      <p><strong>Cours:</strong> {{ modalCourse.matiere }}</p>
-      <p><strong>Professeur:</strong> {{ modalCourse.professor }}</p>
-      <p><strong>Créneau:</strong> {{ modalCourse.date }} {{ modalCourse.creneau }}</p>
-      <label for="room">Salle:</label>
-      <input type="text" v-model="modalCourse.room" id="room"/>
-      <button @click="saveRoom">Enregistrer</button>
+      <div class="flex items-center gap-4 mb-4">
+        <label class="font-semibold w-24" for="prof">Créneau:</label>
+        <p class="flex-auto">{{ modalCourse.date }}, {{ convertToHeureText(modalCourse.creneau) }}</p>
+      </div>
+      <div class="flex items-center gap-4 mb-4">
+        <label class="font-semibold w-24" for="prof">Cours:</label>
+        <p class="flex-auto">{{ modalCourse.matiere }}</p>
+      </div>
+      <div class="flex items-center gap-4 mb-4">
+        <label class="font-semibold w-24" for="prof">Professeur:</label>
+        <InputText type="text" v-model="modalCourse.professor" id="prof" name="prof" class="flex-auto" />
+      </div>
+      <div class="flex items-center gap-4 mb-4">
+      <label class="font-semibold w-24" for="room">Salle:</label>
+      <InputText type="text" v-model="modalCourse.room" id="room" name="room" class="flex-auto" />
+      </div>
+      <div class="flex justify-end gap-2">
+        <Button type="button" label="Cancel" severity="secondary" @click="isModalOpen = false"></Button>
+        <Button @click="saveRoom" severity="success">Enregistrer</Button>
+      </div>
     </Dialog>
   </div>
 </template>
@@ -865,6 +880,17 @@ const affectRooms = async () => {
     await _getCourses()
   } catch (error) {
     console.error('Erreur lors de l\'affectation des salles:', error)
+  }
+}
+
+const saveRoom = async () => {
+  try {
+    // appel API pour mettre à jour le cours avec la nouvelle salle
+    await updateCourse(modalCourse.value, selectedNumWeek.value)
+    isModalOpen.value = false
+    await _getCourses()
+  } catch (error) {
+    console.error('Erreur lors de la mise à jour du cours:', error)
   }
 }
 
