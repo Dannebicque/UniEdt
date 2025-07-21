@@ -407,8 +407,6 @@ const _getCourses = async () => {
     return true
   })
 
-  console.log(placedCourses.value)
-
   Object.keys(placedCourses.value).forEach(async (key) => {
     const course = await placedCourses.value[key]
     if (course.blocked === false) {
@@ -455,7 +453,6 @@ const groupToInt = (group, semestre) => {
   if (typeof group === 'number') {
     return group
   } else if (typeof group === 'string') {
-    console.log('string')
     const key = Object.keys(config.value.semesters[semestre].groupesTp).find(k => config.value.semesters[semestre].groupesTp[k] === group)
     return parseInt(key, 10)
   }
@@ -775,7 +772,6 @@ const blockSlot = (day, time, semester, groupNumber, motif = null, type = 'FIXE'
 }
 
 const isProfessorAvailable = (professor, day, time) => {
-  console.log("isProfessorAvailable", professor, day, time)
   return !Object.values(placedCourses.value).some(
       (course) => course.professor === professor && course.creneau === convertToHeureInt(time) && course.date === day
   )
@@ -810,7 +806,6 @@ const highlightValidCells = (course) => {
   days.value.forEach((day) => {
     timeSlots.value.forEach((time) => {
       const hasContrainte = hasProfessorHasContrainte(professor, day.day, convertToHeureInt(time))
-      console.log(time)
       const isAvailable = isProfessorAvailable(professor, day.day, time)
 
       Object.values(config.value.semesters[semester].groupesTp).forEach((groupe, i) => {
