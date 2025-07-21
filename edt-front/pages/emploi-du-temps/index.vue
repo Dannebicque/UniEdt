@@ -440,7 +440,6 @@ const onDrop = (event, day, time, semestre, groupNumber) => {
     return
   }
   if (source === 'availableCourses') {
-    console.log(`Dropping from availableCourses: ${courseId} on ${day} at ${time} for semestre ${semestre} and group ${groupNumber}`)
     handleDropFromAvailableCourses(courseId, day, time, semestre, groupNumber)
   } else if (source === 'reportCourses') {
     handleDropFromCoursesToReport(courseId, day, time, semestre, groupNumber)
@@ -472,7 +471,7 @@ const handleDropFromAvailableCourses = async (courseId, day, time, semestre, gro
   if (course &&
       course.semester === semestre &&
       course.groupIndex === groupToInt(groupNumber, semestre) &&
-      checkIfCourseAlreadyPlace(day, time, semestre, groupNumber)) {
+      checkIfCourseAlreadyPlace(day, time, semestre, groupNumber, course)) {
     const groupSpan = course.groupCount
 
     // if (groupToInt(groupNumber, semestre) <= config.value.semesters[semestre].nbTp - groupSpan + 1) {
@@ -497,7 +496,7 @@ const handleDropFromCoursesToReport = async (courseId, day, time, semestre, grou
   if (course &&
       course.semester === semestre &&
       course.groupIndex === groupToInt(groupNumber, semestre) &&
-      checkIfCourseAlreadyPlace(day, time, semestre, groupNumber)) {
+      checkIfCourseAlreadyPlace(day, time, semestre, groupNumber, course)) {
     const groupSpan = course.groupCount
 
    // if (groupToInt(groupNumber, semestre) <= config.value.semesters[semestre].nbTp - groupSpan + 1) {
@@ -521,7 +520,7 @@ const handleDropFromGrid = async (courseId, day, time, semestre, groupNumber, or
   if (course &&
       course.semester === semestre &&
       groupToText(course.groupIndex, course.semester) === groupNumber &&
-      checkIfCourseAlreadyPlace(day, time, semestre, groupNumber)) {
+      checkIfCourseAlreadyPlace(day, time, semestre, groupNumber, course)) {
     const groupSpan = course.groupCount
     //if (groupToInt(groupNumber, semestre) <= config.value.semesters[semestre].nbTp - groupSpan + 1) {
       removeCourse(
@@ -547,20 +546,62 @@ const handleDropFromGrid = async (courseId, day, time, semestre, groupNumber, or
   }
 }
 
-const checkIfCourseAlreadyPlace = async (day, time, semestre, groupNumber) => {
+const checkIfCourseAlreadyPlace = async (day, time, semestre, groupNumber, courseToPlace) => {
   //regarde si un cours est déjà placé sur cet emplacement, si oui et pas unmovable alors remets dans les cours à placer, si non, retourner false
+
+  // convertir le groupe en int, et si int est pair et type = TD, regarder aussi si groupe - 1 n'est pas occupé, idem si TD regarder si groupe +1 (si groupe est impair) n'est pas occupé.
+
+  const groupInt = groupToInt(groupNumber, semestre)
+
+  if (courseToPlace.type === 'TD') {
+    // on regarde si groupInt (impair) et groupInt + 1 sont vide
+    if (groupInt % 2 === 1) {
+      if (placedCourses.value[`${day}_${time}_${semestre}_${groupToText(groupInt, semestre)}`] && placedCourses.value[`${day}_${time}_${semestre}_${groupToText(groupInt, semestre)}`].unmovable || placedCourses.value[`${day}_${time}_${semestre}_${groupToText(groupInt+1, semestre)}`] && placedCourses.value[`${day}_${time}_${semestre}_${groupToText(groupInt + 1, semestre)}`].unmovable) {
+        return false
+      } else {
+        if (placedCourses.value[`${day}_${time}_${semestre}_${groupToText(groupInt, semestre)}`]) {
+          //on déplace
+          const cours = placedCourses.value[`${day}_${time}_${semestre}_${groupToText(groupInt, semestre)}`]
+          if (cours.blocked === false) {
+            coursesOfWeeks.value.push(cours)
+            cours.creneau = null
+            cours.date = null
+            cours.room = null
+            await updateCourse(cours, selectedNumWeek.value)
+            delete placedCourses.value[`${day}_${time}_${semestre}_${groupNumber}`]
+          }
+        }
+
+        if (placedCourses.value[`${day}_${time}_${semestre}_${groupToText(groupInt +1, semestre)}`]) {
+          //on déplace le groupe pair
+          const cours = placedCourses.value[`${day}_${time}_${semestre}_${groupToText(groupInt +1, semestre)}`]
+          if (cours.blocked === false) {
+            coursesOfWeeks.value.push(cours)
+            cours.creneau = null
+            cours.date = null
+            cours.room = null
+            await updateCourse(cours, selectedNumWeek.value)
+            delete placedCourses.value[`${day}_${time}_${semestre}_${groupToText(groupInt +1, semestre)}`]
+          }
+        }
+      }
+    }
+  }
 
   if (placedCourses.value[`${day}_${time}_${semestre}_${groupNumber}`]) {
     const cours = placedCourses.value[`${day}_${time}_${semestre}_${groupNumber}`]
     if (cours.unmovable) {
       return false
     } else {
-      coursesOfWeeks.value.push(cours)
-      cours.creneau = null
-      cours.date = null
-      cours.room = null
-      await updateCourse(cours, selectedNumWeek.value)
-      delete placedCourses.value[`${day}_${time}_${semestre}_${groupNumber}`]
+      //uniquement si c'est un cours et pas un créneau bloqué
+      if (cours.blocked === false) {
+        coursesOfWeeks.value.push(cours)
+        cours.creneau = null
+        cours.date = null
+        cours.room = null
+        await updateCourse(cours, selectedNumWeek.value)
+        delete placedCourses.value[`${day}_${time}_${semestre}_${groupNumber}`]
+      }
       return true
     }
   }
@@ -734,8 +775,9 @@ const blockSlot = (day, time, semester, groupNumber, motif = null, type = 'FIXE'
 }
 
 const isProfessorAvailable = (professor, day, time) => {
+  console.log("isProfessorAvailable", professor, day, time)
   return !Object.values(placedCourses.value).some(
-      (course) => course.professor === professor && course.creneau === time && course.date === day
+      (course) => course.professor === professor && course.creneau === convertToHeureInt(time) && course.date === day
   )
 }
 
@@ -768,7 +810,8 @@ const highlightValidCells = (course) => {
   days.value.forEach((day) => {
     timeSlots.value.forEach((time) => {
       const hasContrainte = hasProfessorHasContrainte(professor, day.day, convertToHeureInt(time))
-      const isAvailable = isProfessorAvailable(professor, day.day, convertToHeureText(time))
+      console.log(time)
+      const isAvailable = isProfessorAvailable(professor, day.day, time)
 
       Object.values(config.value.semesters[semester].groupesTp).forEach((groupe, i) => {
         if (!isGroupInRange(groupe, groupIndex, groupCount, config.value.semesters[semester].groupesTp)) {
