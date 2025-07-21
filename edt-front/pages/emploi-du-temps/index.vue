@@ -113,17 +113,17 @@
                   :class="[
                     'grid-cell',
                     placedCourses[`${day.day}_${time}_${semestre}_${group}`]?.isVacataire === true ? 'vacataire' : '',
-                    placedCourses[`${day.day}_${time}_${semestre}_${group}`]?.fixed === true ? 'fixedCourse' : ''
+                    placedCourses[`${day.day}_${time}_${semestre}_${group}`]?.unmovable === true ? 'fixedCourse' : ''
                   ]"
                   :style="{
                     color: 'white',
                 backgroundColor: placedCourses[`${day.day}_${time}_${semestre}_${group}`] ? getColorBySemestreAndType(placedCourses[`${day.day}_${time}_${semestre}_${group}`].color, placedCourses[`${day.day}_${time}_${semestre}_${group}`].type) : '' }"
-                  @drop="!placedCourses[`${day.day}_${time}_${semestre}_${group}`]?.fixed && onDrop($event, day.day, time, semestre, group)"
+                  @drop="!placedCourses[`${day.day}_${time}_${semestre}_${group}`]?.unmovable && onDrop($event, day.day, time, semestre, group)"
                   @mouseover="highlightSameCourses(day.day, time, semestre, group)"
                   @mouseout="clearSameCoursesHighlight(day.day, time, semestre, group)"
                   @dragover.prevent
                   :data-key="day.day + '_' + time + '_' + semestre + '_' + group"
-                  :draggable="!placedCourses[`${day.day}_${time}_${semestre}_${group}`]?.fixed"
+                  :draggable="!placedCourses[`${day.day}_${time}_${semestre}_${group}`]?.unmovable"
                   @dragstart="
                 onDragStart(
                   $event,
@@ -261,8 +261,8 @@
         <InputText type="text" v-model="modalCourse.room" id="room" name="room" class="flex-auto" />
       </div>
       <div class="flex items-center gap-4 mb-4">
-        <label class="font-semibold w-24" for="fixed">Cours figé (éviter déplacement):</label>
-        <Checkbox  v-model="modalCourse.fixed" id="fixed" name="fixed" class="flex-auto" binary />
+        <label class="font-semibold w-24" for="unmovable">Cours figé (éviter déplacement):</label>
+        <Checkbox  v-model="modalCourse.unmovable" id="unmovable" name="unmovable" class="flex-auto" binary />
       </div>
       <div class="flex justify-end gap-2">
         <Button type="button" label="Cancel" severity="secondary" @click="isModalOpen = false"></Button>
@@ -469,8 +469,10 @@ const groupToText = (group, semestre) => {
 const handleDropFromAvailableCourses = async (courseId, day, time, semestre, groupNumber) => {
   const course = coursesOfWeeks.value.find((c) => c.id == courseId)
 
-  if (course && course.semester === semestre && course.groupIndex === groupToInt(groupNumber, semestre)) {
-    console.log('ok')
+  if (course &&
+      course.semester === semestre &&
+      course.groupIndex === groupToInt(groupNumber, semestre) &&
+      checkIfCourseAlreadyPlace(day, time, semestre, groupNumber)) {
     const groupSpan = course.groupCount
 
     // if (groupToInt(groupNumber, semestre) <= config.value.semesters[semestre].nbTp - groupSpan + 1) {
@@ -492,7 +494,10 @@ const handleDropFromAvailableCourses = async (courseId, day, time, semestre, gro
 const handleDropFromCoursesToReport = async (courseId, day, time, semestre, groupNumber) => {
   const course = coursesOfReport.value.find((c) => c.id == courseId)
 
-  if (course && course.semester === semestre && course.groupIndex === groupToInt(groupNumber, semestre)) {
+  if (course &&
+      course.semester === semestre &&
+      course.groupIndex === groupToInt(groupNumber, semestre) &&
+      checkIfCourseAlreadyPlace(day, time, semestre, groupNumber)) {
     const groupSpan = course.groupCount
 
    // if (groupToInt(groupNumber, semestre) <= config.value.semesters[semestre].nbTp - groupSpan + 1) {
@@ -513,7 +518,10 @@ const handleDropFromCoursesToReport = async (courseId, day, time, semestre, grou
 
 const handleDropFromGrid = async (courseId, day, time, semestre, groupNumber, originSlot) => {
   const course = placedCourses.value[originSlot]
-  if (course && course.semester === semestre && groupToText(course.groupIndex, course.semester) === groupNumber) {
+  if (course &&
+      course.semester === semestre &&
+      groupToText(course.groupIndex, course.semester) === groupNumber &&
+      checkIfCourseAlreadyPlace(day, time, semestre, groupNumber)) {
     const groupSpan = course.groupCount
     //if (groupToInt(groupNumber, semestre) <= config.value.semesters[semestre].nbTp - groupSpan + 1) {
       removeCourse(
@@ -536,6 +544,25 @@ const handleDropFromGrid = async (courseId, day, time, semestre, groupNumber, or
       clearSameCoursesHighlight()
       placedCourses.value[`${day}_${time}_${semestre}_${groupNumber}`] = course
     //}
+  }
+}
+
+const checkIfCourseAlreadyPlace = async (day, time, semestre, groupNumber) => {
+  //regarde si un cours est déjà placé sur cet emplacement, si oui et pas unmovable alors remets dans les cours à placer, si non, retourner false
+
+  if (placedCourses.value[`${day}_${time}_${semestre}_${groupNumber}`]) {
+    const cours = placedCourses.value[`${day}_${time}_${semestre}_${groupNumber}`]
+    if (cours.unmovable) {
+      return false
+    } else {
+      coursesOfWeeks.value.push(cours)
+      cours.creneau = null
+      cours.date = null
+      cours.room = null
+      await updateCourse(cours, selectedNumWeek.value)
+      delete placedCourses.value[`${day}_${time}_${semestre}_${groupNumber}`]
+      return true
+    }
   }
 }
 
@@ -1041,7 +1068,7 @@ const saveRoom = async () => {
 }
 
 #edt, #courses {
-  max-height: 170vh; /* ou une hauteur fixe, ex: 600px */
+  max-height: 80vh; /* ou une hauteur fixe, ex: 600px */
   overflow-y: auto;
 }
 

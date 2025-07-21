@@ -2,6 +2,10 @@ def contraintes_par_semaine(data: dict, week_number: int) -> dict:
     result = {}
     for key, value in data.items():
         contraintes = value.get("availability", [])
+
+        #triater le cas disponible, calculer les jours et créneaux d'indisponibilité en conséquence
+        
+
         result[key] = {}
         for c in contraintes:
             if c.get("week") == week_number or c.get("week") == 99:

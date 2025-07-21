@@ -74,6 +74,7 @@ class CourseToPlace(BaseModel):
     color: Optional[str]
     blocked: bool = False
     fixed: bool = False
+    unmovable: bool = False
 
 # --- Cours à placer ---
 class EventToPlace(BaseModel):
@@ -88,6 +89,7 @@ class EventToPlace(BaseModel):
     semestre: str
     type: str
     fixed: bool = False
+    unmovable: bool = False
 
 # --- Salles ---
 class SalleAffectation(BaseModel):
