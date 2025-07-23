@@ -24,25 +24,32 @@ def get_date_from_semaine(semaine_num, jour):
             return f"{d}/{m}/{y}"
     return None
 
-def get_groupe(type_cours, groupe_num):
-    if type_cours == "TP":
-        return f"TP {chr(64 + int(groupe_num))}"  # 1 -> A, 2 -> B, etc.
-    elif type_cours == "TD":
-        if groupe_num == "1":
-            return "TD AB"
-        elif groupe_num == "2":
-            return "TD CD"
-        # Ajouter d'autres règles si besoin
+def get_groupe(type_cours, groupe_num, semestre, tabGroupes=None):
+    if tabGroupes is None:
+        return f"{type_cours} {groupe_num}"
+
+    # tester si on trouve semestre, type_cours et groupe_num dans tabGroupes
+    if semestre in tabGroupes:
+        groupes = tabGroupes[semestre]
+        print(f"Recherche de {type_cours} dans {groupes}")
+        if type_cours in groupes:
+            print(f"Recherche de {groupe_num} dans {groupes[type_cours]}")
+            groupe_info = groupes[type_cours].get(int(groupe_num))
+            if groupe_info:
+                print(f"Groupe trouvé: {groupe_info}")
+                return f"{type_cours} {groupe_info}"
+
     return f"{type_cours} {groupe_num}"
 
-def cours_to_chronologie(cours, semaine_num):
+def cours_to_chronologie(cours, semaine_num, tabGroupes=None):
     jour = cours.get("date")
     creneau = int(cours.get("creneau"))
     type_cours = cours.get("type")
     groupe = str(cours.get("groupIndex"))
     date = get_date_from_semaine(semaine_num, jour)
     heure = CRENEAU_HEURES.get(creneau, "??:??")
-    groupe_label = get_groupe(type_cours, groupe)
+    semestre = cours.get("semester")
+    groupe_label = get_groupe(type_cours, groupe, semestre, tabGroupes)
     return {
         "date": date,
         "jour": jour,
@@ -51,6 +58,7 @@ def cours_to_chronologie(cours, semaine_num):
         "matiere": cours.get("matiere"),
         "type": type_cours,
         "groupe": groupe_label,
+        "groupeIndex": groupe,
         "salle": cours.get("room"),
-        "semester": cours.get("semester")
+        "semester": semestre
     }

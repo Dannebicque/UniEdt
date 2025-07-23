@@ -58,6 +58,7 @@ async def get_chronologie(
 
 @router.get("/pdf")
 async def get_chronologie_pdf(professeur: str = Query(...)):
+    tabGroupes = get_groupes_semestres()
     # Récupère les données (remplace par ton vrai code)
 
     # je veux récupérer le nom de l'intervenant en recherchant la clé dans le fichier contraintes.json
@@ -89,7 +90,7 @@ async def get_chronologie_pdf(professeur: str = Query(...)):
                     if professeur and cours.get("professor") != professeur:
                         continue
                     if cours.get("date") and cours.get("creneau"):
-                        cours_list.append(cours_to_chronologie(cours, week_number))
+                        cours_list.append(cours_to_chronologie(cours, week_number, tabGroupes))
 
     # Tri par date puis créneau
     cours_list.sort(key=lambda x: (
@@ -144,3 +145,27 @@ async def get_chronologie_pdf(professeur: str = Query(...)):
     return Response(buffer.read(), media_type="application/pdf", headers={
         "Content-Disposition": "attachment; filename=service_chronologique.pdf"
     })
+
+def get_groupes_semestres():
+    data_globale_path = get_data_dir() / "data_globale.json"
+    with open(data_globale_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    semesters = data.get("semesters", {})
+    groupes_semestre = {}
+    for semestre, infos in semesters.items():
+        groupes_semestre[semestre] = {}
+        # TP
+        groupes_tp = infos.get("groupesTp", {})
+        groupes_semestre[semestre]["TP"] = {}
+        for idx, val in groupes_tp.items():
+            groupes_semestre[semestre]["TP"][int(idx)] = val
+        # TD
+        groupes_td = infos.get("groupesTd", {})
+        groupes_semestre[semestre]["TD"] = {}
+        if isinstance(groupes_td, dict):
+            for idx, val in groupes_td.items():
+                groupes_semestre[semestre]["TD"][int(idx)] = val
+        elif isinstance(groupes_td, list):
+            for i, val in enumerate(groupes_td, 1):
+                groupes_semestre[semestre]["TD"][i] = val
+    return groupes_semestre
