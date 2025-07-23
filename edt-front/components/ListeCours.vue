@@ -31,8 +31,6 @@ onMounted(async () => {
   config.value = await fetchAllConfig()
   semesters.value = await config.value.semesters
   professors.value = await fetchIntervenants()
-  courses.value = config.courses
-  groups.value = config.groups
 })
 
 const selectedSemester = ref('')
@@ -53,6 +51,29 @@ const filteredCourses = computed(() => {
 
 const getKeys = (obj) => {
   return Object.keys(obj).map((key) => ({ label: key, value: key }))
+}
+
+const getListeCoursBySemestre = () => {
+  if (selectedSemester.value === '') {
+    return []
+  }
+
+  return config.value.semesters[selectedSemester.value].matieres.map(matiere => ({
+    label: matiere,
+    value: matiere
+  }))
+}
+
+const getListeGroupesBySemestre = () => {
+  if (selectedSemester.value === '') {
+    return []
+  }
+
+  const groupesObj = config.value.semesters[selectedSemester.value].groupesTp || {}
+  return Object.entries(groupesObj).map(([key, label]) => ({
+    label,
+    value: key
+  }))
 }
 
 const displayCourseListe = (course) => {
@@ -97,6 +118,7 @@ const onDragStart = (event, course, source, originSlot = '') => {
           <label for="semester">Semestre :</label>
           <Select
               id="semester"
+              :filter="true"
               optionLabel="label"
               optionValue="value"
               class="w-full"
@@ -106,6 +128,7 @@ const onDragStart = (event, course, source, originSlot = '') => {
         <div>
           <label for="semester">Prof :</label>
           <Select v-model="selectedProfessor"
+                  :filter="true"
                   optionLabel="name"
                   optionValue="key"
                   class="w-full"
@@ -113,11 +136,23 @@ const onDragStart = (event, course, source, originSlot = '') => {
         </div>
         <div>
           <label for="semester">Cours :</label>
-          <Select v-model="selectedCourse" :options="courses" class="w-full"/>
+          <Select v-model="selectedCourse"
+                  :filter="true"
+                  optionLabel="label"
+                  optionValue="value"
+                  emptyMessage="Choisir un semestre pour voir les cours"
+                  placeholder="Choisir un semestre"
+                  :options="getListeCoursBySemestre()" class="w-full"/>
         </div>
         <div>
           <label for="semester">Groupe :</label>
-          <Select v-model="selectedGroup" :options="groups" class="w-full" />
+          <Select v-model="selectedGroup" :options="getListeGroupesBySemestre()"
+                  :filter="true"
+                  emptyMessage="Choisir un semestre pour voir les groupes"
+                  placeholder="Choisir un semestre"
+                  optionLabel="label"
+                  optionValue="value"
+                  class="w-full" />
         </div>
       </div>
       <div style="flex: 2; display: flex; align-items: stretch; justify-content: center;">
