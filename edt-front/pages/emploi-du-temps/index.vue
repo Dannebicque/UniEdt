@@ -1021,6 +1021,7 @@ const saveRoom = async () => {
 
 .grid-cell.highlight-same-course {
   background-color: #ffeb3b !important; /* Highlight color */
+  color: #112A46 !important;
 }
 
 

@@ -2,6 +2,7 @@ from fastapi import APIRouter, HTTPException, Query, Response
 from fastapi.responses import JSONResponse
 from ..lib.paths import get_data_dir
 from app.lib.convertCourses import cours_to_chronologie
+from datetime import datetime
 
 from pathlib import Path
 import os
@@ -64,13 +65,9 @@ async def get_chronologie_pdf(professeur: str = Query(...)):
     with open(data_globale_path, "r", encoding="utf-8") as f:
         data_globale = json.load(f)
     intervenants = data_globale.get("intervenants", {})
-    print(intervenants.get(professeur, {}))
     name = intervenants.get(professeur, {}).get("name", professeur)
     if not name:
         raise HTTPException(status_code=404, detail="Intervenant non trouvé")
-
-
-
 
     cours_list = []
     if not DATA_COURS_DIR.exists():
@@ -95,7 +92,9 @@ async def get_chronologie_pdf(professeur: str = Query(...)):
                         cours_list.append(cours_to_chronologie(cours, week_number))
 
     # Tri par date puis créneau
-    cours_list.sort(key=lambda x: (x["date"], x["heure"]))
+    cours_list.sort(key=lambda x: (
+        datetime.strptime(x["date"] + " " + x["heure"], "%d/%m/%Y %H:%M")
+    ))
 
     buffer = BytesIO()
     doc = SimpleDocTemplate(
@@ -119,9 +118,9 @@ async def get_chronologie_pdf(professeur: str = Query(...)):
     elements.append(Spacer(1, 12))
 
     # Tableau
-    data = [["Date", "Jour", "Heure", "Cours", "Semestre", "Salle", "CM/TD/TP", "Groupe"]]
+    data = [["Date", "Jour", "Heure", "Cours", "Semestre", "Salle", "Groupe"]]
     for c in cours_list:
-        data.append([c["date"],  c['jour'],c["heure"], c["matiere"], c["semester"], c.get("salle", ""), c.get("groupe", "")])
+        data.append([c["date"],  c['jour'], c["heure"], c["matiere"], c["semester"], c.get("salle", ""), c.get("groupe", "")])
 
     table = Table(data, colWidths=col_widths, repeatRows=1)
     table.setStyle(TableStyle([
