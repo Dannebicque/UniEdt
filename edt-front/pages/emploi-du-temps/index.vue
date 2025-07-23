@@ -75,7 +75,7 @@
       </div>
     </div>
     <div class="flex flex-row flex-wrap">
-      <div :class="['transition-all', showSidebar ? 'basis-3/4' : 'basis-full']" id="edt">
+      <div :class="['transition-all', showSidebar ? 'basis-3/4' : 'basis-full']" id="edt" :key="selectedNumWeek">
         <div class="grid-container mt-2" v-for="day in days" :key="day.day">
           <div class="grid-day">{{ day.day }} - {{ formatDate(day.date) }}</div>
           <!-- Header Row: Semesters -->
@@ -347,19 +347,19 @@ function onDragLeave () {
 
 const verifyAndResetGrid = () => {
   // pour chaque cours placés on supprime pour remettre la grille en état avant le changement de semaine
-  Object.keys(placedCourses.value).forEach((key) => {
-    const course = placedCourses.value[key]
-    if (course && course.blocked === false) {
-      removeCourse(
-          course.date,
-          convertToHeureText(course.creneau),
-          course.semester,
-          groupToText(course.groupIndex, course.semester),
-          course.groupCount,
-          true
-      )
-    }
-  })
+  // Object.keys(placedCourses.value).forEach((key) => {
+  //   const course = placedCourses.value[key]
+  //   if (course && course.blocked === false) {
+  //     removeCourse(
+  //         course.date,
+  //         convertToHeureText(course.creneau),
+  //         course.semester,
+  //         groupToText(course.groupIndex, course.semester),
+  //         course.groupCount,
+  //         true
+  //     )
+  //   }
+  // })
 }
 
 const clearCell = (key) => {
@@ -691,6 +691,8 @@ const removeCourse = (day, time, semestre, groupNumber, groupSpan, changeSemaine
     course.date = null
     currentCell.style = ''
     currentCell.classList.remove('highlight-same-course')
+    currentCell.classList.remove('vacataire')
+    currentCell.classList.remove('fixedCourse')
 
     // Remove the course from all associated cells and add empty cells back
       delete placedCourses.value[`${day}_${time}_${semestre}_${groupNumber}`]
@@ -871,7 +873,6 @@ const _nextWeek = () => {
 const listeGroupesTp = (semestre) => {
   if (!selectedWeek.value || !semestre) return []
   if (!semesters.value[semestre]) return []
-
   return Object.values(config.value.semesters[semestre].groupesTp)
 }
 
