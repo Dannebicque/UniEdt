@@ -42,7 +42,7 @@ async def update_course_to_report(course_id: str|int, week_number: int, req: Cou
     # Trouver le cours à déplacer
     course_to_move = None
     for c in courses:
-        if c.get("id") == course_id:
+        if str(c.get("id")) == str(course_id):
             course_to_move = c
             break
 
@@ -63,7 +63,7 @@ async def update_course_to_report(course_id: str|int, week_number: int, req: Cou
     report_courses.append(course_to_move)
 
     # Supprimer le cours de la semaine
-    courses = [c for c in courses if c.get("id") != course_id]
+    courses = [c for c in courses if str(c.get("id")) != str(course_id)]
 
     # Sauvegarder les fichiers
     with open(data_path, "w", encoding="utf-8") as f:
@@ -88,7 +88,7 @@ async def restore_course_from_report(course_id: str|int, week_number: int, req: 
     # Trouver le cours à restaurer
     course_to_restore = None
     for c in report_courses:
-        if c.get("id") == course_id:
+        if str(c.get("id")) == str(course_id):
             course_to_restore = c
             break
 
@@ -110,7 +110,7 @@ async def restore_course_from_report(course_id: str|int, week_number: int, req: 
     week_courses.append(course_to_restore)
 
     # Retirer le cours de cours_0.json
-    report_courses = [c for c in report_courses if c.get("id") != course_id]
+    report_courses = [c for c in report_courses if str(c.get("id")) != str(course_id)]
 
     # Sauvegarder les fichiers
     with open(data_path_week, "w", encoding="utf-8") as f:

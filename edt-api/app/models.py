@@ -75,6 +75,8 @@ class CourseToPlace(BaseModel):
     blocked: bool = False
     fixed: bool = False
     unmovable: bool = False
+    duree: Optional[float] = None  # Durée en heures, pour les cours de type TP/TD
+    heureDebut: Optional[str] = None  # Format "HH:MM"
 
 # --- Cours à placer ---
 class EventToPlace(BaseModel):
@@ -90,6 +92,8 @@ class EventToPlace(BaseModel):
     type: str
     fixed: bool = False
     unmovable: bool = False
+    duree: Optional[float] = None  # Durée en heures, pour les cours de type TP/TD
+    heureDebut: Optional[str] = None  # Format "HH:MM"
 
 # --- Salles ---
 class SalleAffectation(BaseModel):

@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import { fetchAllConfig } from '@/services/configGlobale.js'
 import { fetchIntervenants } from '~/services/intervenants.js'
 import { getColorBySemestreAndType } from '@/composables/useColorUtils.js'
@@ -19,10 +19,29 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(['drag-start'])
+const emit = defineEmits(['drag-start', 'update:highlightProf', 'update:selectedProfessor', 'update:highlightCours', 'update:selectedCours'])
+
+function onHighlightProfChange() {
+  emit('update:highlightProf', highlightProf.value)
+}
+function onProfessorChange() {
+  emit('update:selectedProfessor', selectedProfessor.value)
+}
+
+function onHighlightCoursChange() {
+  console.log('onHighlightCoursChange', highlightCours.value)
+  emit('update:highlightCours', highlightCours.value)
+}
+function onCoursChange() {
+  console.log('onCoursChange', selectedCourse.value)
+  emit('update:selectedCours', selectedCourse.value)
+}
+
+
 
 const semesters = ref([])
 const professors = ref([])
+const vacatairesOnly = ref(false)
 const courses = ref([])
 const groups = ref([])
 const config = ref(null)
@@ -33,10 +52,20 @@ onMounted(async () => {
   professors.value = await fetchIntervenants()
 })
 
+const groupToText = (group, semestre, type = 'TP') => {
+  if (type === 'TP') {
+    return config.value.semesters[semestre].groupesTp[group]
+  } else {
+    return config.value.semesters[semestre].groupesTd[group]
+  }
+}
+
 const selectedSemester = ref('')
 const selectedProfessor = ref('')
 const selectedCourse = ref('')
 const selectedGroup = ref('')
+const highlightCours = ref(false)
+const highlightProf = ref(false)
 
 const filteredCourses = computed(() => {
   return props.items.filter((course) => {
@@ -44,9 +73,25 @@ const filteredCourses = computed(() => {
         (selectedSemester.value === '' || course.semester === selectedSemester.value) &&
         (selectedProfessor.value === '' || course.professor === selectedProfessor.value) &&
         (selectedCourse.value === '' || course.matiere === selectedCourse.value) &&
-        (selectedGroup.value === '' || course.groupIndex === parseInt(selectedGroup.value))
+        (selectedGroup.value === '' || course.groupIndex === parseInt(selectedGroup.value)) &&
+        (!vacatairesOnly.value || course.isVacataire === true)
     )
   })
+})
+
+watch(selectedCourse, (val) => {
+  if (val === null) {
+    highlightCours.value = false
+    emit('update:highlightCours', false)
+  }
+})
+
+watch(selectedProfessor, (val) => {
+  console.log('watch selectedProfessor', val)
+  if (val === null) {
+    highlightProf.value = false
+    emit('update:highlightProf', false)
+  }
 })
 
 const getKeys = (obj) => {
@@ -54,7 +99,7 @@ const getKeys = (obj) => {
 }
 
 const getListeCoursBySemestre = () => {
-  if (selectedSemester.value === '') {
+  if (selectedSemester.value === '' || selectedSemester.value === null) {
     return []
   }
 
@@ -65,7 +110,7 @@ const getListeCoursBySemestre = () => {
 }
 
 const getListeGroupesBySemestre = () => {
-  if (selectedSemester.value === '') {
+  if (selectedSemester.value === '' || selectedSemester.value === null) {
     return []
   }
 
@@ -79,17 +124,22 @@ const getListeGroupesBySemestre = () => {
 const displayCourseListe = (course) => {
   let groupe = ''
   if (course.type === 'TP') {
-    groupe = 'TP ' + String.fromCharCode(64 + course.groupIndex)
+    groupe = 'TP ' + groupToText(course.groupIndex, course.semester, course.type)
   } else if (course.type === 'TD') {
     groupe =
         'TD ' +
-        String.fromCharCode(64 + course.groupIndex) +
-        String.fromCharCode(65 + course.groupIndex)
+        groupToText(course.groupIndex, course.semester, course.type)
   } else {
     groupe = 'CM'
   }
 
-  return `${course.matiere} <br> ${course.professor} <br> ${course.semester} <br> ${groupe}`
+  let texte = `${course.matiere} <br> ${course.professor} <br> ${course.semester} <br> ${groupe}`
+
+  if (course.duree) {
+    texte += ` <br> Durée: ${course.duree}h`
+  }
+
+  return texte
 }
 
 const resetFilters = () => {
@@ -97,7 +147,17 @@ const resetFilters = () => {
   selectedProfessor.value = ''
   selectedCourse.value = ''
   selectedGroup.value = ''
+  highlightCours.value = false
+  highlightProf.value = false
+  vacatairesOnly.value = false
 }
+
+watch(selectedSemester, (val) => {
+  if (val === '' || val === null) {
+    selectedCourse.value = ''
+    selectedGroup.value = ''
+  }
+})
 
 const onDragStart = (event, course, source, originSlot = '') => {
   console.log('Drag started for course:', course)
@@ -111,13 +171,15 @@ const onDragStart = (event, course, source, originSlot = '') => {
 </script>
 
 <template>
-  <div>
+  <div v-if="config">
     <div style="display: flex; width: 100%;">
       <div style="flex: 8;" class="me-2">
-        <div>
-          <label for="semester">Semestre :</label>
+        <div class="mt-2">
+          <label for="semester" class="font-semibold">Semestre :</label>
           <Select
+              showClear
               id="semester"
+              :autoFilterFocus="true"
               :filter="true"
               optionLabel="label"
               optionValue="value"
@@ -125,34 +187,65 @@ const onDragStart = (event, course, source, originSlot = '') => {
               v-model="selectedSemester" :options="getKeys(semesters)"
           />
         </div>
-        <div>
-          <label for="semester">Prof :</label>
+        <div class="mt-2">
+          <label for="selectedProfessor" class="font-semibold">Prof :</label>
           <Select v-model="selectedProfessor"
+                  showClear
+                  :autoFilterFocus="true"
+                  id="selectedProfessor"
+                  @change="onProfessorChange($event)"
                   :filter="true"
                   optionLabel="name"
                   optionValue="key"
                   class="w-full"
                   :options="professors"/>
+          <div v-if="selectedProfessor">
+            <label for="highlightProf">Mettre en surbrillance:</label>
+            <Checkbox  v-model="highlightProf"
+                       @change="onHighlightProfChange($event)"
+                       id="highlightProf"
+                       name="highlightProf"
+                       class="flex-auto ms-2" binary />
+          </div>
         </div>
-        <div>
-          <label for="semester">Cours :</label>
+
+        <div class="mt-2">
+          <label for="selectedCourse" class="font-semibold">Cours :</label>
           <Select v-model="selectedCourse"
+                  id="selectedCourse"
+                  :autoFilterFocus="true"
+                  showClear
                   :filter="true"
+                  @change="onCoursChange($event)"
                   optionLabel="label"
                   optionValue="value"
                   emptyMessage="Choisir un semestre pour voir les cours"
                   placeholder="Choisir un semestre"
                   :options="getListeCoursBySemestre()" class="w-full"/>
+          <div v-if="selectedCourse">
+            <label for="highlightCours">Mettre en surbrillance:</label>
+            <Checkbox  v-model="highlightCours" id="highlightCours"
+                       @change="onHighlightCoursChange($event)"
+                       name="highlightCours" class="flex-auto ms-2" binary />
+          </div>
         </div>
-        <div>
-          <label for="semester">Groupe :</label>
+        <div class="mt-2">
+          <label for="selectedGroup" class="font-semibold">Groupe :</label>
           <Select v-model="selectedGroup" :options="getListeGroupesBySemestre()"
                   :filter="true"
+                  id="selectedGroup"
+                  :autoFilterFocus="true"
+                  showClear
                   emptyMessage="Choisir un semestre pour voir les groupes"
                   placeholder="Choisir un semestre"
                   optionLabel="label"
                   optionValue="value"
                   class="w-full" />
+        </div>
+
+        <div class="mt-2">
+          <label class="font-semibold w-24 " for="vacatairesOnly">Afficher les cours des vacataires uniquement:</label>
+          <Checkbox  v-model="vacatairesOnly" id="vacatairesOnly" name="vacatairesOnly" class="flex-auto ms-2" binary />
         </div>
       </div>
       <div style="flex: 2; display: flex; align-items: stretch; justify-content: center;">

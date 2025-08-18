@@ -74,6 +74,11 @@
         <Button @click="affectRooms">Affecter les salles</Button>
       </div>
     </div>
+
+    <div class="m-3">
+      <ProgressBar :value="nbPlacedPercent"> {{ nbPlaced }}/{{ nbToPlaced }} </ProgressBar>
+    </div>
+
     <div class="flex flex-row flex-wrap">
       <div :class="['transition-all', showSidebar ? 'basis-3/4' : 'basis-full']" id="edt" :key="selectedNumWeek">
         <div class="grid-container mt-2" v-for="day in days" :key="day.day">
@@ -112,6 +117,8 @@
                   :key="time + semestre + group"
                   :class="[
                     'grid-cell',
+                      placedCourses[`${day.day}_${time}_${semestre}_${group}`]?.professor === selectedProfessor && highlightProf ? 'highlight-prof' : '',
+                      placedCourses[`${day.day}_${time}_${semestre}_${group}`]?.matiere === selectedCours && highlightCours ? 'highlight-cours' : '',
                     placedCourses[`${day.day}_${time}_${semestre}_${group}`]?.isVacataire === true ? 'vacataire' : '',
                     placedCourses[`${day.day}_${time}_${semestre}_${group}`]?.unmovable === true ? 'fixedCourse' : ''
                   ]"
@@ -222,6 +229,10 @@
               <ListeCours
                   :items="coursesOfWeeks"
                   :semesters="semesters"
+                  @update:highlightProf="highlightProf = $event"
+                  @update:highlightCours="highlightCours = $event"
+                  @update:selectedProfessor="selectedProfessor = $event"
+                  @update:selectedCours="selectedCours = $event"
                   source="availableCourses"
                   @drag-start="onDragStartEvent"
               />
@@ -281,7 +292,7 @@ import RadioButton from 'primevue/radiobutton'
 import Button from 'primevue/button'
 import Select from 'primevue/select'
 
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { fetchWeek, fetchWeeks } from '~/services/weeks.js'
 import { fetchAllConfig } from '~/services/configGlobale.js'
 import {
@@ -300,7 +311,13 @@ const configEnv = useRuntimeConfig()
 const baseUrl = configEnv.public.apiBaseUrl
 
 const showSidebar = ref(true)
+const highlightProf = ref(false)
+const selectedProfessor = ref('')
+const highlightCours = ref(false)
+const selectedCours = ref('')
 
+const nbPlaced = ref(0)
+const nbToPlaced = ref(0)
 const selectedWeek = ref(null)
 const selectedNumWeek = ref(1)
 const weeks = ref([])
@@ -318,6 +335,22 @@ const timeSlots = ref(['8h00', '9h30', '11h00', '12h30', '14h00', '15h30', '17h0
 const placedCourses = ref({})
 
 const size = ref(0)
+
+const nbPlacedPercent = computed(() => {
+  return Math.round((nbPlaced.value / nbToPlaced.value) * 100)
+})
+
+const _updateStats = async () => {
+  await fetch(`${baseUrl}/statistiques/${selectedNumWeek.value}`)
+    .then(response => response.json())
+    .then(data => {
+      nbPlaced.value = data.placed
+      nbToPlaced.value = data.total
+    })
+    .catch(error => {
+      console.error('Erreur lors de la récupération des statistiques:', error)
+    })
+}
 
 onMounted(async () => {
       // Simulate fetching weeks data-GEA
@@ -380,6 +413,7 @@ const _loadWeek = async () => {
 
     await _getWeek()
     await _getCourses()
+    await _updateStats()
 
   } catch (error) {
     console.error('Erreur lors de la récupération des semaines:', error)
@@ -458,8 +492,12 @@ const groupToInt = (group, semestre) => {
   }
 }
 
-const groupToText = (group, semestre) => {
-  return config.value.semesters[semestre].groupesTp[group]
+const groupToText = (group, semestre, type = 'TP') => {
+  if (type === 'TP') {
+    return config.value.semesters[semestre].groupesTp[group]
+  } else {
+    return config.value.semesters[semestre].groupesTd[group]
+  }
 }
 
 const handleDropFromAvailableCourses = async (courseId, day, time, semestre, groupNumber) => {
@@ -481,7 +519,7 @@ const handleDropFromAvailableCourses = async (courseId, day, time, semestre, gro
     course.room = 'A définir'
 
     await updateCourse(course, selectedNumWeek.value)
-
+    await _updateStats()
     placedCourses.value[`${day}_${time}_${semestre}_${groupNumber}`] = course
     coursesOfWeeks.value = coursesOfWeeks.value.filter(c => c.id != courseId)
   }
@@ -506,7 +544,7 @@ const handleDropFromCoursesToReport = async (courseId, day, time, semestre, grou
     course.room = 'A définir'
 
     await updateCourseFromReport(course, selectedNumWeek.value)
-
+    await _updateStats()
     placedCourses.value[`${day}_${time}_${semestre}_${groupNumber}`] = course
     coursesOfReport.value = coursesOfReport.value.filter(c => c.id != courseId)
   }
@@ -535,7 +573,7 @@ const handleDropFromGrid = async (courseId, day, time, semestre, groupNumber, or
       course.room = 'A définir'
 
       await updateCourse(course, selectedNumWeek.value)
-
+      await _updateStats()
       delete placedCourses.value[originSlot]
       clearSameCoursesHighlight()
       placedCourses.value[`${day}_${time}_${semestre}_${groupNumber}`] = course
@@ -565,6 +603,7 @@ const checkIfCourseAlreadyPlace = async (day, time, semestre, groupNumber, cours
             cours.date = null
             cours.room = null
             await updateCourse(cours, selectedNumWeek.value)
+            await _updateStats()
             delete placedCourses.value[`${day}_${time}_${semestre}_${groupNumber}`]
           }
         }
@@ -578,6 +617,7 @@ const checkIfCourseAlreadyPlace = async (day, time, semestre, groupNumber, cours
             cours.date = null
             cours.room = null
             await updateCourse(cours, selectedNumWeek.value)
+            await _updateStats()
             delete placedCourses.value[`${day}_${time}_${semestre}_${groupToText(groupInt +1, semestre)}`]
           }
         }
@@ -597,6 +637,7 @@ const checkIfCourseAlreadyPlace = async (day, time, semestre, groupNumber, cours
         cours.date = null
         cours.room = null
         await updateCourse(cours, selectedNumWeek.value)
+        await _updateStats()
         delete placedCourses.value[`${day}_${time}_${semestre}_${groupNumber}`]
       }
       return true
@@ -648,6 +689,7 @@ const onDropToReplace = async (event) => {
 
       delete coursesOfWeeks.value[courseIndex]
       updateCourseToReport(course, selectedNumWeek.value)
+      await _updateStats()
       //supprimer le cours de la grille et le placer dans le report
       coursesOfReport.value.push(course)
     }
@@ -665,6 +707,7 @@ const onDropToReplace = async (event) => {
           true
       )
       updateCourseToReport(course, selectedNumWeek.value)
+      await _updateStats()
       // Ajouter le cours dans la liste des cours de report
       coursesOfReport.value.push(course)
       delete placedCourses.value[originSlot]
@@ -919,12 +962,11 @@ const formatDate = (dateStr) => {
 const displayCourse = (course) => {
   let groupe = ''
   if (course.groupCount === 1) {
-    groupe = 'TP ' + String.fromCharCode(64 + course.groupIndex)
+    groupe = 'TP ' + groupToText(course.groupIndex, course.semester)
   } else if (course.groupCount === 2) {
     groupe =
         'TD ' +
-        String.fromCharCode(64 + course.groupIndex) +
-        String.fromCharCode(65 + course.groupIndex)
+       groupToText(course.groupIndex, course.semester, course.type)
   } else {
     groupe = 'CM'
   }
@@ -932,7 +974,13 @@ const displayCourse = (course) => {
   if (course.blocked && course.blocked === true) {
     return course.motif
   }
-  return `${course.matiere} <br> ${course.professor} <br> ${course.semester} <br> ${groupe}`
+  let texte = `${course.matiere} <br> ${course.professor} <br> ${course.semester} <br> ${groupe}`
+
+  if (course.duree) {
+    texte += ` <br> Durée: ${course.duree}h`
+  }
+
+  return texte
 }
 
 const modalCourse = ref(null)
@@ -961,6 +1009,7 @@ const saveRoom = async () => {
   try {
     // appel API pour mettre à jour le cours avec la nouvelle salle
     await updateCourse(modalCourse.value, selectedNumWeek.value)
+    await _updateStats()
     isModalOpen.value = false
     await _getCourses()
   } catch (error) {
@@ -1130,5 +1179,15 @@ const saveRoom = async () => {
   background-color: #e0f7fa;
   border-color: #ff212e;
   color: #ff212e;
+}
+
+.highlight-prof {
+  border-bottom: 4px solid #FFD700;
+  border-left: 4px solid #FFD700;
+}
+
+.highlight-cours {
+  border-top: 4px solid #FF00FB;
+  border-right: 4px solid #FFD700;
 }
 </style>

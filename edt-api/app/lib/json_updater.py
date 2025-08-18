@@ -21,7 +21,8 @@ class JsonUpdater:
             return 0
         count = 0
         for obj in self.data:
-            if obj.get(field) == value:
+            if str(obj.get(field)) == str(value):
+                print(f"Updating {field}={value} in {obj}")
                 obj.update(updates)
                 count += 1
         if count:
@@ -38,7 +39,7 @@ class JsonUpdater:
             return 0
         count = 0
         for course in self.data:
-            if course.get("id") == course_id:
+            if str(course.get("id")) == str(course_id):
                 course["creneau"] = None
                 course["date"] = None
                 count += 1
