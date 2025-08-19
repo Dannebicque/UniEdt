@@ -239,6 +239,10 @@
             </TabPanel>
             <TabPanel value="1">
               <ListeCours :items="coursesOfReport"
+                          @update:highlightProf="highlightProf = $event"
+                          @update:highlightCours="highlightCours = $event"
+                          @update:selectedProfessor="selectedProfessor = $event"
+                          @update:selectedCours="selectedCours = $event"
                           :semesters="semesters"
                           source="reportCourses"
                           @drag-start="onDragStartEvent"
@@ -961,6 +965,12 @@ const formatDate = (dateStr) => {
 
 const displayCourse = (course) => {
   let groupe = ''
+  let texte = ''
+
+  if (course.heureDebut) {
+    texte = ` <span class="font-bold text-lg"> Début: ${course.heureDebut}</span><br>`
+  }
+
   if (course.groupCount === 1) {
     groupe = 'TP ' + groupToText(course.groupIndex, course.semester)
   } else if (course.groupCount === 2) {
@@ -974,7 +984,7 @@ const displayCourse = (course) => {
   if (course.blocked && course.blocked === true) {
     return course.motif
   }
-  let texte = `${course.matiere} <br> ${course.professor} <br> ${course.semester} <br> ${groupe}`
+  texte += `${course.matiere} <br> ${course.professor} <br> ${course.semester} <br> ${groupe}`
 
   if (course.duree) {
     texte += ` <br> Durée: ${course.duree}h`

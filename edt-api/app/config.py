@@ -20,6 +20,8 @@ class Settings(BaseSettings):
     url_front: str = "http://localhost:3000"  # port par défaut de Vite
     debug: bool = False
     data_dir: Path = Path("../data")
+    type_placement_salle: str = "libre"
+    titre_pdf: str = "Service chronologique MMI"
 
     model_config = SettingsConfigDict(
         env_file=str(env_file),

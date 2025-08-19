@@ -31,30 +31,46 @@ def get_groupe(type_cours, groupe_num, semestre, tabGroupes=None):
     # tester si on trouve semestre, type_cours et groupe_num dans tabGroupes
     if semestre in tabGroupes:
         groupes = tabGroupes[semestre]
-        print(f"Recherche de {type_cours} dans {groupes}")
         if type_cours in groupes:
-            print(f"Recherche de {groupe_num} dans {groupes[type_cours]}")
             groupe_info = groupes[type_cours].get(int(groupe_num))
             if groupe_info:
-                print(f"Groupe trouvé: {groupe_info}")
                 return f"{type_cours} {groupe_info}"
 
     return f"{type_cours} {groupe_num}"
 
-def cours_to_chronologie(cours, semaine_num, tabGroupes=None):
+def cours_to_chronologie(cours, semaine_num, tabGroupes=None, tabProfesseurs=None):
     jour = cours.get("date")
     creneau = int(cours.get("creneau"))
     type_cours = cours.get("type")
     groupe = str(cours.get("groupIndex"))
     date = get_date_from_semaine(semaine_num, jour)
-    heure = CRENEAU_HEURES.get(creneau, "??:??")
+
+    heure = cours.get("heureDebut")
+    if heure:
+        heure = heure.replace("h", ":")
+    else:
+        heure = CRENEAU_HEURES.get(creneau, "??:??")
+
     semestre = cours.get("semester")
     groupe_label = get_groupe(type_cours, groupe, semestre, tabGroupes)
+
+    # Calcule l'heure de fin du cours. Par défaut c'est 1h30, mais si durée n'est pas null, alors prendre cette valeur. La durée est définie en flotant dans ce cas
+    heure_fin = heure
+    if cours.get("duree"):
+# La durée est exprimée en heures (float), ex: 1.5 = 1h30
+        duree = float(cours.get("duree"))
+        heures = int(duree)
+        minutes = int((duree - heures) * 60)
+        heure_fin = str(int(heure_fin.split(":")[0]) + heures) + ":" + str(int(heure_fin.split(":")[1]) + minutes).zfill(2)
+    else:
+        heure_fin = str(int(heure_fin.split(":")[0]) + 1) + ":" + str(int(heure_fin.split(":")[1]) + 30).zfill(2)
+
     return {
         "date": date,
         "jour": jour,
         "heure": heure,
-        "professor": cours.get("professor"),
+        "heureFin": heure_fin,
+        "professor": tabProfesseurs.get(cours.get("professor")),
         "matiere": cours.get("matiere"),
         "type": type_cours,
         "groupe": groupe_label,

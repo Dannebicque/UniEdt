@@ -3,7 +3,7 @@ from fastapi.responses import JSONResponse
 from ..lib.paths import get_data_dir
 from app.lib.convertCourses import cours_to_chronologie
 from datetime import datetime
-
+from ..config import settings
 from pathlib import Path
 import os
 import json
@@ -26,6 +26,15 @@ async def get_chronologie(
     semestre: Optional[str] = Query(None),
     matiere: Optional[str] = Query(None)
 ):
+    tabGroupes = get_groupes_semestres()
+    # Récupère les données (remplace par ton vrai code)
+
+    # je veux récupérer le nom de l'intervenant en recherchant la clé dans le fichier contraintes.json
+    data_globale_path = get_data_dir() / "contraintes.json"
+    with open(data_globale_path, "r", encoding="utf-8") as f:
+        data_globale = json.load(f)
+    intervenants = data_globale
+
     cours_list = []
     if not DATA_COURS_DIR.exists():
         raise HTTPException(status_code=404, detail="Dossier data-GEA/cours introuvable")
@@ -50,10 +59,13 @@ async def get_chronologie(
                     if matiere and cours.get("matiere") != matiere:
                         continue
                     if cours.get("date") and cours.get("creneau"):
-                        cours_list.append(cours_to_chronologie(cours, week_number))
+                        cours_list.append(cours_to_chronologie(cours, week_number, tabGroupes, intervenants))
 
     # Tri par date puis créneau
-    cours_list.sort(key=lambda x: (x["date"], x["heure"]))
+    cours_list.sort(key=lambda x: (
+        datetime.strptime(x["date"] + " " + x["heure"], "%d/%m/%Y %H:%M")
+    ))
+
     return JSONResponse(content=cours_list)
 
 @router.get("/pdf")
@@ -65,7 +77,7 @@ async def get_chronologie_pdf(professeur: str = Query(...)):
     data_globale_path = get_data_dir() / "contraintes.json"
     with open(data_globale_path, "r", encoding="utf-8") as f:
         data_globale = json.load(f)
-    intervenants = data_globale.get("intervenants", {})
+    intervenants = data_globale
     name = intervenants.get(professeur, {}).get("name", professeur)
     if not name:
         raise HTTPException(status_code=404, detail="Intervenant non trouvé")
@@ -90,7 +102,7 @@ async def get_chronologie_pdf(professeur: str = Query(...)):
                     if professeur and cours.get("professor") != professeur:
                         continue
                     if cours.get("date") and cours.get("creneau"):
-                        cours_list.append(cours_to_chronologie(cours, week_number, tabGroupes))
+                        cours_list.append(cours_to_chronologie(cours, week_number, tabGroupes, intervenants))
 
     # Tri par date puis créneau
     cours_list.sort(key=lambda x: (
@@ -109,19 +121,19 @@ async def get_chronologie_pdf(professeur: str = Query(...)):
 
     # Largeur du tableau : largeur de la page - marges
     table_width = A4[0] - 4 * cm
-    col_count = 7
+    col_count = 8
     col_width = table_width / col_count
     col_widths = [col_width] * col_count
 
     # Titre
-    elements.append(Paragraph("Service chronologique MMI", styles['Title']))
+    elements.append(Paragraph(settings.titre_pdf, styles['Title']))
     elements.append(Paragraph(name, styles['Title']))
     elements.append(Spacer(1, 12))
 
     # Tableau
-    data = [["Date", "Jour", "Heure", "Cours", "Semestre", "Salle", "Groupe"]]
+    data = [["Date", "Jour", "Heure début", "Heure fin", "Cours", "Semestre", "Salle", "Groupe"]]
     for c in cours_list:
-        data.append([c["date"],  c['jour'], c["heure"], c["matiere"], c["semester"], c.get("salle", ""), c.get("groupe", "")])
+        data.append([c["date"],  c['jour'], c["heure"], c["heureFin"], c["matiere"], c["semester"], c.get("salle", ""), c.get("groupe", "")])
 
     table = Table(data, colWidths=col_widths, repeatRows=1)
     table.setStyle(TableStyle([

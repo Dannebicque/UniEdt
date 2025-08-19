@@ -37,6 +37,8 @@ onMounted(async () => {
     <div class="basis-1/3">
       <label for="professeur">Professeur</label>
       <Select
+          :filter="true"
+          :auto-filter-focus="true"
           id="professeur"
           v-model="professeur"
           :options="professeurs"
@@ -48,6 +50,8 @@ onMounted(async () => {
       <label for="semestre">Semestre</label>
       <Select
           id="semestre"
+          :filter="true"
+          :auto-filter-focus="true"
           v-model="semestre"
           :options="semestres"
           option-label="name"
@@ -58,6 +62,8 @@ onMounted(async () => {
       <label for="matiere">Matière</label>
       <Select
           id="matiere"
+          :filter="true"
+          :auto-filter-focus="true"
           v-model="matiere"
           :options="matieres"
           option-label="name"
@@ -73,11 +79,12 @@ onMounted(async () => {
                :rowsPerPageOptions="[5, 10, 20]"
                class="mt-4">
       <Column field="matiere" header="Matière"/>
-      <Column field="professor" header="Intervenant"/>
+      <Column field="professor.name" header="Intervenant"/>
       <Column field="semester" header="Semestre"/>
       <Column field="groupe" header="Groupe"/>
       <Column field="date" header="Date"/>
-      <Column field="heure" header="Heures"/>
+      <Column field="heure" header="Heure début"/>
+      <Column field="heureFin" header="Heure fin"/>
     </DataTable>
   </div>
   <div v-else-if="courses && courses.length === 0">

@@ -5,7 +5,8 @@ from ..lib.json_updater import JsonUpdater
 from ..lib.paths import get_data_dir
 from ..models import CourseToPlace
 import json
-from app.lib.assignRooms import assign_rooms_to_week
+from app.lib.assignRooms import assign_rooms_to_week_libre, assign_rooms_to_week_groupe
+from ..config import settings
 
 
 class CourseUpdateRequest(BaseModel):
@@ -142,7 +143,10 @@ def assign_rooms(week_number: int):
     except Exception as e:
         raise HTTPException(status_code=404, detail=f"Erreur de lecture: {e}")
 
-    updated_courses = assign_rooms_to_week(courses, salles)
+    if settings.type_placement_salle == "libre":
+        updated_courses = assign_rooms_to_week_libre(courses, salles)
+    elif settings.type_placement_salle == "groupe":
+        updated_courses = assign_rooms_to_week_groupe(courses, salles)
 
     try:
         with open(data_path, "w", encoding="utf-8") as f:

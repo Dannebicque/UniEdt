@@ -52,7 +52,7 @@ isVacataire = [
 "ABDELLATIF",
 "ABEL",
 "ADRIEN",
-"ALEXANDRA"
+"ALEXANDRA",
 "ARISTIDE",
 "AUDREY",
 "CARO-GROS",
