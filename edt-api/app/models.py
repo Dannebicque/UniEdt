@@ -77,6 +77,7 @@ class CourseToPlace(BaseModel):
     unmovable: bool = False
     duree: Optional[float] = None  # Durée en heures, pour les cours de type TP/TD
     heureDebut: Optional[str] = None  # Format "HH:MM"
+    semaine: Optional[int] = None
 
 # --- Cours à placer ---
 class EventToPlace(BaseModel):

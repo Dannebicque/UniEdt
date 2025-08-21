@@ -11,6 +11,46 @@ export async function fetchCoursesByWeek(num) {
   }
 }
 
+export async function fetchCoursesByWeekAndId(week, num) {
+  console.log('Fetching courses...')
+  const config = useRuntimeConfig()
+
+  try {
+    const course = await $fetch(`${config.public.apiBaseUrl}/courses/by-week-id/${week}/${num}`)
+    if (course.length > 0) {
+      return course[0]
+    }
+  } catch (error)
+  {
+    console.error('Error fetching courses:', error)
+    throw error
+  }
+}
+
+export async function fetchSearchCourses(selectedSemester, selectedProfessor, selectedCourse, selectedGroup) {
+  console.log('Fetching courses...')
+  const config = useRuntimeConfig()
+
+  //faire un body avec les data et passer en post
+  const body = {
+    semester: selectedSemester,
+    professor: selectedProfessor,
+    course: selectedCourse,
+    group: selectedGroup
+  }
+
+  try {
+    return await $fetch(`${config.public.apiBaseUrl}/courses/search`, {
+      method: 'POST',
+      body: body
+    })
+  } catch (error)
+  {
+    console.error('Error fetching courses:', error)
+    throw error
+  }
+}
+
 // méthode pour mettre à jour un cours une fois placé avec son heure et son jour
 
 export async function updateCourse(course, week) {
@@ -50,6 +90,23 @@ export async function updateCourseFromReport(course, week) {
 
   try {
     return await $fetch(`${config.public.apiBaseUrl}/courses/update/${course.id}/deplace-from-report/${week}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: {updates: course}
+    })
+  } catch (error) {
+    console.error('Error updating course:', error)
+    throw error
+  }
+}
+
+export async function updateCourseFromSearch(course, originalWeek, destWeek) {
+  const config = useRuntimeConfig()
+
+  try {
+    return await $fetch(`${config.public.apiBaseUrl}/courses/update/${course.id}/deplace-from-search/${originalWeek}/${destWeek}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'

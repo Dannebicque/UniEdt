@@ -223,6 +223,8 @@
             <Tab value="1">Report
               <Badge :value="coursesOfReport.length"></Badge>
             </Tab>
+            <Tab value="2">Rechercher
+            </Tab>
           </TabList>
           <TabPanels>
             <TabPanel value="0">
@@ -248,6 +250,18 @@
                           @drag-start="onDragStartEvent"
               />
             </TabPanel>
+            <TabPanel value="2">
+              <ListeSearchCours
+                          ref="listeSearchCoursRef"
+                          @update:highlightProf="highlightProf = $event"
+                          @update:highlightCours="highlightCours = $event"
+                          @update:selectedProfessor="selectedProfessor = $event"
+                          @update:selectedCours="selectedCours = $event"
+                          :semesters="semesters"
+                          source="reportSearchCourses"
+                          @drag-start="onDragStartEvent"
+              />
+            </TabPanel>
           </TabPanels>
         </Tabs>
       </div>
@@ -261,7 +275,7 @@
             header="Modifier l'événement">
       <div class="flex items-center gap-4 mb-4">
         <label class="font-semibold w-24" for="prof">Créneau:</label>
-        <p class="flex-auto">{{ modalCourse.date }}, {{ convertToHeureText(modalCourse.creneau) }}</p>
+        <p class="flex-auto">{{ modalCourse.date }}, {{ displayHeureModal(modalCourse) }}</p>
       </div>
       <div class="flex items-center gap-4 mb-4">
         <label class="font-semibold w-24" for="prof">Cours:</label>
@@ -270,6 +284,14 @@
       <div class="flex items-center gap-4 mb-4">
         <label class="font-semibold w-24" for="prof">Professeur:</label>
         <InputText type="text" v-model="modalCourse.professor" id="prof" name="prof" class="flex-auto" />
+      </div>
+      <div class="flex items-center gap-4 mb-4">
+        <label class="font-semibold w-24" for="heureDebut">Heure début (si diff. du créneau):</label>
+        <InputText type="text" v-model="modalCourse.heureDebut" id="heureDebut" name="heureDebut" class="flex-auto" />
+      </div>
+      <div class="flex items-center gap-4 mb-4">
+        <label class="font-semibold w-24" for="duree">Durée (si diff. de 1h30, en décimal):</label>
+        <InputText type="text" v-model="modalCourse.duree" id="duree" name="duree" class="flex-auto" />
       </div>
       <div class="flex items-center gap-4 mb-4">
         <label class="font-semibold w-24" for="room">Salle:</label>
@@ -303,8 +325,9 @@ import {
   assignRoomsByWeek,
   deleteCourse,
   fetchCoursesByWeek,
+  fetchCoursesByWeekAndId,
   updateCourse,
-  updateCourseFromReport,
+  updateCourseFromReport, updateCourseFromSearch,
   updateCourseToReport
 } from '~/services/courses.js'
 import { fetchConstraintsByWeek } from '~/services/constraints.js'
@@ -343,6 +366,15 @@ const size = ref(0)
 const nbPlacedPercent = computed(() => {
   return Math.round((nbPlaced.value / nbToPlaced.value) * 100)
 })
+
+const displayHeureModal = (course) => {
+  //si heureDebut == null, alors convertHeureText classique sur le créneau, sinon on prend la valeur inscrite
+  if (course.heureDebut !== null) {
+    return course.heureDebut.replace('h', ':')
+  }
+
+  return convertToHeureText(course.creneau)
+}
 
 const _updateStats = async () => {
   await fetch(`${baseUrl}/statistiques/${selectedNumWeek.value}`)
@@ -469,7 +501,8 @@ const onDragStart = (event, course, source, originSlot) => {
 
 const onDrop = (event, day, time, semestre, groupNumber) => {
   const courseId = event.dataTransfer.getData('courseId')
-  const source = event.dataTransfer.getData('source') // Get the source of the drag
+  const courseSemaine = event.dataTransfer.getData('courseSemaine') || null
+  const source = event.dataTransfer.getData('source')
 
   if (!courseId) {
     console.warn('No courseId found in the drop event')
@@ -479,6 +512,9 @@ const onDrop = (event, day, time, semestre, groupNumber) => {
     handleDropFromAvailableCourses(courseId, day, time, semestre, groupNumber)
   } else if (source === 'reportCourses') {
     handleDropFromCoursesToReport(courseId, day, time, semestre, groupNumber)
+  } else if (source === 'reportSearchCourses') {
+    console.log('reportSearchCourses')
+    handleDropFromCoursesToSearch(courseId, day, time, semestre, groupNumber, courseSemaine)
   } else if (source === 'grid') {
     const originSlot = event.dataTransfer.getData('originSlot') // Get the origin slot
     handleDropFromGrid(courseId, day, time, semestre, groupNumber, originSlot)
@@ -553,6 +589,40 @@ const handleDropFromCoursesToReport = async (courseId, day, time, semestre, grou
     coursesOfReport.value = coursesOfReport.value.filter(c => c.id != courseId)
   }
 }
+
+const listeSearchCoursRef = ref(null)
+
+const handleDropFromCoursesToSearch = async (courseId, day, time, semestre, groupNumber, originalWeek) => {
+  const course = await fetchCoursesByWeekAndId(originalWeek, courseId)
+  console.log(course)
+  if (course &&
+      course.semester === semestre &&
+      course.groupIndex === groupToInt(groupNumber, semestre) &&
+      checkIfCourseAlreadyPlace(day, time, semestre, groupNumber, course)) {
+    const groupSpan = course.groupCount
+
+    // if (groupToInt(groupNumber, semestre) <= config.value.semesters[semestre].nbTp - groupSpan + 1) {
+    mergeCells(day, time, semestre, groupNumber, groupSpan, course.type)
+    //}
+
+    course.creneau = convertToHeureInt(time)
+    course.date = day
+    course.blocked = false
+    course.room = 'A définir'
+    course.semaine = null
+
+    await updateCourseFromSearch(course, originalWeek, selectedNumWeek.value)
+    await _updateStats()
+    placedCourses.value[`${day}_${time}_${semestre}_${groupNumber}`] = course
+
+    // Émettre l’événement pour l’enfant
+    // Si tu utilises v-model ou ref, tu peux aussi modifier une prop ou une ref partagée
+    if (listeSearchCoursRef.value) {
+      listeSearchCoursRef.value.fetchFilteredCourses()
+    }
+  }
+}
+
 
 const handleDropFromGrid = async (courseId, day, time, semestre, groupNumber, originSlot) => {
   const course = placedCourses.value[originSlot]

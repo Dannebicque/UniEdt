@@ -46,6 +46,8 @@ function saveRoom() {
       <p><strong>Cours:</strong> {{ localCourse.matiere }}</p>
       <p><strong>Professeur:</strong> {{ localCourse.professor }}</p>
       <p><strong>Créneau:</strong> {{ localCourse.date }} {{ localCourse.creneau }}</p>
+      <p><strong>Durée:</strong> {{ localCourse.duree }}</p>
+      <p><strong>Créneau:</strong> {{ localCourse.date }} {{ localCourse.creneau }}</p>
       <label for="room">Salle:</label>
       <input type="text" v-model="localCourse.room" id="room"/>
       <button @click="saveRoom">Enregistrer</button>
