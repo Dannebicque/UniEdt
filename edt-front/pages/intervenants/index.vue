@@ -1,7 +1,15 @@
 <template>
   <h1>Intervenants</h1>
-  <Button label="Ajouter" icon="pi pi-plus" class="mb-3" severity="success"
-          @click="openAddDialog"/>
+  <div class="mb-3 mt-2">
+  <Button label="Ajouter" icon="pi pi-plus" severity="success"
+          @click="openAddDialog">
+    <Icon name="prime:add"/> Ajouter
+  </Button>
+  <Button label="Tous les PDF" class="ms-3" severity="info" @click="getAllPdf()">
+    <Icon name="prime:download"/> Tous les PDF
+  </Button>
+  </div>
+
   <div v-if="intervenants">
     <DataTable :value="intervenants"
                v-model:filters="filters"
@@ -183,6 +191,33 @@ const saveEdit = async () => {
   }
   editDialog.value = false
 }
+
+const getAllPdf = async () => {
+  try {
+    const response = await fetch(`${config.public.apiBaseUrl}/chronologie/all-pdf`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/zip',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error('Erreur lors de la génération des PDF');
+    }
+
+    const blob = await response.blob();
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', `all-edt.zip`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  } catch (error) {
+    console.error('Erreur lors de la récupération des PDF:', error);
+  }
+}
+
 
 const getPdf = async (user) => {
   const key=user.key
