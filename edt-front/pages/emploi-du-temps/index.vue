@@ -72,6 +72,7 @@
       </div>
       <div class="basis-1/2">
         <Button @click="affectRooms">Affecter les salles</Button>
+        <Button @click="getPdf" class="ms-2">Exporter la semaine (pdf)</Button>
       </div>
     </div>
 
@@ -1075,6 +1076,34 @@ const closeModal = () => {
   isModalOpen.value = false
 }
 
+const getPdf = async () => {
+  try {
+    const config = useRuntimeConfig()
+    const response = await fetch(`${config.public.apiBaseUrl}/chronologie/semaine/pdf?semaine=${selectedNumWeek.value}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/pdf',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error('Erreur lors de la génération du PDF');
+    }
+
+    const blob = await response.blob();
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', `semaine_${selectedNumWeek.value}.pdf`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  } catch (error) {
+    console.error('Erreur lors de la récupération du PDF:', error);
+  }
+}
+
+
 const affectRooms = async () => {
   try {
     // appel API pour affecter les salles et récupérer la mise à jour
@@ -1262,8 +1291,10 @@ const saveRoom = async () => {
 }
 
 .highlight-prof {
-  border-bottom: 4px solid #FFD700;
-  border-left: 4px solid #FFD700;
+  /*border-bottom: 4px solid #FFD700;
+  border-left: 4px solid #FFD700;*/
+  background-color: #fa0bfa !important;
+  color: white !important;
 }
 
 .highlight-cours {

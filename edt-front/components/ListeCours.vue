@@ -150,6 +150,8 @@ const resetFilters = () => {
   highlightCours.value = false
   highlightProf.value = false
   vacatairesOnly.value = false
+  emit('update:highlightProf', highlightProf.value)
+  emit('update:highlightCours', highlightCours.value)
 }
 
 watch(selectedSemester, (val) => {

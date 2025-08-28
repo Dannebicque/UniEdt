@@ -52,5 +52,10 @@ const items = ([
     icon: 'i-lucide-users',
     route: '/calendrier',
   },
+  {
+    label: 'Synthèses',
+    icon: 'i-lucide-users',
+    route: '/syntheses',
+  },
 ])
 </script>

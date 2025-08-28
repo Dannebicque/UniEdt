@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .config import settings
-from .routers import weeks, professors, courses, semesters, config, events, auth, chronologie, calendrier, statistiques
+from .routers import weeks, professors, courses, semesters, syntheses, config, events, auth, chronologie, calendrier, statistiques
 
 app = FastAPI(title="My API", version="0.1.0", debug=settings.debug)
 
@@ -24,6 +24,7 @@ app.include_router(events.router)
 app.include_router(auth.router)
 app.include_router(calendrier.router)
 app.include_router(statistiques.router)
+app.include_router(syntheses.router)
 
 @app.get("/ping")
 async def ping():

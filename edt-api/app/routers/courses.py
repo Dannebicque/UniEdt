@@ -235,7 +235,17 @@ def assign_rooms(week_number: int):
     if settings.type_placement_salle == "libre":
         updated_courses = assign_rooms_to_week_libre(courses, salles)
     elif settings.type_placement_salle == "groupe":
-        updated_courses = assign_rooms_to_week_groupe(courses, salles)
+        mappinggroupe = {
+            "S1": {1: "A", 3: "B", 5: "C", 7: "D"},
+            "S3-FI": {1: "GC2F2", 3: "GEMA2-A", 5: "GEMA2-B", 7: "GPRH2"},
+            "S3-GEMA-ALT": {1: "GEMA2-FC"},
+            "S5-GEMA-FI": {1: "GEMA3-FI"},
+            "S5-GEMA-ALT": {1: "GEMA3-FC"},
+            "S5-GC2F-ALT": {1: "GCCF3"},
+            "S5-GPRH-ALT": {1: "GPRH3"}
+            # Ajouter d'autres semestres si nécessaire
+        }
+        updated_courses = assign_rooms_to_week_groupe(courses, salles, mappinggroupe)
 
     try:
         with open(data_path, "w", encoding="utf-8") as f:

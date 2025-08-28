@@ -15,11 +15,100 @@ from reportlab.lib import colors
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.units import mm, cm
 import zipfile
+from ..lib.data_loader import load_json
+from reportlab.lib.styles import ParagraphStyle
 
 router = APIRouter(prefix="/chronologie", tags=["chronologie"])
 
 DATA_COURS_DIR = get_data_dir() / f"cours/"
 
+# Style personnalisé pour le titre et le tableau
+small_style = ParagraphStyle(
+    name="Small",
+    fontSize=8,
+    leading=10
+)
+small_title = ParagraphStyle(
+    name="SmallTitle",
+    fontSize=12,
+    leading=14,
+    alignment=1  # centré
+)
+
+@router.get("/semaine/pdf")
+async def get_semaine_pdf(semaine: str = Query(...)):
+    tabGroupes = get_groupes_semestres()
+    data_globale_path = get_data_dir() / "contraintes.json"
+    with open(data_globale_path, "r", encoding="utf-8") as f:
+        intervenants = json.load(f)
+
+    cours_list = []
+    courses: dict[int, list[dict]]  = load_json(f"cours/cours_{semaine}")
+    for cours in courses:
+        if cours.get("date") and cours.get("creneau"):
+            obj = cours_to_chronologie(cours, semaine, tabGroupes, intervenants)
+            prof_id = cours.get("professor")
+            obj["intervenant"] = intervenants.get(prof_id, {}).get("name", prof_id)
+            cours_list.append(obj)
+
+    # Tri par date puis créneau
+    cours_list.sort(key=lambda x: (
+        datetime.strptime(x["date"] + " " + x["heure"], "%d/%m/%Y %H:%M")
+    ))
+
+    buffer = BytesIO()
+    doc = SimpleDocTemplate(buffer, pagesize=A4, leftMargin=2 * cm, rightMargin=2 * cm)
+    styles = getSampleStyleSheet()
+    elements = []
+    table_width = A4[0] - 4 * cm
+    col_count = 9
+    #col_width = table_width / col_count
+    col_widths = [
+        1.5 * cm,  # Date
+        1.5 * cm,  # Jour
+        1.5 * cm,  # Début
+        1.5 * cm,  # Fin
+        3.5 * cm,  # Cours
+        2 * cm,  # Semestre
+        1.5 * cm,  # Salle
+        2 * cm,  # Groupe
+        3.5 * cm  # Intervenant
+    ]
+    #col_widths = [col_width] * col_count
+
+    # Titre : date de la semaine
+    elements.append(Paragraph(f"Semaine du {cours_list[0]['date']}" if cours_list else f"Semaine {semaine}", styles['Title']))
+    elements.append(Spacer(1, 12))
+
+    # Tableau
+    data = [["Date", "Jour", "Début", "Fin", "Cours", "Semestre", "Salle", "Groupe", "Intervenant"]]
+    for c in cours_list:
+        data.append([
+            c["date"], c['jour'], c["heure"], c["heureFin"], c["matiere"],
+            c["semester"], c.get("salle", ""), c.get("groupe", ""), c.get("intervenant", "")
+        ])
+    table = Table(data, colWidths=col_widths, repeatRows=1)
+    table.setStyle(TableStyle([
+        ("BACKGROUND", (0,0), (-1,0), colors.lightblue),
+        ("TEXTCOLOR", (0,0), (-1,0), colors.white),
+        ("GRID", (0,0), (-1,-1), 1, colors.black),
+        ("ALIGN", (0,0), (-1,-1), "CENTER"),
+        ("FONTNAME", (0,0), (-1,0), "Helvetica-Bold"),
+        ("FONTSIZE", (0,0), (-1,-1), 8),  # Taille réduite
+    ]))
+    elements.append(table)
+
+    def add_page_number(canvas, doc):
+        page_num = canvas.getPageNumber()
+        text = f"Page {page_num}"
+        canvas.drawRightString(200 * mm, 15 * mm, text)
+
+    doc.build(elements, onLaterPages=add_page_number, onFirstPage=add_page_number)
+    buffer.seek(0)
+
+    return Response(buffer.read(), media_type="application/pdf", headers={
+        "Content-Disposition": f"attachment; filename=semaine_{semaine}.pdf"
+    })
 
 @router.get("/")
 async def get_chronologie(
