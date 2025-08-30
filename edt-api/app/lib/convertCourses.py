@@ -61,9 +61,9 @@ def cours_to_chronologie(cours, semaine_num, tabGroupes=None, tabProfesseurs=Non
         duree = float(cours.get("duree"))
         heures = int(duree)
         minutes = int((duree - heures) * 60)
-        heure_fin = str(int(heure_fin.split(":")[0]) + heures) + ":" + str(int(heure_fin.split(":")[1]) + minutes).zfill(2)
+        heure_fin = str(int(heure_fin.split(":")[0]) + heures + (int(heure_fin.split(":")[1]) + minutes) // 60) + ":" + str((int(heure_fin.split(":")[1]) + minutes) % 60).zfill(2)
     else:
-        heure_fin = str(int(heure_fin.split(":")[0]) + 1) + ":" + str(int(heure_fin.split(":")[1]) + 30).zfill(2)
+        heure_fin = str((int(heure_fin.split(":")[0]) + (int(heure_fin.split(":")[1]) + 30) // 60)) + ":" + str((int(heure_fin.split(":")[1]) + 30) % 60).zfill(2)
 
     return {
         "date": date,
