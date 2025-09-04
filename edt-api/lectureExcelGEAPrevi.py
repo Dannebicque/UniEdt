@@ -86,6 +86,7 @@ excel_files = glob.glob('2025_2026_EDT_GEA.xlsx')
 for excel_path in excel_files:
     sheets_raw = pd.read_excel(excel_path, sheet_name=None, header=None)
     objets = []
+    result = {"professeurs": {}, "matieres": {}}
     for sheet_name, df_raw in sheets_raw.items():
         print("Traitement de la feuille :", sheet_name)
         header_row = int(df_raw.iloc[0, 2])  # C1
@@ -101,29 +102,37 @@ for excel_path in excel_files:
                 continue
             else:
                 #traitement de la ligne. Création d'un objet global, qui va contenir le prof, puis ses matières, puis pour chaque matière les heures CM, TD et TP et le nombre de groupe affectésqueeze
-                prof = str(row.iloc[1]).strip().upper()
-                matieres = str(row.get('Matieres', '')).split(',')
-                objets.append({
-                    "prof": prof,
-                    "matieres": matieres,
-                    "heures": {
-                        "CM": [],
-                        "TD": [],
-                        "TP": [],
-                        "nbGrTd": 0,
-                        "nbGrTp": 0
-                    }
-                })
+                prof = str(row.iloc[4]).strip().upper()
+                matiere = str(row.iloc[1]).strip().upper()
+
+                #### Ajout dans la partie professeurs
+                # tester, si le prof existe déjà dans le dictionnaire des professeurs
+                if prof not in result["professeurs"]:
+                    result["professeurs"][prof] = {"matieres": {}}
+
+                if matiere not in result["professeurs"][prof]["matieres"]:
+                    result["professeurs"][prof]["matieres"][matiere] = {"heures": {"CM": 0, "TD": 0, "TP": 0}, "groupe": {"CM": 0, "TD": 0, "TP": 0}}
+
+                # on ajout
+                type_cours = str(row.iloc[5]).strip().upper()
+                result["professeurs"][prof]["matieres"][matiere]["heures"][type_cours] = float(row.iloc[6])
+                print(row.iloc[7])
+                result["professeurs"][prof]["matieres"][matiere]["groupe"][type_cours] = len(str(row.iloc[7]).split(","))
+
+                # tester si la matière existe déjà dans le dictionnaire des matières
+                if matiere not in result["matieres"]:
+                    result["matieres"][matiere] = {"profs": {}}
 
 
-        nom_fichier = f"data-test/previ.json"
-        if os.path.exists(nom_fichier):
-            with open(nom_fichier, 'r', encoding='utf-8') as f:
-                anciens_objets = json.load(f)
-        else:
-            anciens_objets = []
 
-        anciens_objets.extend(objets)
+    nom_fichier = f"data-test/previ.json"
+    if os.path.exists(nom_fichier):
+        with open(nom_fichier, 'r', encoding='utf-8') as f:
+            anciens_objets = json.load(f)
+    else:
+        anciens_objets = []
 
-        with open(nom_fichier, 'w', encoding='utf-8') as f:
-            json.dump(anciens_objets, f, ensure_ascii=False, indent=2)
+    anciens_objets.append(result)
+
+    with open(nom_fichier, 'w', encoding='utf-8') as f:
+        json.dump(anciens_objets, f, ensure_ascii=False, indent=2)

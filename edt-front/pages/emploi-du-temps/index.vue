@@ -73,6 +73,7 @@
       <div class="basis-1/2">
         <Button @click="affectRooms">Affecter les salles</Button>
         <Button @click="getPdf" class="ms-2">Exporter la semaine (pdf)</Button>
+        <Button @click="getExcel" class="ms-2">Exporter la semaine (Excel)</Button>
       </div>
     </div>
 
@@ -1100,6 +1101,33 @@ const getPdf = async () => {
     document.body.removeChild(link);
   } catch (error) {
     console.error('Erreur lors de la récupération du PDF:', error);
+  }
+}
+
+const getExcel = async () => {
+  try {
+    const config = useRuntimeConfig()
+    const response = await fetch(`${config.public.apiBaseUrl}/chronologie/semaine/xslx?week=${selectedNumWeek.value}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error('Erreur lors de la génération du PDF');
+    }
+
+    const blob = await response.blob();
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', `planning_semaine_${selectedNumWeek.value}.xslx`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  } catch (error) {
+    console.error('Erreur lors de la récupération du fichier Excel:', error);
   }
 }
 

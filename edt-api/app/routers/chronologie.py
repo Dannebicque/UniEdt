@@ -17,6 +17,8 @@ from reportlab.lib.units import mm, cm
 import zipfile
 from ..lib.data_loader import load_json
 from reportlab.lib.styles import ParagraphStyle
+from pydantic import BaseModel, Field
+from ..lib.exportExcelSemaine import generate_planning_bytes
 
 router = APIRouter(prefix="/chronologie", tags=["chronologie"])
 
@@ -34,6 +36,15 @@ small_title = ParagraphStyle(
     leading=14,
     alignment=1  # centré
 )
+
+DEFAULT_DAYS = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi"]
+DEFAULT_TIMES = ["8h00", "9h30", "11h00", "14h00", "15h30", "17h00"]
+
+class GeneratePlanningPayload(BaseModel):
+    # Optionnel: override des jours/créneaux/nom de fichier
+    days: Optional[List[str]] = Field(default=None)
+    times: Optional[List[str]] = Field(default=None)
+    filename: Optional[str] = Field(default=None)
 
 @router.get("/semaine/pdf")
 async def get_semaine_pdf(semaine: str = Query(...)):
@@ -109,6 +120,38 @@ async def get_semaine_pdf(semaine: str = Query(...)):
     return Response(buffer.read(), media_type="application/pdf", headers={
         "Content-Disposition": f"attachment; filename=semaine_{semaine}.pdf"
     })
+
+@router.get("/semaine/xlsx")
+def generate_planning_for_week(
+#    payload: GeneratePlanningPayload,
+    week: str = Query(...)
+):
+    data_globale_path = get_data_dir() / "data_globale.json"
+    with open(data_globale_path, "r", encoding="utf-8") as f:
+        config = json.load(f)
+
+    # Charger les cours de la semaine demandée
+    course_file = get_data_dir() / f"cours/cours_{week}.json"
+
+    if not course_file.exists():
+        raise HTTPException(status_code=404, detail=f"Cours non trouvés pour la semaine {week}: {course_file.name}")
+    try:
+        courses = json.loads(course_file.read_text(encoding="utf-8"))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Erreur lecture cours_{week}.json: {e}")
+
+    xlsx_bytes = generate_planning_bytes(
+        config=config,
+        courses=courses,
+        days= DEFAULT_DAYS,
+        times= DEFAULT_TIMES,
+    )
+    filename = f"planning_semaine_{week}.xlsx"
+    return StreamingResponse(
+        BytesIO(xlsx_bytes),
+        media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        headers={"Content-Disposition": f'attachment; filename="{filename}"'}
+    )
 
 @router.get("/")
 async def get_chronologie(
