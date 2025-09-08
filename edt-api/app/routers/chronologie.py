@@ -146,7 +146,7 @@ def generate_planning_for_week(
         days= DEFAULT_DAYS,
         times= DEFAULT_TIMES,
     )
-    filename = f"planning_semaine_{week}.xlsx"
+    filename = f"s{week}.xlsx"
     return StreamingResponse(
         BytesIO(xlsx_bytes),
         media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",

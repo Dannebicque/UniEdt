@@ -10,3 +10,15 @@ export async function fetchMatieresGroupes() {
   }
 }
 
+export async function fetchPrevisionnel() {
+  const config = useRuntimeConfig()
+
+  try {
+    return await $fetch(`${config.public.apiBaseUrl}/synthese/previsionnel`)
+  }
+  catch (error) {
+    console.error('Error fetching courses:', error)
+    throw error
+  }
+}
+
