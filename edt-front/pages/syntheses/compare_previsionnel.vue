@@ -101,8 +101,8 @@ function getBadgeClass (diff) {
         <td class="border p-2">{{ infos.previ.totCM }}</td>
         <td class="border p-2">{{ infos.edt.CM }}</td>
         <td class="border p-2">
-            <span :class="`px-2 py-1 rounded ${getBadgeClass(infos.edt.CM - infos.previ.CM)}`">
-              {{ infos.edt.CM - infos.previ.CM }}
+            <span :class="`px-2 py-1 rounded ${getBadgeClass(infos.edt.CM - infos.previ.totCM)}`">
+              {{ infos.edt.CM - infos.previ.totCM }}
             </span>
         </td>
         <!-- TD -->
@@ -111,8 +111,8 @@ function getBadgeClass (diff) {
         <td class="border p-2">{{ infos.previ.totTD }}</td>
         <td class="border p-2">{{ infos.edt.TD }}</td>
         <td class="border p-2">
-          <span :class="`px-2 py-1 rounded ${getBadgeClass(infos.edt.TD - infos.previ.TD)}`">
-              {{ infos.edt.TD - infos.previ.TD }}
+          <span :class="`px-2 py-1 rounded ${getBadgeClass(infos.edt.TD - infos.previ.totTD)}`">
+              {{ infos.edt.TD - infos.previ.totTD }}
             </span>
         </td>
         <!-- TP -->
@@ -121,8 +121,8 @@ function getBadgeClass (diff) {
         <td class="border p-2">{{ infos.previ.totTP }}</td>
         <td class="border p-2">{{ infos.edt.TP }}</td>
         <td class="border p-2">
-          <span :class="`px-2 py-1 rounded ${getBadgeClass(infos.edt.TP - infos.previ.TP)}`">
-              {{ infos.edt.TP - infos.previ.TP }}
+          <span :class="`px-2 py-1 rounded ${getBadgeClass(infos.edt.TP - infos.previ.totTP)}`">
+              {{ infos.edt.TP - infos.previ.totTP }}
             </span>
         </td>
       </tr>

@@ -1107,25 +1107,26 @@ const getPdf = async () => {
 const getExcel = async () => {
   try {
     const config = useRuntimeConfig()
-    const response = await fetch(`${config.public.apiBaseUrl}/chronologie/semaine/xslx?week=${selectedNumWeek.value}`, {
+    const response = await fetch(`${config.public.apiBaseUrl}/chronologie/semaine/xlsx?week=${selectedNumWeek.value}`, {
       method: 'GET',
       headers: {
-        'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        // Pas besoin de spécifier Content-Type pour un téléchargement de fichier
       },
     });
 
     if (!response.ok) {
-      throw new Error('Erreur lors de la génération du PDF');
+      throw new Error('Erreur lors de la génération du fichier Excel');
     }
 
     const blob = await response.blob();
     const url = window.URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.setAttribute('download', `planning_semaine_${selectedNumWeek.value}.xslx`);
+    link.setAttribute('download', `planning_semaine_${selectedNumWeek.value}.xlsx`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+    window.URL.revokeObjectURL(url);
   } catch (error) {
     console.error('Erreur lors de la récupération du fichier Excel:', error);
   }

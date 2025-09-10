@@ -55,15 +55,7 @@ def cours_to_chronologie(cours, semaine_num, tabGroupes=None, tabProfesseurs=Non
     groupe_label = get_groupe(type_cours, groupe, semestre, tabGroupes)
 
     # Calcule l'heure de fin du cours. Par défaut c'est 1h30, mais si durée n'est pas null, alors prendre cette valeur. La durée est définie en flotant dans ce cas
-    heure_fin = heure
-    if cours.get("duree"):
-# La durée est exprimée en heures (float), ex: 1.5 = 1h30
-        duree = float(cours.get("duree"))
-        heures = int(duree)
-        minutes = int((duree - heures) * 60)
-        heure_fin = str(int(heure_fin.split(":")[0]) + heures + (int(heure_fin.split(":")[1]) + minutes) // 60) + ":" + str((int(heure_fin.split(":")[1]) + minutes) % 60).zfill(2)
-    else:
-        heure_fin = str((int(heure_fin.split(":")[0]) + (int(heure_fin.split(":")[1]) + 30) // 60)) + ":" + str((int(heure_fin.split(":")[1]) + 30) % 60).zfill(2)
+    heure_fin = ajouter_duree(heure, cours.get("duree") or 1.5)
 
     return {
         "date": date,
@@ -78,3 +70,11 @@ def cours_to_chronologie(cours, semaine_num, tabGroupes=None, tabProfesseurs=Non
         "salle": cours.get("room"),
         "semester": semestre
     }
+
+def ajouter_duree(heure_str, duree=1.5):
+    # Convertit '9h30' en heures et minutes
+    h, m = map(int, heure_str.replace('h', ':').split(':'))
+    total_minutes = h * 60 + m + int(duree * 60)
+    # Reconvertit en heure et minute
+    heure_fin = f"{total_minutes // 60}:{str(total_minutes % 60).zfill(2)}"
+    return heure_fin
