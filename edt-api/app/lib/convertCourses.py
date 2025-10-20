@@ -62,6 +62,7 @@ def cours_to_chronologie(cours, semaine_num, tabGroupes=None, tabProfesseurs=Non
         "jour": jour,
         "heure": heure,
         "heureFin": heure_fin,
+        "duree": cours.get("duree") or 1.5,
         "professor": tabProfesseurs.get(cours.get("professor")),
         "matiere": cours.get("matiere"),
         "type": type_cours,

@@ -99,6 +99,7 @@ const getListeCoursBySemestre = () => {
       <Column field="semester" header="Semestre" :sortable="true" />
       <Column field="groupe" header="Groupe" :sortable="true" />
       <Column field="date" header="Date" :sortable="true" />
+      <Column field="duree" header="Durée" :sortable="true" />
       <Column field="heure" header="Heure début"/>
       <Column field="heureFin" header="Heure fin"/>
     </DataTable>

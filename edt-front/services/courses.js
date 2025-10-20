@@ -69,6 +69,22 @@ export async function updateCourse(course, week) {
   }
 }
 
+export async function addCourse(course, week) {
+  const config = useRuntimeConfig()
+  try {
+    return await $fetch(`${config.public.apiBaseUrl}/courses/add/${week}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: {updates: course}
+    })
+  } catch (error) {
+    console.error('Error creating course:', error)
+    throw error
+  }
+}
+
 export async function updateCourseToReport(course, week) {
   const config = useRuntimeConfig()
   try {

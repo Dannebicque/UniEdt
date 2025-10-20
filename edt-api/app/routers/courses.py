@@ -1,3 +1,5 @@
+import math
+import random
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from ..lib.data_loader import load_json
@@ -21,7 +23,7 @@ async def get_courses_for_week(week_number: int):
     if courses is None:
         raise HTTPException(status_code=404, detail="No courses for this week")
 
-    return [CourseToPlace(**c) for c in courses]
+    return [CourseToPlace(**{**c, "id": str(c.get("id"))}) for c in courses]
 
 @router.get("/by-week-id/{week_number}/{id}", response_model=list[CourseToPlace])
 async def get_courses_for_week_id(week_number: int, id: str|int):
@@ -34,7 +36,7 @@ async def get_courses_for_week_id(week_number: int, id: str|int):
     if not filtered_courses:
         raise HTTPException(status_code=404, detail="Cours non trouvé pour cet id")
 
-    return [CourseToPlace(**c) for c in filtered_courses]
+    return [CourseToPlace(**{**c, "id": str(c.get("id"))}) for c in filtered_courses]
 
 # Je veux une route pour rechercher dans tous les cours de toutes les semaines, ceux correspondant aux critères (semestre, professor ou matiere ou group), un ou plusieurs d ces criteres et renvoyer la liste des cours correspondants
 class SearchRequest(BaseModel):
@@ -61,7 +63,7 @@ async def search_courses(req: SearchRequest):
             course["semaine"] = week_file.stem.split("_")[1]
             all_courses.append(course)
 
-    return [CourseToPlace(**c) for c in all_courses]
+    return [CourseToPlace(**{**c, "id": str(c.get("id"))}) for c in all_courses]
 
 @router.put("/update/{course_id}/{week_number}")
 async def update_course(course_id: int|str, week_number: int, req: CourseUpdateRequest):
@@ -70,6 +72,47 @@ async def update_course(course_id: int|str, week_number: int, req: CourseUpdateR
     updated = updater.update_by_field("id", course_id, req.updates)
     if updated:
         return {"message": "Cours mis à jour", "updated": updated}
+    raise HTTPException(status_code=404, detail="Cours non trouvé")
+
+@router.post("/add/{week_number}")
+async def update_course(week_number: int, req: CourseUpdateRequest):
+    data_path = get_data_dir() / f"cours/cours_{week_number}.json"
+    with open(data_path, "r", encoding="utf-8") as f:
+        courses = json.load(f)
+
+    # Générer un nouvel id unique
+    groupe = int(req.updates.get("groupeIndex", 1))
+    new_id = int(f"{hash(data_path) % 10000}{week_number}{math.floor(random.randint(1, 999999) * math.fabs(math.sin(groupe + int(week_number))))}")
+    semestre = req.updates.get("semester", {}).get("value")
+    # Préparer le nouveau cours avec les champs requis
+    new_course = {
+        "id": new_id,
+        "creneau": req.updates.get("creneau", None),
+        "date": req.updates.get("date", None),
+        "color": get_color_for_semester(semestre),
+        "isVacataire": False,
+        "blocked": False,
+        "fixed": False,
+        "unmovable": False,
+        "heureDebut": None,
+        "semaine": week_number,
+        "groupIndex": groupe,
+        "groupCount": int(req.updates.get("groupCount", 1)),
+        "semester": semestre,
+        "professor": req.updates.get("professor"),
+        "matiere": req.updates.get("matiere"),
+        "type": req.updates.get("type"),
+        "room": req.updates.get("room", None),
+        "duree": None if float(req.updates.get("duree", 1.5)) == 1.5 else float(req.updates.get("duree", 1.5))
+    }
+
+    courses.append(new_course)
+
+    with open(data_path, "w", encoding="utf-8") as f:
+        json.dump(courses, f, ensure_ascii=False, indent=2)
+
+    if new_course:
+        return {"message": "Cours mis à jour", "updated": new_course}
     raise HTTPException(status_code=404, detail="Cours non trouvé")
 
 @router.put("/update/{course_id}/deplace-to-report/{week_number}")
@@ -254,3 +297,10 @@ def assign_rooms(week_number: int):
         raise HTTPException(status_code=500, detail=f"Erreur d'écriture: {e}")
 
     return {"message": "Salles affectées et fichier mis à jour."}
+
+def get_color_for_semester(semester: str) -> str:
+    data_path = get_data_dir() / "data_globale.json"
+    with open(data_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    # Supposons que la structure soit {"semesters": {"S1": {"color": "#xxxxxx"}, ...}}
+    return data.get("semesters", {}).get(semester, {}).get("color", "#026613")

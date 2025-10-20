@@ -16,14 +16,21 @@ class JsonUpdater:
         return False
 
     def update_by_field(self, field: str, value: Any, updates: Dict[str, Any]) -> int:
-        """Met à jour les objets d'une liste où field == value."""
+        """Met à jour les objets d'une liste où field == value, avec traitement spécial pour 'duree'."""
         if not isinstance(self.data, list):
             return 0
         count = 0
         for obj in self.data:
             if str(obj.get(field)) == str(value):
                 print(f"Updating {field}={value} in {obj}")
-                obj.update(updates)
+                for k, v in updates.items():
+                    if k == "duree":
+                        if v not in (0, None, "0", "null", ""):
+                            obj[k] = float(v)
+                        else:
+                            obj[k] = None
+                    else:
+                        obj[k] = v
                 count += 1
         if count:
             self._save()

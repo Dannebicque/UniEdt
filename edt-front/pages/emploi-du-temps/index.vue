@@ -71,14 +71,15 @@
         </h2>
       </div>
       <div class="basis-1/2">
-        <Button @click="affectRooms">Affecter les salles</Button>
+        <Button @click="addCours">Créer un cours</Button>
+        <Button @click="affectRooms" class="ms-2">Affecter les salles</Button>
         <Button @click="getPdf" class="ms-2">Exporter la semaine (pdf)</Button>
         <Button @click="getExcel" class="ms-2">Exporter la semaine (Excel)</Button>
       </div>
     </div>
 
     <div class="m-3">
-      <ProgressBar :value="nbPlacedPercent"> {{ nbPlaced }}/{{ nbToPlaced }} </ProgressBar>
+      <ProgressBar :value="nbPlacedPercent"> {{ nbPlaced }}/{{ nbToPlaced }}</ProgressBar>
     </div>
 
     <div class="flex flex-row flex-wrap">
@@ -254,14 +255,14 @@
             </TabPanel>
             <TabPanel value="2">
               <ListeSearchCours
-                          ref="listeSearchCoursRef"
-                          @update:highlightProf="highlightProf = $event"
-                          @update:highlightCours="highlightCours = $event"
-                          @update:selectedProfessor="selectedProfessor = $event"
-                          @update:selectedCours="selectedCours = $event"
-                          :semesters="semesters"
-                          source="reportSearchCourses"
-                          @drag-start="onDragStartEvent"
+                  ref="listeSearchCoursRef"
+                  @update:highlightProf="highlightProf = $event"
+                  @update:highlightCours="highlightCours = $event"
+                  @update:selectedProfessor="selectedProfessor = $event"
+                  @update:selectedCours="selectedCours = $event"
+                  :semesters="semesters"
+                  source="reportSearchCourses"
+                  @drag-start="onDragStartEvent"
               />
             </TabPanel>
           </TabPanels>
@@ -285,37 +286,63 @@
       </div>
       <div class="flex items-center gap-4 mb-4">
         <label class="font-semibold w-24" for="prof">Professeur:</label>
-        <InputText type="text" v-model="modalCourse.professor" id="prof" name="prof" class="flex-auto" />
+        <InputText type="text" v-model="modalCourse.professor" id="prof" name="prof" class="flex-auto"/>
       </div>
       <div class="flex items-center gap-4 mb-4">
         <label class="font-semibold w-24" for="heureDebut">Heure début (si diff. du créneau):</label>
-        <InputText type="text" v-model="modalCourse.heureDebut" id="heureDebut" name="heureDebut" class="flex-auto" />
+        <InputText type="text" v-model="modalCourse.heureDebut" id="heureDebut" name="heureDebut" class="flex-auto"/>
       </div>
       <div class="flex items-center gap-4 mb-4">
         <label class="font-semibold w-24" for="duree">Durée (si diff. de 1h30, en décimal):</label>
-        <InputText type="text" v-model="modalCourse.duree" id="duree" name="duree" class="flex-auto" />
+        <InputText type="text" v-model="modalCourse.duree" id="duree" name="duree" class="flex-auto"/>
       </div>
       <div class="flex items-center gap-4 mb-4">
         <label class="font-semibold w-24" for="room">Salle:</label>
-        <InputText type="text" v-model="modalCourse.room" id="room" name="room" class="flex-auto" />
+        <InputText type="text" v-model="modalCourse.room" id="room" name="room" class="flex-auto"/>
       </div>
       <div class="flex items-center gap-4 mb-4">
         <label class="font-semibold w-24" for="unmovable">Cours figé (éviter déplacement):</label>
-        <Checkbox  v-model="modalCourse.unmovable" id="unmovable" name="unmovable" class="flex-auto" binary />
+        <Checkbox v-model="modalCourse.unmovable" id="unmovable" name="unmovable" class="flex-auto" binary/>
       </div>
       <div class="flex justify-end gap-2">
         <Button type="button" label="Cancel" severity="secondary" @click="isModalOpen = false"></Button>
         <Button @click="saveRoom" severity="success">Enregistrer</Button>
       </div>
     </Dialog>
+
+    <Dialog :visible="isAddModalOpen" :closable="true" modal
+            @update:visible="isAddModalOpen = $event"
+            :style="{ width: '35rem' }"
+            header="Ajouter un cours">
+      <div class="flex flex-col gap-4">
+        <InputText v-model="newCourse.matiere" placeholder="Matière"/>
+        <Select v-model="newCourse.professor" placeholder="Professeur" optionLabel="name"
+                optionValue="key"
+                :autoFilterFocus="true"
+                :filter="true"
+                class="w-full"
+                :options="professors"/>
+        <Select v-model="newCourse.semester" placeholder="Semestre" optionLabel="label" :options="getKeys(semesters)"
+                :autoFilterFocus="true"
+                :filter="true"
+        />
+        <InputText v-model="newCourse.groupIndex" placeholder="Groupe (1, 2...)"/>
+        <InputText v-model="newCourse.groupCount" placeholder="Taille Groupe (1, 2, 8)"/>
+        <InputText v-model="newCourse.type" placeholder="Type (CM/TD/TP)"/>
+        <InputText v-model="newCourse.duree" placeholder="Durée"/>
+        <InputText v-model="newCourse.room" placeholder="Salle"/>
+        <!-- Ajoutez d'autres champs si besoin -->
+        <div class="flex justify-end gap-2">
+          <Button type="button" label="Annuler" severity="secondary" @click="isAddModalOpen = false"></Button>
+          <Button @click="saveNewCourse" severity="success">Enregistrer</Button>
+        </div>
+      </div>
+    </Dialog>
   </div>
 </template>
 
 <script setup>
-definePageMeta({
-  middleware: ['authenticated'],
-})
-
+import { fetchIntervenants } from '~/services/intervenants.js'
 import RadioButton from 'primevue/radiobutton'
 import Button from 'primevue/button'
 import Select from 'primevue/select'
@@ -324,17 +351,23 @@ import { computed, ref } from 'vue'
 import { fetchWeek, fetchWeeks } from '~/services/weeks.js'
 import { fetchAllConfig } from '~/services/configGlobale.js'
 import {
+  addCourse,
   assignRoomsByWeek,
   deleteCourse,
   fetchCoursesByWeek,
   fetchCoursesByWeekAndId,
   updateCourse,
-  updateCourseFromReport, updateCourseFromSearch,
+  updateCourseFromReport,
+  updateCourseFromSearch,
   updateCourseToReport
 } from '~/services/courses.js'
 import { fetchConstraintsByWeek } from '~/services/constraints.js'
 import { fetchEventsByWeek } from '~/services/events.js'
 import { getColorBySemestreAndType } from '@/composables/useColorUtils.js'
+
+definePageMeta({
+  middleware: ['authenticated'],
+})
 
 const configEnv = useRuntimeConfig()
 const baseUrl = configEnv.public.apiBaseUrl
@@ -359,15 +392,49 @@ const displayType = ref('professor')
 const constraints = ref({})
 const restrictedSlots = ref({})
 
+const getKeys = (obj) => {
+  return Object.keys(obj).map((key) => ({ label: key, value: key }))
+}
+
 const timeSlots = ref(['8h00', '9h30', '11h00', '12h30', '14h00', '15h30', '17h00'])
 
 const placedCourses = ref({})
 
 const size = ref(0)
 
+const isAddModalOpen = ref(false)
+const newCourse = ref({
+  matiere: '',
+  professor: '',
+  semester: '',
+  groupIndex: '',
+  type: '',
+  duree: 1.5,
+  room: '',
+  groupCount: 1,
+  // Ajoutez les autres champs nécessaires
+})
+
 const nbPlacedPercent = computed(() => {
   return Math.round((nbPlaced.value / nbToPlaced.value) * 100)
 })
+
+const addCours = () => {
+  Object.keys(newCourse.value).forEach(k => newCourse.value[k] = '')
+  newCourse.value.duree = 1.5
+  newCourse.value.type = 'TD'
+  isAddModalOpen.value = true
+}
+
+const saveNewCourse = async () => {
+  try {
+    await addCourse(newCourse.value, selectedNumWeek.value)
+    isAddModalOpen.value = false
+    await _getCourses()
+  } catch (error) {
+    console.error('Erreur lors de l\'ajout du cours:', error)
+  }
+}
 
 const displayHeureModal = (course) => {
   //si heureDebut == null, alors convertHeureText classique sur le créneau, sinon on prend la valeur inscrite
@@ -380,15 +447,17 @@ const displayHeureModal = (course) => {
 
 const _updateStats = async () => {
   await fetch(`${baseUrl}/statistiques/${selectedNumWeek.value}`)
-    .then(response => response.json())
-    .then(data => {
-      nbPlaced.value = data.placed
-      nbToPlaced.value = data.total
-    })
-    .catch(error => {
-      console.error('Erreur lors de la récupération des statistiques:', error)
-    })
+      .then(response => response.json())
+      .then(data => {
+        nbPlaced.value = data.placed
+        nbToPlaced.value = data.total
+      })
+      .catch(error => {
+        console.error('Erreur lors de la récupération des statistiques:', error)
+      })
 }
+
+const professors = ref([])
 
 onMounted(async () => {
       // Simulate fetching weeks data-GEA
@@ -396,6 +465,7 @@ onMounted(async () => {
         weeks.value = await fetchWeeks()
         config.value = await fetchAllConfig()
         semesters.value = await config.value.semesters
+        professors.value = await fetchIntervenants()
         Object.values(semesters.value).forEach((semestre) => {
           size.value += semestre.nbTp
         })
@@ -576,8 +646,8 @@ const handleDropFromCoursesToReport = async (courseId, day, time, semestre, grou
       checkIfCourseAlreadyPlace(day, time, semestre, groupNumber, course)) {
     const groupSpan = course.groupCount
 
-   // if (groupToInt(groupNumber, semestre) <= config.value.semesters[semestre].nbTp - groupSpan + 1) {
-      mergeCells(day, time, semestre, groupNumber, groupSpan, course.type)
+    // if (groupToInt(groupNumber, semestre) <= config.value.semesters[semestre].nbTp - groupSpan + 1) {
+    mergeCells(day, time, semestre, groupNumber, groupSpan, course.type)
     //}
 
     course.creneau = convertToHeureInt(time)
@@ -625,7 +695,6 @@ const handleDropFromCoursesToSearch = async (courseId, day, time, semestre, grou
   }
 }
 
-
 const handleDropFromGrid = async (courseId, day, time, semestre, groupNumber, originSlot) => {
   const course = placedCourses.value[originSlot]
   if (course &&
@@ -634,25 +703,25 @@ const handleDropFromGrid = async (courseId, day, time, semestre, groupNumber, or
       checkIfCourseAlreadyPlace(day, time, semestre, groupNumber, course)) {
     const groupSpan = course.groupCount
     //if (groupToInt(groupNumber, semestre) <= config.value.semesters[semestre].nbTp - groupSpan + 1) {
-      removeCourse(
-          course.date,
-          convertToHeureText(course.creneau),
-          course.semester,
-          groupToText(course.groupIndex, course.semester),
-          course.groupCount,
-          true
-      )
-      mergeCells(day, time, semestre, groupNumber, groupSpan, course.type)
-      course.creneau = convertToHeureInt(time)
-      course.date = day
-      course.blocked = false
-      course.room = 'A définir'
+    removeCourse(
+        course.date,
+        convertToHeureText(course.creneau),
+        course.semester,
+        groupToText(course.groupIndex, course.semester),
+        course.groupCount,
+        true
+    )
+    mergeCells(day, time, semestre, groupNumber, groupSpan, course.type)
+    course.creneau = convertToHeureInt(time)
+    course.date = day
+    course.blocked = false
+    course.room = 'A définir'
 
-      await updateCourse(course, selectedNumWeek.value)
-      await _updateStats()
-      delete placedCourses.value[originSlot]
-      clearSameCoursesHighlight()
-      placedCourses.value[`${day}_${time}_${semestre}_${groupNumber}`] = course
+    await updateCourse(course, selectedNumWeek.value)
+    await _updateStats()
+    delete placedCourses.value[originSlot]
+    clearSameCoursesHighlight()
+    placedCourses.value[`${day}_${time}_${semestre}_${groupNumber}`] = course
     //}
   }
 }
@@ -667,7 +736,7 @@ const checkIfCourseAlreadyPlace = async (day, time, semestre, groupNumber, cours
   if (courseToPlace.type === 'TD') {
     // on regarde si groupInt (impair) et groupInt + 1 sont vide
     if (groupInt % 2 === 1) {
-      if (placedCourses.value[`${day}_${time}_${semestre}_${groupToText(groupInt, semestre)}`] && placedCourses.value[`${day}_${time}_${semestre}_${groupToText(groupInt, semestre)}`].unmovable || placedCourses.value[`${day}_${time}_${semestre}_${groupToText(groupInt+1, semestre)}`] && placedCourses.value[`${day}_${time}_${semestre}_${groupToText(groupInt + 1, semestre)}`].unmovable) {
+      if (placedCourses.value[`${day}_${time}_${semestre}_${groupToText(groupInt, semestre)}`] && placedCourses.value[`${day}_${time}_${semestre}_${groupToText(groupInt, semestre)}`].unmovable || placedCourses.value[`${day}_${time}_${semestre}_${groupToText(groupInt + 1, semestre)}`] && placedCourses.value[`${day}_${time}_${semestre}_${groupToText(groupInt + 1, semestre)}`].unmovable) {
         return false
       } else {
         if (placedCourses.value[`${day}_${time}_${semestre}_${groupToText(groupInt, semestre)}`]) {
@@ -684,9 +753,9 @@ const checkIfCourseAlreadyPlace = async (day, time, semestre, groupNumber, cours
           }
         }
 
-        if (placedCourses.value[`${day}_${time}_${semestre}_${groupToText(groupInt +1, semestre)}`]) {
+        if (placedCourses.value[`${day}_${time}_${semestre}_${groupToText(groupInt + 1, semestre)}`]) {
           //on déplace le groupe pair
-          const cours = placedCourses.value[`${day}_${time}_${semestre}_${groupToText(groupInt +1, semestre)}`]
+          const cours = placedCourses.value[`${day}_${time}_${semestre}_${groupToText(groupInt + 1, semestre)}`]
           if (cours.blocked === false) {
             coursesOfWeeks.value.push(cours)
             cours.creneau = null
@@ -694,7 +763,7 @@ const checkIfCourseAlreadyPlace = async (day, time, semestre, groupNumber, cours
             cours.room = null
             await updateCourse(cours, selectedNumWeek.value)
             await _updateStats()
-            delete placedCourses.value[`${day}_${time}_${semestre}_${groupToText(groupInt +1, semestre)}`]
+            delete placedCourses.value[`${day}_${time}_${semestre}_${groupToText(groupInt + 1, semestre)}`]
           }
         }
       }
@@ -728,7 +797,7 @@ const mergeCells = (day, time, semestre, groupNumber, groupSpan, type) => {
     cell.style.gridColumn = `span ${groupSpan}`
     const color = getColorBySemestreAndType(config.value.semesters[semestre].color, type)
     cell.style.backgroundColor = `${color} !important`
-    cell.style.color='white'
+    cell.style.color = 'white'
     cell.style.minWidth = `${50 * groupSpan}px`
     // Remove the extra cells that are merged
     for (let i = 1; i < groupSpan; i++) {
@@ -814,7 +883,7 @@ const removeCourse = (day, time, semestre, groupNumber, groupSpan, changeSemaine
     currentCell.classList.remove('fixedCourse')
 
     // Remove the course from all associated cells and add empty cells back
-      delete placedCourses.value[`${day}_${time}_${semestre}_${groupNumber}`]
+    delete placedCourses.value[`${day}_${time}_${semestre}_${groupNumber}`]
 
     // Recreate the missing cells
     for (let i = 1; i < groupSpan; i++) {
@@ -1048,7 +1117,7 @@ const displayCourse = (course) => {
   } else if (course.groupCount === 2) {
     groupe =
         'TD ' +
-       groupToText(course.groupIndex, course.semester, course.type)
+        groupToText(course.groupIndex, course.semester, course.type)
   } else {
     groupe = 'CM'
   }
@@ -1085,22 +1154,22 @@ const getPdf = async () => {
       headers: {
         'Content-Type': 'application/pdf',
       },
-    });
+    })
 
     if (!response.ok) {
-      throw new Error('Erreur lors de la génération du PDF');
+      throw new Error('Erreur lors de la génération du PDF')
     }
 
-    const blob = await response.blob();
-    const url = window.URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.setAttribute('download', `semaine_${selectedNumWeek.value}.pdf`);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    const blob = await response.blob()
+    const url = window.URL.createObjectURL(blob)
+    const link = document.createElement('a')
+    link.href = url
+    link.setAttribute('download', `semaine_${selectedNumWeek.value}.pdf`)
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
   } catch (error) {
-    console.error('Erreur lors de la récupération du PDF:', error);
+    console.error('Erreur lors de la récupération du PDF:', error)
   }
 }
 
@@ -1112,26 +1181,25 @@ const getExcel = async () => {
       headers: {
         // Pas besoin de spécifier Content-Type pour un téléchargement de fichier
       },
-    });
+    })
 
     if (!response.ok) {
-      throw new Error('Erreur lors de la génération du fichier Excel');
+      throw new Error('Erreur lors de la génération du fichier Excel')
     }
 
-    const blob = await response.blob();
-    const url = window.URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.setAttribute('download', `planning_semaine_${selectedNumWeek.value}.xlsx`);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    window.URL.revokeObjectURL(url);
+    const blob = await response.blob()
+    const url = window.URL.createObjectURL(blob)
+    const link = document.createElement('a')
+    link.href = url
+    link.setAttribute('download', `planning_semaine_${selectedNumWeek.value}.xlsx`)
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+    window.URL.revokeObjectURL(url)
   } catch (error) {
-    console.error('Erreur lors de la récupération du fichier Excel:', error);
+    console.error('Erreur lors de la récupération du fichier Excel:', error)
   }
 }
-
 
 const affectRooms = async () => {
   try {
@@ -1169,14 +1237,14 @@ const saveRoom = async () => {
 .grid-day {
   grid-column: span v-bind(size+1);
   background-color: #137C78;
-  color:white;
+  color: white;
   text-align: center;
   font-weight: bold;
 }
 
 .grid-header {
   background-color: #33B3B2;
-  color:white;
+  color: white;
   text-align: center;
   padding: 8px;
   font-weight: bold;
@@ -1188,7 +1256,7 @@ const saveRoom = async () => {
   text-align: center;
   padding: 8px;
   background-color: #33B3B2;
-  color:white;
+  color: white;
   border: 1px solid #000;
   grid-column: span 1;
 }
