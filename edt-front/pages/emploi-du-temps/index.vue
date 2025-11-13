@@ -466,9 +466,6 @@ onMounted(async () => {
         config.value = await fetchAllConfig()
         semesters.value = await config.value.semesters
         professors.value = await fetchIntervenants()
-        Object.values(semesters.value).forEach((semestre) => {
-          size.value += semestre.nbTp
-        })
         await _loadWeek()
       } catch (error) {
         console.error('Erreur lors de la récupération des semaines:', error)
@@ -531,6 +528,13 @@ const _loadWeek = async () => {
 const _getWeek = async () => {
   selectedWeek.value = await fetchWeek(selectedNumWeek.value)
   days.value = selectedWeek.value.days
+
+  // récupérer les semestres de la week, récupérer le nbTp depuis la config et aditionner
+  size.value = 0
+  Object.values(selectedWeek.value.semesters).forEach((semestre) => {
+    size.value += config.value['semesters'][semestre].nbTp
+  })
+
   restrictedSlots.value = await fetchEventsByWeek(selectedNumWeek.value)
   constraints.value = await fetchConstraintsByWeek(selectedNumWeek.value)
   applyRestrictions()
